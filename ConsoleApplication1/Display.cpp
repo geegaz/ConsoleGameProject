@@ -1,23 +1,47 @@
 #include "Display.h"
+#include <iostream>
+#include <string>
 
-Display::Display(CHAR_INFO*& buffer, int width, int height){
-    this->buffer = buffer;
-    this->width = width;
-    this->height = height;
+Display::Display(){
+    hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
+    dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };
+    dwBufferCoord = { 0, 0 };
+    rcRegion = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
+    buffer = new CHAR_INFO[SCREEN_HEIGHT * SCREEN_WIDTH];
+
+    SetConsoleScreenBufferSize(hOutput, dwBufferSize);
+
+    SetConsoleWindowInfo(hOutput, true, &rcRegion);
+
+    ReadConsoleOutput(hOutput, (CHAR_INFO*)buffer, dwBufferSize,
+        dwBufferCoord, &rcRegion);
+
+    for (int j = 1; j < SCREEN_HEIGHT; j++) {
+        for (int i = 0; i < SCREEN_WIDTH; i++) {
+            buffer[j * SCREEN_WIDTH + i].Attributes = (((j + i) + (j % 2)) % 2) ? 0x00F0 : 0x000F;
+            buffer[j * SCREEN_WIDTH + i].Char.UnicodeChar = 0x2580;
+        }
+    }
 }
 
-void Display::Draw(int x, int y, int color) {
+void Display::DrawPixel(int x, int y, int color) {
     int top_mask = 0x0F, bottom_mask = 0xF0;
     int x_coord, y_coord;
     x_coord = x;
     y_coord = y / 2;
     bool bottom = y % 2;
+    int array_index = y_coord * SCREEN_WIDTH + x_coord;
     if (!bottom) {
-        buffer[y_coord*width + x_coord].Attributes &= bottom_mask;
-        buffer[y_coord*width + x_coord].Attributes += color;
+        buffer[array_index].Attributes &= bottom_mask;
+        buffer[array_index].Attributes += color;
     }
     else {
-        buffer[y_coord * width + x_coord].Attributes &= top_mask;
-        buffer[y_coord * width + x_coord].Attributes += color<<4;
-    }
+        buffer[array_index].Attributes &= top_mask;
+        buffer[array_index].Attributes += color<<4;
+    }  
+}
+
+void Display::Refresh() {
+    WriteConsoleOutput(hOutput, (CHAR_INFO*)buffer, dwBufferSize,
+        dwBufferCoord, &rcRegion);
 }

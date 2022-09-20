@@ -1,12 +1,18 @@
 #pragma once
 #include <windows.h>
 #include <iostream>
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 40
 class Display
 {
 private:
 	CHAR_INFO* buffer;
+	HANDLE hOutput;
+	COORD dwBufferSize;
+	COORD dwBufferCoord;
+	SMALL_RECT rcRegion;
 public:
-	int width, height;
-	Display(CHAR_INFO*&, int width, int height);
-	void Draw(int x, int y, int color);
+	Display();
+	void DrawPixel(int x, int y, int color);
+	void Refresh();
 };
