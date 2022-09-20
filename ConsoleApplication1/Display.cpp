@@ -15,16 +15,16 @@ Display::Display(){
 
     ReadConsoleOutput(hOutput, (CHAR_INFO*)buffer, dwBufferSize,
         dwBufferCoord, &rcRegion);
-
-    for (int j = 1; j < SCREEN_HEIGHT; j++) {
+    for (int j = UI_HEIGHT/2; j < SCREEN_HEIGHT; j++) {
         for (int i = 0; i < SCREEN_WIDTH; i++) {
-            buffer[j * SCREEN_WIDTH + i].Attributes = (((j + i) + (j % 2)) % 2) ? 0x00F0 : 0x000F;
             buffer[j * SCREEN_WIDTH + i].Char.UnicodeChar = 0x2580;
         }
     }
 }
 
 void Display::DrawPixel(int x, int y, int color) {
+    if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
+        return;
     int top_mask = 0x0F, bottom_mask = 0xF0;
     int x_coord, y_coord;
     x_coord = x;
@@ -44,4 +44,13 @@ void Display::DrawPixel(int x, int y, int color) {
 void Display::Refresh() {
     WriteConsoleOutput(hOutput, (CHAR_INFO*)buffer, dwBufferSize,
         dwBufferCoord, &rcRegion);
+}
+
+void Display::Fill(int color) {
+    for (int j = UI_HEIGHT/2; j < SCREEN_HEIGHT; j++) {
+        for (int i = 0; i < SCREEN_WIDTH; i++) {
+            buffer[j * SCREEN_WIDTH + i].Attributes = 0x11 * color;
+            // buffer[j * SCREEN_WIDTH + i].Attributes = (((j + i) + (j % 2)) % 2) ? 0x00F0 : 0x000F;
+        }
+    }
 }

@@ -14,7 +14,9 @@ private:
 	int sizeX, sizeY;
 
 public:
+	Sprite();
 	Sprite(ifstream&, int, int);
+	Sprite(int, int, int);
 	~Sprite();
 	int Draw(Display& display, int x, int y);
 

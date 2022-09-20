@@ -10,19 +10,16 @@ using namespace std;
 
 int main()
 {
-    Display display;
+    while (true) {
+        Display display;
 
-    ifstream test_file;
-    test_file.open("Sprite.txt");
-    Sprite test_sprite(test_file, 8, 8);
-    
-    display.DrawPixel(3, 2, 0xB);
-    test_sprite.Draw(display, 4, 8);
-    display.Refresh();
-    
-    char character;
-    cin >> character;
-
+        ifstream test_file;
+        test_file.open("Sprite.txt");
+        Sprite snakeSprite(GREEN, 4, 4), appleSprite(RED, 4, 4);
+        display.Fill(DARK_GRAY);
+        display.DrawPixel(3, 2, 0xB);
+        display.Refresh();
+    }
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
