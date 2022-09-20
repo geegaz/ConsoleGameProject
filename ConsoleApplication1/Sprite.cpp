@@ -1,4 +1,5 @@
 #include "Sprite.h"
+
 Sprite::Sprite() {
     sizeX = 1;
     sizeY = 1;
@@ -8,17 +9,45 @@ Sprite::Sprite() {
     data[0] = 0;
 }
 
-Sprite::Sprite(ifstream& file, int size_x, int size_y) {
-	this->sizeX = size_x;
-	this->sizeY = size_y;
+Sprite::Sprite(ifstream& file) {
+	/*this->sizeX = size_x;
+	this->sizeY = size_y;*/
 
-    int data_size = size_x * size_y;
+    string size_x_string;
+    string size_y_string;
+    getline(file, size_x_string);
+    getline(file, size_y_string);
+
+    sizeX = stoi(size_x_string);
+    sizeY = stoi(size_y_string);
+    int data_size = sizeX * sizeY;
     this->data = new int[data_size];
 
-    for (size_t i = 0; i < data_size; i++)
-    {
-        data[i] = 4;
+    int i = 0;
+    while (file && i < data_size) {
+        char c = file.get();
+        if (c >= 'A' && c <= 'F') {
+            data[i] = c - 'A' + 10;
+        }
+        else {
+            if (c >= '0' && c <= '9') {
+                data[i] = c - '0';
+            }
+            else {
+                if (c == ' ') {
+                    data[i] = -1;
+                }
+            }
+        }
+        i++;
     }
+
+    cout << sizeX << " " << sizeY << endl;
+    for (int i = 0; i < data_size; i++)
+    {
+        cout << data[i];
+    }
+    cout << endl;
 }
 
 Sprite::Sprite(int color, int size_x, int size_y) {

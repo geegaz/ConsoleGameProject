@@ -29,9 +29,9 @@ void Display::DrawPixel(int x, int y, int color) {
     int x_coord, y_coord;
     x_coord = x;
     y_coord = y / 2;
-    bool bottom = y % 2;
+    bool top = y % 2;
     int array_index = y_coord * SCREEN_WIDTH + x_coord;
-    if (!bottom) {
+    if (!top) {
         buffer[array_index].Attributes &= bottom_mask;
         buffer[array_index].Attributes += color;
     }
