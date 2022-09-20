@@ -11,16 +11,21 @@ using namespace std;
 
 int main()
 {
+    Display display;
     int c;
-    //ifstream test_file;
-    //test_file.open("Sprite.txt");
-    Sprite snakeSprite(DARK_GREEN, 4, 4), appleSprite(DARK_RED, 4, 4);
+
+    ifstream snake_sprite_file, apple_sprite_file;
+    snake_sprite_file.open("SnakeSprite.txt");
+    apple_sprite_file.open("AppleSprite.txt");
+
+    Sprite snakeSprite(snake_sprite_file), appleSprite(apple_sprite_file);
     Snake snake(snakeSprite, appleSprite);
     snake.Start();
-    Display display;
     while (true) {
         display.Fill(DARK_GRAY);
+
         snake.DrawGame(display);
+
         display.Refresh();
         Sleep(50);
         snake.Update();

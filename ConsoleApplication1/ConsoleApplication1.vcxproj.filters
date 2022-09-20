@@ -43,5 +43,11 @@
     <Text Include="Sprite.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
+    <Text Include="AppleSprite.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="SnakeSprite.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
   </ItemGroup>
 </Project>

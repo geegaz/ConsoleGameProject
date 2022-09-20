@@ -151,6 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Sprite.txt" />
+    <Text Include="AppleSprite.txt" />
+    <Text Include="SnakeSprite.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

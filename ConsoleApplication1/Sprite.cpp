@@ -13,40 +13,34 @@ Sprite::Sprite(ifstream& file) {
 	/*this->sizeX = size_x;
 	this->sizeY = size_y;*/
 
-    string size_x_string;
-    string size_y_string;
-    getline(file, size_x_string);
-    getline(file, size_y_string);
-
-    sizeX = stoi(size_x_string);
-    sizeY = stoi(size_y_string);
-    int data_size = sizeX * sizeY;
-    this->data = new int[data_size];
+    string string_data;
+    int int_data;
 
     int i = 0;
-    while (file && i < data_size) {
-        char c = file.get();
-        if (c >= 'A' && c <= 'F') {
-            data[i] = c - 'A' + 10;
+    int offset = 0;
+    while (file) {
+        file >> string_data;
+        if (string_data == "---") {
+            offset = i;
+            this->data = new int[sizeX * sizeY];
         }
         else {
-            if (c >= '0' && c <= '9') {
-                data[i] = c - '0';
+            int_data = stoi(string_data);
+            switch (i)
+            {
+            case 0:
+                sizeX = int_data;
+                break;
+            case 1:
+                sizeY = int_data;
+                break;
+            default:
+                data[i - offset] = int_data;
             }
-            else {
-                if (c == ' ') {
-                    data[i] = -1;
-                }
-            }
+            i++;
         }
-        i++;
     }
 
-    cout << sizeX << " " << sizeY << endl;
-    for (int i = 0; i < data_size; i++)
-    {
-        cout << data[i];
-    }
     cout << endl;
 }
 
