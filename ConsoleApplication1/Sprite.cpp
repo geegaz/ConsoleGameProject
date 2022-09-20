@@ -68,7 +68,7 @@ int Sprite::Draw(Display& display, int x, int y) {
         if (data[i] >= 0) {
             display.DrawPixel(
                 x + i % sizeX, 
-                y + i / sizeY, 
+                y + i / sizeX, 
                 data[i]
             );
         }
