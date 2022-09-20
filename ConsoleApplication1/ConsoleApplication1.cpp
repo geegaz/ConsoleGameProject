@@ -5,20 +5,25 @@
 #include <string>
 #include "Display.h"
 #include "Sprite.h"
+#include "Snake.h"
 
 using namespace std;
 
 int main()
 {
+    int c;
+    //ifstream test_file;
+    //test_file.open("Sprite.txt");
+    Sprite snakeSprite(DARK_GREEN, 4, 4), appleSprite(DARK_RED, 4, 4);
+    Snake snake(snakeSprite, appleSprite);
+    snake.Start();
+    Display display;
     while (true) {
-        Display display;
-
-        ifstream test_file;
-        test_file.open("Sprite.txt");
-        Sprite snakeSprite(GREEN, 4, 4), appleSprite(RED, 4, 4);
         display.Fill(DARK_GRAY);
-        display.DrawPixel(3, 2, 0xB);
+        snake.DrawGame(display);
         display.Refresh();
+        Sleep(50);
+        snake.Update();
     }
 }
 

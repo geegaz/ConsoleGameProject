@@ -81,3 +81,15 @@ int Sprite::Draw(Display& display, int x, int y) {
     }
     return 0;
 }
+
+Sprite& Sprite::operator=(Sprite& other) {
+    if (this != NULL && this != &other) {
+        delete[] data;
+        data = new int[other.sizeX*other.sizeY];
+        sizeX = other.sizeX;
+        sizeY = other.sizeY;
+        for (int i = 0; i < other.sizeX * other.sizeY; i++)
+            data[i] = other.data[i];
+    }
+    return *this;
+}
