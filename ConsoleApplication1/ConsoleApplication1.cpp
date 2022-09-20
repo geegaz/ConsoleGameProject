@@ -4,14 +4,20 @@
 #include <iostream>
 #include <string>
 #include "Display.h"
+#include "Sprite.h"
 
 using namespace std;
 
 int main()
 {
     Display display;
+
+    ifstream test_file;
+    test_file.open("Sprite.txt");
+    Sprite test_sprite(test_file, 8, 8);
     
     display.DrawPixel(3, 2, 0xB);
+    test_sprite.Draw(display, 4, 8);
     display.Refresh();
     
     char character;
