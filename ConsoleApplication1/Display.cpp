@@ -23,7 +23,7 @@ Display::Display(){
 }
 
 void Display::DrawPixel(int x, int y, int color) {
-    if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
+    if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT*2)
         return;
     int top_mask = 0x0F, bottom_mask = 0xF0;
     int x_coord, y_coord;
