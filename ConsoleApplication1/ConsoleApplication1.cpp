@@ -14,6 +14,11 @@ int main()
     Display display;
     int c;
 
+    ifstream background_file;
+    background_file.open("SnakeBackground.txt");
+
+    Sprite snakeBackground(background_file);
+
     ifstream snake_sprite_file, apple_sprite_file;
     snake_sprite_file.open("SnakeSprite.txt");
     apple_sprite_file.open("AppleSprite.txt");
@@ -24,6 +29,7 @@ int main()
     while (true) {
         display.Fill(DARK_GRAY);
 
+        snakeBackground.Draw(display, 0, 0);
         snake.DrawGame(display);
 
         display.Refresh();
