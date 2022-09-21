@@ -40,8 +40,6 @@ Sprite::Sprite(ifstream& file) {
             i++;
         }
     }
-
-    cout << endl;
 }
 
 Sprite::Sprite(int color, int size_x, int size_y) {

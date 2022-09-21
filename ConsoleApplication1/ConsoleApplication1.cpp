@@ -13,7 +13,7 @@ int main()
 {
     Display display;
     int c;
-
+    cin >> c;
     ifstream background_file;
     background_file.open("SnakeBackground.txt");
 
@@ -26,10 +26,14 @@ int main()
     Sprite snakeSprite(snake_sprite_file), appleSprite(apple_sprite_file);
     Snake snake(snakeSprite, appleSprite);
     snake.Start();
+    // TODO Title screen with flashing text
     while (true) {
-        display.Fill(DARK_GRAY);
-
-        snakeBackground.Draw(display, 0, 0);
+        display.Fill(DARK_PURPLE);
+        // TODO Add input manager
+        // TODO Add score/UI manager
+        // TODO Add tick/framerate manager
+        // TODO Add sound manager
+        snakeBackground.Draw(display, 0, UI_HEIGHT);
         snake.DrawGame(display);
 
         display.Refresh();

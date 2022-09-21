@@ -8,16 +8,16 @@ Snake::Snake(Sprite& snake, Sprite& apple){
 	map = new int[MAP_HEIGHT * MAP_WIDTH];
 	headX = 0;
 	headY = 0;
-	
-	for (int i = 0; i < MAP_HEIGHT * MAP_WIDTH; i++)
-		map[i] = 0;
-	
+	gameOver = false;
 }
 
 Snake::~Snake() {
 	delete[] map;
 }
 void Snake::Start() {
+	gameOver = false;
+	for (int i = 0; i < MAP_HEIGHT * MAP_WIDTH; i++)
+		map[i] = 0;
 	int center_x = MAP_WIDTH / 2, center_y = MAP_HEIGHT / 2;
 	map[TO_INDEX(center_x, center_y)] = size;
 	headX = center_x;
@@ -28,7 +28,6 @@ void Snake::Start() {
 void Snake::GenerateFood() {
 	bool drawn = false;
 	while (!drawn) {
-		rand(); rand(); 
 		int ypos = rand() % MAP_HEIGHT, xpos = rand() % MAP_WIDTH;
 		if (map[TO_INDEX(xpos, ypos)] == 0) {
 			map[TO_INDEX(xpos, ypos)] = APPLE_TILE;
@@ -54,18 +53,41 @@ void Snake::DrawGame(Display& display) {
 }
 
 void Snake::Update() {
-	switch (direction) {
-	case RIGHT:
-		headX += 1;
-		break;
-	default:
-		break;
-	}
-	map[TO_INDEX(headX, headY)] = size + 1;
-	for (int i = 0; i < MAP_HEIGHT; i++) {
-		for (int j = 0; j < MAP_WIDTH; j++) {
-			if (map[TO_INDEX(j, i)] > 0)
-				map[TO_INDEX(j, i)]--;
+	if (!gameOver) {
+		switch (direction) {
+		case RIGHT:
+			headX += 1;
+			break;
+		case LEFT:
+			headX -= 1;
+			break;
+		case UP:
+			headY -= 1;
+			break;
+		case DOWN:
+			headY += 1;
+		default:
+			break;
 		}
+		if (headX < 0 || headX >= MAP_WIDTH || headY < 0 || headY >= MAP_HEIGHT) {
+			gameOver = true;
+			return;
+		}
+		int destination_index = TO_INDEX(headX, headY);
+		if (map[destination_index] != APPLE_TILE) {
+			for (int i = 0; i < MAP_HEIGHT; i++) {
+				for (int j = 0; j < MAP_WIDTH; j++) {
+					if (map[TO_INDEX(j, i)] > 0)
+						map[TO_INDEX(j, i)]--;
+				}
+			}
+			if (map[destination_index] >= 1) {
+				gameOver = true;
+				return;
+			}
+		}
+		else
+			size++;
+		map[destination_index] = size;
 	}
 }
