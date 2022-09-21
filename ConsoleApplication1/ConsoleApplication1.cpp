@@ -6,14 +6,16 @@
 #include "Display.h"
 #include "Sprite.h"
 #include "Snake.h"
+#include "NYTimer.h"
 
 using namespace std;
 
 int main()
 {
+    const float frame_delay = 1.0f / 15.0f;
     Display display;
-    int c;
-    cin >> c;
+    NYTimer timer;
+    timer.start();
     ifstream background_file;
     background_file.open("SnakeBackground.txt");
 
@@ -26,19 +28,19 @@ int main()
     Sprite snakeSprite(snake_sprite_file), appleSprite(apple_sprite_file);
     Snake snake(snakeSprite, appleSprite);
     snake.Start();
+    snakeBackground.Draw(display, 0, UI_HEIGHT);
     // TODO Title screen with flashing text
     while (true) {
-        display.Fill(DARK_PURPLE);
+        if (timer.getElapsedSeconds() >= frame_delay) {
+            // TODO Add score/UI manager
+            // TODO Add sound manager
+            snakeBackground.Draw(display, 0, UI_HEIGHT);
+            snake.DrawGame(display);
+            display.Refresh();
+            snake.Update();
+            timer.getElapsedSeconds(true);
+        }
         // TODO Add input manager
-        // TODO Add score/UI manager
-        // TODO Add tick/framerate manager
-        // TODO Add sound manager
-        snakeBackground.Draw(display, 0, UI_HEIGHT);
-        snake.DrawGame(display);
-
-        display.Refresh();
-        Sleep(50);
-        snake.Update();
     }
 }
 
