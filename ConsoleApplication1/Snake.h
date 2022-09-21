@@ -21,6 +21,7 @@ private:
 	int size;
 	int direction;
 	int headX, headY;
+	bool gameOver;
 public:
 	Sprite snakeSprite, appleSprite;
 	Snake(Sprite& snake, Sprite& apple);
@@ -30,5 +31,7 @@ public:
 	void DrawGame(Display& display);
 	void Update();
 	int Score() { return size - BASE_SIZE; }
+	bool IsGameOver() { return gameOver; }
+	void ChangeDirection( int newDirection ) { direction = newDirection; }
 };
 

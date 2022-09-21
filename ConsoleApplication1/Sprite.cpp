@@ -40,6 +40,7 @@ Sprite::Sprite(ifstream& file) {
             i++;
         }
     }
+<<<<<<< HEAD
     //--- Get data
     while (file >> string_data) {
         int_data = stoi(string_data);
@@ -47,6 +48,8 @@ Sprite::Sprite(ifstream& file) {
         data[i] = int_data;
         i++;
     }
+=======
+>>>>>>> daef1faadc3dfa27f42adae9cb8f6268a332579b
 }
 
 Sprite::Sprite(int color, int size_x, int size_y) {
