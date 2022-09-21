@@ -14,16 +14,10 @@ int main()
     Display display;
     int c;
     cin >> c;
-    ifstream background_file;
-    background_file.open("SnakeBackground.txt");
 
-    Sprite snakeBackground(background_file);
+    Sprite snakeBackground("SnakeBackground.txt");
 
-    ifstream snake_sprite_file, apple_sprite_file;
-    snake_sprite_file.open("SnakeSprite.txt");
-    apple_sprite_file.open("AppleSprite.txt");
-
-    Sprite snakeSprite(snake_sprite_file), appleSprite(apple_sprite_file);
+    Sprite snakeSprite("SnakeSprite.txt"), appleSprite("AppleSprite.txt");
     Snake snake(snakeSprite, appleSprite);
     snake.Start();
     // TODO Title screen with flashing text

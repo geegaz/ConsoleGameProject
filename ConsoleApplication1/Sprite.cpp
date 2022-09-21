@@ -9,9 +9,11 @@ Sprite::Sprite() {
     data[0] = 0;
 }
 
-Sprite::Sprite(ifstream& file) {
+Sprite::Sprite(string filename) {
     sizeX = 1;
     sizeY = 1;
+
+    ifstream file(filename);
 
     string string_data;
     int int_data;
@@ -47,6 +49,7 @@ Sprite::Sprite(ifstream& file) {
         data[i] = int_data;
         i++;
     }
+    file.close();
 }
 
 Sprite::Sprite(int color, int size_x, int size_y) {
