@@ -21,7 +21,7 @@
 #define YELLOW 0xE
 #define WHITE 0xF
 
-class Display
+class idDisplay
 {
 private:
 	CHAR_INFO* buffer;
@@ -30,7 +30,7 @@ private:
 	COORD dwBufferCoord;
 	SMALL_RECT rcRegion;
 public:
-	Display();
+	idDisplay();
 	void DrawPixel(int x, int y, int color);
 	void Refresh();
 	void Fill(int color);

@@ -3,9 +3,9 @@
 #include <windows.h>
 #include <iostream>
 #include <string>
-#include "Display.h"
-#include "Sprite.h"
-#include "Snake.h"
+#include "idDisplay.h"
+#include "idSprite.h"
+#include "idSnake.h"
 #include "NYTimer.h"
 #include <WinUser.h>
 #include "idInputManager.h"
@@ -18,7 +18,7 @@ int main()
     const float logic_delay = 1.0f / 10.0f;
     float logic_timer = 0.0f;
     float delta_time;
-    Display display;
+    idDisplay display;
     NYTimer frame_timer;
     idInputManager input_manager;
     frame_timer.start();
@@ -31,10 +31,10 @@ int main()
     ifstream background_file;
     background_file.open("SnakeBackground.txt");
 
-    Sprite snakeBackground("SnakeBackground.txt");
+    idSprite snakeBackground("SnakeBackground.txt");
 
-    Sprite snakeSprite("SnakeSprite.txt"), appleSprite("AppleSprite.txt");
-    Snake snake(snakeSprite, appleSprite);
+    idSprite snakeSprite("SnakeSprite.txt"), appleSprite("AppleSprite.txt");
+    idSnake snake(snakeSprite, appleSprite);
     snake.Start();
     snakeBackground.Draw(display, 0, UI_HEIGHT);
     // TODO Title screen with flashing text

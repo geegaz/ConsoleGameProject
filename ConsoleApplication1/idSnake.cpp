@@ -1,6 +1,6 @@
-#include "Snake.h"
+#include "idSnake.h"
 
-Snake::Snake(Sprite& snake, Sprite& apple){
+idSnake::idSnake(idSprite& snake, idSprite& apple){
 	size = BASE_SIZE;
 	snakeSprite = snake;
 	appleSprite = apple;
@@ -11,10 +11,10 @@ Snake::Snake(Sprite& snake, Sprite& apple){
 	gameOver = false;
 }
 
-Snake::~Snake() {
+idSnake::~idSnake() {
 	delete[] map;
 }
-void Snake::Start() {
+void idSnake::Start() {
 	gameOver = false;
 	for (int i = 0; i < MAP_HEIGHT * MAP_WIDTH; i++)
 		map[i] = 0;
@@ -25,7 +25,7 @@ void Snake::Start() {
 	cout << "(" << center_x << "," << center_y << ")";
 	GenerateFood();
 }
-void Snake::GenerateFood() {
+void idSnake::GenerateFood() {
 	bool drawn = false;
 	while (!drawn) {
 		int ypos = rand() % MAP_HEIGHT, xpos = rand() % MAP_WIDTH;
@@ -37,7 +37,7 @@ void Snake::GenerateFood() {
 	}
 }
 
-void Snake::DrawGame(Display& display) {
+void idSnake::DrawGame(idDisplay& display) {
 	for (int i = 0; i < MAP_HEIGHT; i++) {
 		for (int j = 0; j < MAP_WIDTH; j++) {
 			int tile = map[TO_INDEX(j, i)];
@@ -52,7 +52,7 @@ void Snake::DrawGame(Display& display) {
 	}
 }
 
-void Snake::Update() {
+void idSnake::Update() {
 	if (!gameOver) {
 		switch (direction) {
 		case RIGHT:
@@ -95,7 +95,7 @@ void Snake::Update() {
 	}
 }
 
-void Snake::ChangeDirection(int newDirection) {
+void idSnake::ChangeDirection(int newDirection) {
 	if (newDirection%2 == direction%2)
 		return;
 

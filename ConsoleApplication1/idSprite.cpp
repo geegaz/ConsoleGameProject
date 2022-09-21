@@ -1,6 +1,6 @@
-#include "Sprite.h"
+#include "idSprite.h"
 
-Sprite::Sprite() {
+idSprite::idSprite() {
     sizeX = 1;
     sizeY = 1;
 
@@ -9,7 +9,7 @@ Sprite::Sprite() {
     data[0] = 0;
 }
 
-Sprite::Sprite(string filename) {
+idSprite::idSprite(string filename) {
     sizeX = 1;
     sizeY = 1;
 
@@ -52,7 +52,7 @@ Sprite::Sprite(string filename) {
     file.close();
 }
 
-Sprite::Sprite(int color, int size_x, int size_y) {
+idSprite::idSprite(int color, int size_x, int size_y) {
     this->sizeX = size_x;
     this->sizeY = size_y;
 
@@ -65,11 +65,11 @@ Sprite::Sprite(int color, int size_x, int size_y) {
     }
 }
 
-Sprite::~Sprite() {
+idSprite::~idSprite() {
     delete this->data;
 }
 
-int Sprite::Draw(Display& display, int x, int y) {
+int idSprite::Draw(idDisplay& display, int x, int y) {
     
     for (size_t i = 0; i < this->sizeX * this->sizeY; i++)
     {
@@ -84,7 +84,7 @@ int Sprite::Draw(Display& display, int x, int y) {
     return 0;
 }
 
-Sprite& Sprite::operator=(Sprite& other) {
+idSprite& idSprite::operator=(idSprite& other) {
     if (this != NULL && this != &other) {
         delete[] data;
         data = new int[other.sizeX*other.sizeY];

@@ -1,8 +1,8 @@
-#include "Display.h"
+#include "idDisplay.h"
 #include <iostream>
 #include <string>
 
-Display::Display(){
+idDisplay::idDisplay(){
     hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
     dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };
     dwBufferCoord = { 0, 0 };
@@ -22,7 +22,7 @@ Display::Display(){
     }
 }
 
-void Display::DrawPixel(int x, int y, int color) {
+void idDisplay::DrawPixel(int x, int y, int color) {
     if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT*2)
         return;
     int top_mask = 0x0F, bottom_mask = 0xF0;
@@ -41,12 +41,12 @@ void Display::DrawPixel(int x, int y, int color) {
     }  
 }
 
-void Display::Refresh() {
+void idDisplay::Refresh() {
     WriteConsoleOutput(hOutput, (CHAR_INFO*)buffer, dwBufferSize,
         dwBufferCoord, &rcRegion);
 }
 
-void Display::Fill(int color) {
+void idDisplay::Fill(int color) {
     for (int j = UI_HEIGHT/2; j < SCREEN_HEIGHT; j++) {
         for (int i = 0; i < SCREEN_WIDTH; i++) {
             buffer[j * SCREEN_WIDTH + i].Attributes = 0x11 * color;
