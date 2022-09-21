@@ -10,19 +10,19 @@ Sprite::Sprite() {
 }
 
 Sprite::Sprite(ifstream& file) {
-	/*this->sizeX = size_x;
-	this->sizeY = size_y;*/
+    sizeX = 1;
+    sizeY = 1;
 
     string string_data;
     int int_data;
 
     int i = 0;
-    int offset = 0;
-    while (file) {
-        file >> string_data;
+    //--- Get header
+    while (file >> string_data) {
         if (string_data == "---") {
-            offset = i;
+            i = 0;
             this->data = new int[sizeX * sizeY];
+            break;
         }
         else {
             int_data = stoi(string_data);
@@ -35,13 +35,18 @@ Sprite::Sprite(ifstream& file) {
                 sizeY = int_data;
                 break;
             default:
-                data[i - offset] = int_data;
+                break;
             }
             i++;
         }
     }
+    //--- Get data
+    while (file >> string_data) {
+        int_data = stoi(string_data);
 
-    cout << endl;
+        data[i] = int_data;
+        i++;
+    }
 }
 
 Sprite::Sprite(int color, int size_x, int size_y) {
