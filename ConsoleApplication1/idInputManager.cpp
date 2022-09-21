@@ -12,8 +12,7 @@ void idInputManager::UpdateKeys() {
 	auto end = keys.end();
 	while (i != end) {
 		if ((GetKeyState((*i).first) & DOWN_MASK)) {
-			//cout << (*i).first << " " << hex << "PRESSED" << endl;
-			(*i).second.pressed = true;
+			//(*i).second.pressed = true;
 			lastKey = (*i).first;
 		}
 		i++;

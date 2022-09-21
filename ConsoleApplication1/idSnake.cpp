@@ -22,7 +22,6 @@ void idSnake::Start() {
 	map[TO_INDEX(center_x, center_y)] = size;
 	headX = center_x;
 	headY = center_y;
-	cout << "(" << center_x << "," << center_y << ")";
 	GenerateFood();
 }
 void idSnake::GenerateFood() {
@@ -32,7 +31,6 @@ void idSnake::GenerateFood() {
 		if (map[TO_INDEX(xpos, ypos)] == 0) {
 			map[TO_INDEX(xpos, ypos)] = APPLE_TILE;
 			drawn = true;
-			cout << "(" << xpos << "," << ypos << ")"<<endl;
 		}
 	}
 }

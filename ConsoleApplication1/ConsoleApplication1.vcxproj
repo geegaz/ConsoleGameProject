@@ -142,16 +142,15 @@
     <ClCompile Include="ConsoleApplication1.cpp" />
     <ClCompile Include="idDisplay.cpp" />
     <ClCompile Include="idInputManager.cpp" />
-    <ClCompile Include="idSoundManager.cpp" />
     <ClCompile Include="idSnake.cpp" />
     <ClCompile Include="idSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="idDisplay.h" />
     <ClInclude Include="idInputManager.h" />
-    <ClInclude Include="idSoundManager.h" />
     <ClInclude Include="idSnake.h" />
     <ClInclude Include="idSprite.h" />
+    <ClInclude Include="NYTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Sprite.txt" />

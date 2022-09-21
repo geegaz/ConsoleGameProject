@@ -14,29 +14,32 @@ using namespace std;
 
 int main()
 {
-    const float frame_delay = 1.0f / 30.0f;
-    const float logic_delay = 1.0f / 10.0f;
-    float logic_timer = 0.0f;
-    float delta_time;
+    const float frame_delay = 1.0f / 30.0f; // delay between frames
+    const float logic_delay = 1.0f / 10.0f; // delay between snake moves
+    float logic_timer = 0.0f; // elapsed time between a snake's move
+    float delta_time; // elapsed time between a frame
+
     idDisplay display;
     NYTimer frame_timer;
     idInputManager input_manager;
+
     frame_timer.start();
 
+    // add ZQSD as possible keys for inputs
     input_manager.AddKey('Z');
     input_manager.AddKey('Q');
     input_manager.AddKey('S');
     input_manager.AddKey('D');
 
-    ifstream background_file;
-    background_file.open("SnakeBackground.txt");
-
+    // load sprites
     idSprite snakeBackground("SnakeBackground.txt");
-
     idSprite snakeSprite("SnakeSprite.txt"), appleSprite("AppleSprite.txt");
+
+    // initialize snake game
     idSnake snake(snakeSprite, appleSprite);
     snake.Start();
-    snakeBackground.Draw(display, 0, UI_HEIGHT);
+
+    snakeBackground.Draw(display, 0, UI_HEIGHT); // draw background for game
     // TODO Title screen with flashing text
     
     while (true) {

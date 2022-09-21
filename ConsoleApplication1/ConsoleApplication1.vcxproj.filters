@@ -27,9 +27,6 @@
     <ClCompile Include="idSnake.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="idSoundManager.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="idInputManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -44,10 +41,10 @@
     <ClInclude Include="idSnake.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="idSoundManager.h">
+    <ClInclude Include="idInputManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="idInputManager.h">
+    <ClInclude Include="NYTimer.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
