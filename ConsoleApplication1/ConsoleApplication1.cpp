@@ -46,10 +46,7 @@ int main()
             logic_timer += delta_time;
             if (logic_timer >= logic_delay) {
                 logic_timer -= logic_delay;
-                snake.Update();
-            }
-            
-            switch (input_manager.lastKey){
+                switch (input_manager.lastKey) {
                 case 'Z':
                     snake.ChangeDirection(UP);
                     break;
@@ -62,6 +59,8 @@ int main()
                 case 'D':
                     snake.ChangeDirection(RIGHT);
                     break;
+                }
+                snake.Update();
             }
             // TODO Add score/UI manager
             // TODO Add sound manager
