@@ -3,8 +3,6 @@
 #include <fstream>
 #include <string>
 #include "Display.h"
-#define TOP_MASK 0b00001111
-#define BOTTOM_MASK 0b11110000
 
 using namespace std;
 
