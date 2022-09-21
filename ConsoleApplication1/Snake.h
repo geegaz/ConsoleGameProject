@@ -32,6 +32,6 @@ public:
 	void Update();
 	int Score() { return size - BASE_SIZE; }
 	bool IsGameOver() { return gameOver; }
-	void ChangeDirection( int newDirection ) { direction = newDirection; }
+	void ChangeDirection(int newDirection);
 };
 

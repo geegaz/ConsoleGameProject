@@ -7,15 +7,27 @@
 #include "Sprite.h"
 #include "Snake.h"
 #include "NYTimer.h"
+#include <WinUser.h>
+#include "idInputManager.h"
 
 using namespace std;
 
 int main()
 {
-    const float frame_delay = 1.0f / 15.0f;
+    const float frame_delay = 1.0f / 30.0f;
+    const float logic_delay = 1.0f / 10.0f;
+    float logic_timer = 0.0f;
+    float delta_time;
     Display display;
-    NYTimer timer;
-    timer.start();
+    NYTimer frame_timer;
+    idInputManager input_manager;
+    frame_timer.start();
+
+    input_manager.AddKey('Z');
+    input_manager.AddKey('Q');
+    input_manager.AddKey('S');
+    input_manager.AddKey('D');
+
     ifstream background_file;
     background_file.open("SnakeBackground.txt");
 
@@ -26,18 +38,41 @@ int main()
     snake.Start();
     snakeBackground.Draw(display, 0, UI_HEIGHT);
     // TODO Title screen with flashing text
+    
     while (true) {
-        if (timer.getElapsedSeconds() >= frame_delay) {
+        delta_time = frame_timer.getElapsedSeconds();
+        input_manager.UpdateKeys();
+        if (delta_time >= frame_delay) {
+            logic_timer += delta_time;
+            if (logic_timer >= logic_delay) {
+                logic_timer -= logic_delay;
+                snake.Update();
+            }
+            
+            switch (input_manager.lastKey){
+                case 'Z':
+                    snake.ChangeDirection(UP);
+                    break;
+                case 'Q':
+                    snake.ChangeDirection(LEFT);
+                    break;
+                case 'S':
+                    snake.ChangeDirection(DOWN);
+                    break;
+                case 'D':
+                    snake.ChangeDirection(RIGHT);
+                    break;
+            }
             // TODO Add score/UI manager
             // TODO Add sound manager
             snakeBackground.Draw(display, 0, UI_HEIGHT);
             snake.DrawGame(display);
             display.Refresh();
-            snake.Update();
-            timer.getElapsedSeconds(true);
+            frame_timer.getElapsedSeconds(true);
         }
         // TODO Add input manager
     }
+    
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

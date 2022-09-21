@@ -85,9 +85,19 @@ void Snake::Update() {
 				gameOver = true;
 				return;
 			}
+			map[destination_index] = size;
 		}
-		else
+		else {
 			size++;
-		map[destination_index] = size;
+			map[destination_index] = size;
+			GenerateFood();
+		}
 	}
+}
+
+void Snake::ChangeDirection(int newDirection) {
+	if (newDirection%2 == direction%2)
+		return;
+
+	direction = newDirection;
 }
