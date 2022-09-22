@@ -35,7 +35,6 @@ int main()
     idSprite game_over_text("resources\\sprites\\GameOver.txt");
     // initialize snake game
     idSnake snake(snakeSprite, appleSprite);
-
     frame_timer.start();
 
     titleScreen.Draw(display, 0, 0);
@@ -48,8 +47,10 @@ int main()
         if (frame_timer.getElapsedSeconds() >= 0.5) {
             display_prompt = !display_prompt;
             titleScreen.Draw(display, 0, 0);
-            if(display_prompt)
+            if (display_prompt) {
                 press_space.Draw(display, 19, 59);
+                Beep(DWORD(500), DWORD(250));
+            }
             display.Refresh();
             frame_timer.getElapsedSeconds(true);
         }
@@ -64,7 +65,7 @@ int main()
         input_manager.AddKey('D');
         // remove spacebar as input
         input_manager.RemoveKey(' ');
-
+        
         display.Fill(BLACK);
         snakeBackground.Draw(display, 0, UI_HEIGHT); // draw background for game
         snake.Start(); // initialize snake game
@@ -101,6 +102,7 @@ int main()
                 frame_timer.getElapsedSeconds(true);
             }
         }
+        Beep(DWORD(10000), DWORD(100));
         started = false;
         // add ZQSD as possible keys for inputs
         input_manager.RemoveKey('Z');
@@ -126,8 +128,10 @@ int main()
                 snake.DrawGame(display);
                 game_over_background.Draw(display, 0, UI_HEIGHT);
                 game_over_text.Draw(display, 29, 20);
-                if (display_prompt)
+                if (display_prompt) {
                     press_space.Draw(display, 19, 59);
+                    Beep(DWORD(500), DWORD(250));
+                }
                 display.Refresh();
                 frame_timer.getElapsedSeconds(true);
             }

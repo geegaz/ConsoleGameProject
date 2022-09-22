@@ -11,6 +11,7 @@ idSnake::~idSnake() {
 
 void idSnake::Start() {
 	gameOver = false;
+	size = BASE_SIZE;
 	for (int i = 0; i < MAP_HEIGHT * MAP_WIDTH; i++)
 		map[i] = 0;
 	int center_x = MAP_WIDTH / 2, center_y = MAP_HEIGHT / 2;
@@ -20,7 +21,6 @@ void idSnake::Start() {
 	logic_delay = 0.2f;
 	logic_timer = 0.0f;
 	direction = RIGHT;
-	size = BASE_SIZE;
 	GenerateFood();
 }
 void idSnake::GenerateFood() {
@@ -91,6 +91,7 @@ void idSnake::Update() {
 			if (logic_delay > 0.05f)
 				logic_delay*=0.95f;
 			GenerateFood();
+			Beep(DWORD(700), DWORD(75));
 		}
 	}
 }
