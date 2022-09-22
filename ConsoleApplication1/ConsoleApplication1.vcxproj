@@ -153,9 +153,15 @@
     <ClInclude Include="NYTimer.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Sprite.txt" />
-    <Text Include="AppleSprite.txt" />
-    <Text Include="SnakeSprite.txt" />
+    <Text Include="resources\sprites\AppleSprite.txt" />
+    <Text Include="resources\sprites\Numbers.txt" />
+    <Text Include="resources\sprites\SnakeBackground.txt" />
+    <Text Include="resources\sprites\SnakeSprite.txt" />
+    <Text Include="resources\sprites\Sprite.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="resources\sounds\sfx23.wav" />
+    <Media Include="resources\sounds\sfx8.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -49,14 +49,28 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Sprite.txt">
+    <Text Include="resources\sprites\AppleSprite.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
-    <Text Include="AppleSprite.txt">
+    <Text Include="resources\sprites\Numbers.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
-    <Text Include="SnakeSprite.txt">
+    <Text Include="resources\sprites\SnakeBackground.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
+    <Text Include="resources\sprites\SnakeSprite.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="resources\sprites\Sprite.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="resources\sounds\sfx8.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="resources\sounds\sfx23.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
   </ItemGroup>
 </Project>

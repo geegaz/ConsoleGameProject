@@ -7,7 +7,6 @@
 #include "idSprite.h"
 #include "idSnake.h"
 #include "NYTimer.h"
-#include <WinUser.h>
 #include "idInputManager.h"
 
 using namespace std;
@@ -27,10 +26,9 @@ int main()
     input_manager.AddKey(' ');
 
     // load sprites
-    idSprite snakeBackground("SnakeBackground.txt");
-    idSprite snakeSprite("SnakeSprite.txt"), appleSprite("AppleSprite.txt");
-    idSprite titleScreen("title_screen.txt");
-
+    idSprite snakeBackground("resources\\sprites\\SnakeBackground.txt");
+    idSprite snakeSprite("resources\\sprites\\SnakeSprite.txt"), appleSprite("resources\\sprites\\AppleSprite.txt");
+    idSprite titleScreen("resources\\sprites\\title_screen.txt");
     // initialize snake game
     idSnake snake(snakeSprite, appleSprite);
 

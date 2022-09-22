@@ -4,6 +4,9 @@ idSprite::idSprite() {
     sizeX = 1;
     sizeY = 1;
 
+    framesX = 1;
+    framesY = 1;
+
     int data_size = 1;
     this->data = new int[data_size];
     data[0] = 0;
@@ -12,6 +15,9 @@ idSprite::idSprite() {
 idSprite::idSprite(string filename) {
     sizeX = 1;
     sizeY = 1;
+
+    framesX = 1;
+    framesY = 1;
 
     ifstream file(filename);
 
@@ -36,6 +42,11 @@ idSprite::idSprite(string filename) {
             case 1:
                 sizeY = int_data;
                 break;
+            case 2:
+                framesX = int_data;
+                break;
+            case 3:
+                framesY = int_data;
             default:
                 break;
             }
@@ -69,19 +80,18 @@ idSprite::~idSprite() {
     delete this->data;
 }
 
-int idSprite::Draw(idDisplay& display, int x, int y) {
-    
-    for (size_t i = 0; i < this->sizeX * this->sizeY; i++)
+void idSprite::Draw(idDisplay& display, int x, int y, int frame) {
+    int offset;
+    for (size_t i = 0; i < sizeX * sizeY; i++)
     {
         if (data[i] >= 0) {
             display.DrawPixel(
-                x + i % sizeX, 
-                y + i / sizeX, 
+                x + i % sizeX,
+                y + i / sizeX,
                 data[i]
             );
         }
     }
-    return 0;
 }
 
 idSprite& idSprite::operator=(idSprite& other) {
