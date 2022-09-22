@@ -47,7 +47,7 @@ void idDisplay::Refresh() {
 }
 
 void idDisplay::Fill(int color) {
-    for (int j = UI_HEIGHT/2; j < SCREEN_HEIGHT; j++) {
+    for (int j = 0; j < SCREEN_HEIGHT; j++) {
         for (int i = 0; i < SCREEN_WIDTH; i++) {
             buffer[j * SCREEN_WIDTH + i].Attributes = 0x11 * color;
             // buffer[j * SCREEN_WIDTH + i].Attributes = (((j + i) + (j % 2)) % 2) ? 0x00F0 : 0x000F;

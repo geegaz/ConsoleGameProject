@@ -17,6 +17,8 @@
 class idSnake
 {
 private:
+	float logic_delay; // delay in seconds between snake moves
+	float logic_timer; // elapsed time between a snake's move
 	int* map;
 	int size;
 	int direction;
@@ -33,5 +35,7 @@ public:
 	int Score() { return size - BASE_SIZE; }
 	bool IsGameOver() { return gameOver; }
 	void ChangeDirection(int newDirection);
+	bool CanMove();
+	void Forward(float time) { logic_timer += time; }
 };
 
