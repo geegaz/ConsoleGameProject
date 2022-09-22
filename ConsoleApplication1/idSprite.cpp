@@ -8,7 +8,7 @@ idSprite::idSprite() {
     framesY = 1;
 
     int data_size = 1;
-    this->data = new int[data_size];
+    data = new int[data_size];
     data[0] = 0;
 }
 
@@ -29,7 +29,7 @@ idSprite::idSprite(string filename) {
     while (file >> string_data) {
         if (string_data == "---") {
             i = 0;
-            this->data = new int[sizeX * sizeY];
+            data = new int[sizeX * sizeY];
             break;
         }
         else {
@@ -64,11 +64,14 @@ idSprite::idSprite(string filename) {
 }
 
 idSprite::idSprite(int color, int size_x, int size_y) {
-    this->sizeX = size_x;
-    this->sizeY = size_y;
+    sizeX = size_x;
+    sizeY = size_y;
+
+    framesX = 1;
+    framesY = 1;
 
     int data_size = size_x * size_y;
-    this->data = new int[data_size];
+    data = new int[data_size];
 
     for (size_t i = 0; i < data_size; i++)
     {
@@ -81,27 +84,36 @@ idSprite::~idSprite() {
 }
 
 void idSprite::Draw(idDisplay& display, int x, int y, int frame) {
-    int offset;
-    for (size_t i = 0; i < sizeX * sizeY; i++)
-    {
-        if (data[i] >= 0) {
-            display.DrawPixel(
-                x + i % sizeX,
-                y + i / sizeX,
-                data[i]
-            );
+    frame = max(framesX * framesY - 1, frame);
+
+    int a = frame % framesX;
+    int b = frame / framesX;
+    int i = (sizeX * framesX) * (sizeY * b) + (sizeX * a);
+    for (int iter_y = 0; iter_y < sizeY; iter_y++) {
+        for (int iter_x = 0; iter_x < sizeX; iter_x++) {
+            if (data[i] >= 0) {
+                display.DrawPixel(
+                    x + iter_x,
+                    y + iter_y,
+                    data[i]
+                );
+            }
+            i++;
         }
+        i += sizeX * (framesX - 1);
     }
+    /*cout << sizeX << " " << sizeY << "\n" << framesX << " " << framesY << endl;
+    cin >> b;*/
 }
 
-idSprite& idSprite::operator=(idSprite& other) {
-    if (this != NULL && this != &other) {
-        delete[] data;
-        data = new int[other.sizeX*other.sizeY];
-        sizeX = other.sizeX;
-        sizeY = other.sizeY;
-        for (int i = 0; i < other.sizeX * other.sizeY; i++)
-            data[i] = other.data[i];
-    }
-    return *this;
-}
+//idSprite& idSprite::operator=(idSprite& other) {
+//    if (this != NULL && this != &other) {
+//        delete[] data;
+//        data = new int[other.sizeX*other.sizeY];
+//        sizeX = other.sizeX;
+//        sizeY = other.sizeY;
+//        for (int i = 0; i < other.sizeX * other.sizeY; i++)
+//            data[i] = other.data[i];
+//    }
+//    return *this;
+//}

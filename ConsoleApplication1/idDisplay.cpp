@@ -15,7 +15,7 @@ idDisplay::idDisplay(){
 
     ReadConsoleOutput(hOutput, (CHAR_INFO*)buffer, dwBufferSize,
         dwBufferCoord, &rcRegion);
-    for (int j = UI_HEIGHT/2; j < SCREEN_HEIGHT; j++) {
+    for (int j = 0; j < SCREEN_HEIGHT; j++) {
         for (int i = 0; i < SCREEN_WIDTH; i++) {
             buffer[j * SCREEN_WIDTH + i].Char.UnicodeChar = 0x2580;
         }
