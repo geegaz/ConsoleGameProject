@@ -17,6 +17,7 @@ int main()
     float delta_time = 0.0f; // elapsed time between a frame
     float previous = 0.0f;
     bool started = false;
+    bool display_prompt = true;
 
     idDisplay display;
     NYTimer frame_timer;
@@ -29,20 +30,33 @@ int main()
     idSprite snakeBackground("resources\\sprites\\SnakeBackground.txt");
     idSprite snakeSprite("resources\\sprites\\SnakeSprite.txt"), appleSprite("resources\\sprites\\AppleSprite.txt");
     idSprite titleScreen("resources\\sprites\\title_screen.txt");
+    idSprite press_space("resources\\sprites\\press_space.txt");
+    idSprite game_over_background("resources\\sprites\\GameOverBackground.txt");
+    idSprite game_over_text("resources\\sprites\\GameOver.txt");
     // initialize snake game
     idSnake snake(snakeSprite, appleSprite);
 
+    frame_timer.start();
+
     titleScreen.Draw(display, 0, 0);
     display.Refresh();
-    //TODO make text flash
     while (!started) {
         input_manager.UpdateKeys();
         if (input_manager.lastKey == ' ') {
             started = true;
         }
+        if (frame_timer.getElapsedSeconds() >= 0.5) {
+            display_prompt = !display_prompt;
+            titleScreen.Draw(display, 0, 0);
+            if(display_prompt)
+                press_space.Draw(display, 19, 59);
+            display.Refresh();
+            frame_timer.getElapsedSeconds(true);
+        }
     }
 
     while(true){
+        frame_timer.getElapsedSeconds(true);
         // add ZQSD as possible keys for inputs
         input_manager.AddKey('Z');
         input_manager.AddKey('Q');
@@ -51,7 +65,6 @@ int main()
         // remove spacebar as input
         input_manager.RemoveKey(' ');
 
-        frame_timer.start();
         display.Fill(BLACK);
         snakeBackground.Draw(display, 0, UI_HEIGHT); // draw background for game
         snake.Start(); // initialize snake game
@@ -96,10 +109,27 @@ int main()
         input_manager.RemoveKey('D');
         // remove spacebar as input
         input_manager.AddKey(' ');
+        frame_timer.getElapsedSeconds(true);
+        display_prompt = true;
+        game_over_background.Draw(display, 0, UI_HEIGHT);
+        game_over_text.Draw(display, 29, 20);
+        press_space.Draw(display, 19, 59);
+        display.Refresh();
         while (!started) {
             input_manager.UpdateKeys();
             if (input_manager.lastKey == ' ') {
                 started = true;
+            }
+            if (frame_timer.getElapsedSeconds() >= 0.5) {
+                display_prompt = !display_prompt;
+                snakeBackground.Draw(display, 0, UI_HEIGHT);
+                snake.DrawGame(display);
+                game_over_background.Draw(display, 0, UI_HEIGHT);
+                game_over_text.Draw(display, 29, 20);
+                if (display_prompt)
+                    press_space.Draw(display, 19, 59);
+                display.Refresh();
+                frame_timer.getElapsedSeconds(true);
             }
         }
     }
