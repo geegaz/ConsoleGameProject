@@ -29,7 +29,7 @@ idSprite::idSprite(string filename) {
     while (file >> string_data) {
         if (string_data == "---") {
             i = 0;
-            data = new int[sizeX * sizeY];
+            data = new int[sizeX * framesX * sizeY * framesY];
             break;
         }
         else {
@@ -84,7 +84,7 @@ idSprite::~idSprite() {
 }
 
 void idSprite::Draw(idDisplay& display, int x, int y, int frame) {
-    frame = max(framesX * framesY - 1, frame);
+    frame = min(framesX * framesY - 1, frame);
 
     int a = frame % framesX;
     int b = frame / framesX;
