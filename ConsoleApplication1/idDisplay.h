@@ -3,7 +3,7 @@
 #include <iostream>
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 40
-#define UI_HEIGHT 4
+#define UI_HEIGHT 8
 #define BLACK 0x0
 #define DARK_BLUE 0x1
 #define DARK_GREEN 0x2
