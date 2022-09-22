@@ -7,7 +7,7 @@
 #include "idSnake.h"
 #include "idInputManager.h"
 #include "idScoreDisplay.h"
-
+#pragma comment(lib, "winmm.lib")
 using namespace std;
 
 int main()
