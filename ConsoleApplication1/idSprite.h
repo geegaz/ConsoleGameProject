@@ -11,6 +11,7 @@ class idSprite
 private:
 	int* data;
 	int sizeX, sizeY;
+	int framesX, framesY;
 
 public:
 	idSprite();
@@ -19,7 +20,7 @@ public:
 	idSprite& operator=(idSprite& other);
 
 	~idSprite();
-	int Draw(idDisplay& display, int x, int y);
+	void Draw(idDisplay& display, int x, int y, int frame = 0);
 
 };
 
