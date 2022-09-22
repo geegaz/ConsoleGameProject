@@ -140,12 +140,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication1.cpp" />
     <ClCompile Include="idDisplay.cpp" />
     <ClCompile Include="idInputManager.cpp" />
     <ClCompile Include="idScoreDisplay.cpp" />
     <ClCompile Include="idSnake.cpp" />
     <ClCompile Include="idSprite.cpp" />
+    <ClCompile Include="SnakeMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="idDisplay.h" />

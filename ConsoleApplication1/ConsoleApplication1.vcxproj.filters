@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication1.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="idDisplay.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -31,6 +28,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="idScoreDisplay.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeMain.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
