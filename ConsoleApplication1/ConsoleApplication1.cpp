@@ -3,11 +3,12 @@
 #include <windows.h>
 #include <iostream>
 #include <string>
+#include "NYTimer.h"
 #include "idDisplay.h"
 #include "idSprite.h"
 #include "idSnake.h"
-#include "NYTimer.h"
 #include "idInputManager.h"
+#include "idScoreDisplay.h"
 
 using namespace std;
 
@@ -33,8 +34,13 @@ int main()
     idSprite press_space("resources\\sprites\\press_space.txt");
     idSprite game_over_background("resources\\sprites\\GameOverBackground.txt");
     idSprite game_over_text("resources\\sprites\\GameOver.txt");
+    // Unused due to currently unknown bug
+    //idSprite numbers_sprite("resources\\sprites\\Numbers.txt");
     // initialize snake game
     idSnake snake(snakeSprite, appleSprite);
+
+    // Unused due to currently unknown bug
+    //idScoreDisplay snakeScoreDisplay(numbers_sprite);
     frame_timer.start();
 
     titleScreen.Draw(display, 0, 0);
@@ -97,6 +103,10 @@ int main()
                 // TODO Add sound manager
                 snakeBackground.Draw(display, 0, UI_HEIGHT);
                 snake.DrawGame(display);
+
+                // Unused due to currently unknown bug
+                //snakeScoreDisplay.Draw(display, snake.Score());
+
                 display.Refresh();
                 delta_time = previous = 0.0f;
                 frame_timer.getElapsedSeconds(true);

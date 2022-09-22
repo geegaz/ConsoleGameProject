@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class idSprite
+const class idSprite
 {
 private:
 	int* data;

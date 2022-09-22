@@ -102,8 +102,6 @@ void idSprite::Draw(idDisplay& display, int x, int y, int frame) {
         }
         i += sizeX * (framesX - 1);
     }
-    /*cout << sizeX << " " << sizeY << "\n" << framesX << " " << framesY << endl;
-    cin >> b;*/
 }
 
 //idSprite& idSprite::operator=(idSprite& other) {

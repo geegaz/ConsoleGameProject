@@ -8,9 +8,9 @@ using namespace std;
 class idScoreDisplay
 {
 private:
-	idSprite sprite;
+	idSprite numbersSprite;
 public:
-	idScoreDisplay();
+	idScoreDisplay(idSprite& numbers);
 	~idScoreDisplay();
 	void Draw(idDisplay& display, int score, int digits = 3);
 };
