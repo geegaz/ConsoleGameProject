@@ -24,6 +24,7 @@
     <ProjectGuid>{1c66de2e-0067-4a1c-a387-d115cb113c29}</ProjectGuid>
     <RootNamespace>ConsoleApplication1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>ConsoleGame</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -145,7 +146,7 @@
     <ClCompile Include="idScoreDisplay.cpp" />
     <ClCompile Include="idSnake.cpp" />
     <ClCompile Include="idSprite.cpp" />
-    <ClCompile Include="SnakeMain.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="idDisplay.h" />
