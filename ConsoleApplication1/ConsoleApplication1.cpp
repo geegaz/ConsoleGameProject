@@ -1,5 +1,3 @@
-// ConsoleApplication1.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
 #include <windows.h>
 #include <iostream>
 #include <string>
@@ -16,7 +14,7 @@ int main()
 {
     const float frame_delay = 1.0f / 30.0f; // delay between frames
     float delta_time = 0.0f; // elapsed time between a frame
-    float previous = 0.0f;
+    float previous = 0.0f; // storage for previous delta_time
     bool started = false;
     bool display_prompt = true;
 
@@ -28,29 +26,35 @@ int main()
     input_manager.AddKey(' ');
 
     // load sprites
-    idSprite snakeBackground("resources\\sprites\\SnakeBackground.txt");
-    idSprite snakeSprite("resources\\sprites\\SnakeSprite.txt"), appleSprite("resources\\sprites\\AppleSprite.txt");
-    idSprite titleScreen("resources\\sprites\\title_screen.txt");
+    idSprite snake_background("resources\\sprites\\SnakeBackground.txt");
+    idSprite snake_sprite("resources\\sprites\\SnakeSprite.txt"), apple_sprite("resources\\sprites\\AppleSprite.txt");
+    idSprite title_screen("resources\\sprites\\title_screen.txt");
     idSprite press_space("resources\\sprites\\press_space.txt");
     idSprite game_over_background("resources\\sprites\\GameOverBackground.txt");
     idSprite game_over_text("resources\\sprites\\GameOver.txt");
     idSprite numbers_sprite("resources\\sprites\\Numbers.txt");
-    // initialize snake game
-    idSnake snake(snakeSprite, appleSprite);
 
+    // initialize score display
     idScoreDisplay snakeScoreDisplay(numbers_sprite);
+
+    // initialize snake game
+    idSnake snake(snake_sprite, apple_sprite);
+
     frame_timer.start();
 
-    titleScreen.Draw(display, 0, 0);
+    title_screen.Draw(display, 0, 0);
     display.Refresh();
+
+    // title screen
     while (!started) {
+        // check if the user pressed SPACE and make text flash
         input_manager.UpdateKeys();
         if (input_manager.lastKey == ' ') {
             started = true;
         }
         if (frame_timer.getElapsedSeconds() >= 0.5) {
             display_prompt = !display_prompt;
-            titleScreen.Draw(display, 0, 0);
+            title_screen.Draw(display, 0, 0);
             if (display_prompt) {
                 press_space.Draw(display, 19, 59);
                 Beep(DWORD(500), DWORD(250));
@@ -59,7 +63,7 @@ int main()
             frame_timer.getElapsedSeconds(true);
         }
     }
-
+    srand(time(NULL)); // set seed for the game's random apple placement
     while(true){
         frame_timer.getElapsedSeconds(true);
         // add ZQSD as possible keys for inputs
@@ -71,9 +75,10 @@ int main()
         input_manager.RemoveKey(' ');
         
         display.Fill(BLACK);
-        snakeBackground.Draw(display, 0, UI_HEIGHT); // draw background for game
+        snake_background.Draw(display, 0, UI_HEIGHT); // draw background for game
         snake.Start(); // initialize snake game
         snake.DrawGame(display);
+        // main game screen
         while (!snake.IsGameOver()) {
             previous = delta_time;
             delta_time = frame_timer.getElapsedSeconds();
@@ -81,6 +86,7 @@ int main()
             input_manager.UpdateKeys();
             if (delta_time >= frame_delay) {
                 if (snake.CanMove()) {
+                    // check player's inputs and move snake
                     switch (input_manager.lastKey) {
                     case 'Z':
                         snake.ChangeDirection(UP);
@@ -97,26 +103,26 @@ int main()
                     }
                     snake.Update();
                 }
-                // TODO Add score/UI manager
-                // TODO Add sound manager
-                snakeBackground.Draw(display, 0, UI_HEIGHT);
+                display.Fill(BLACK);
+                snake_background.Draw(display, 0, UI_HEIGHT);
                 snake.DrawGame(display);
 
-                snakeScoreDisplay.Draw(display, 123); // Currently snake.Score() doesn't work
+                snakeScoreDisplay.Draw(display, snake.Score());
 
                 display.Refresh();
                 delta_time = previous = 0.0f;
                 frame_timer.getElapsedSeconds(true);
             }
         }
-        Beep(DWORD(10000), DWORD(100));
+        
+        PlaySound(L".\\resources\\sounds\\death_goldenberry.wav", NULL, SND_ASYNC);
         started = false;
-        // add ZQSD as possible keys for inputs
+        // remove ZQSD inputs after Game Over
         input_manager.RemoveKey('Z');
         input_manager.RemoveKey('Q');
         input_manager.RemoveKey('S');
         input_manager.RemoveKey('D');
-        // remove spacebar as input
+        // restore spacebar as input
         input_manager.AddKey(' ');
         frame_timer.getElapsedSeconds(true);
         display_prompt = true;
@@ -124,21 +130,23 @@ int main()
         game_over_text.Draw(display, 29, 20);
         press_space.Draw(display, 19, 59);
         display.Refresh();
+        // game over screen
         while (!started) {
+            // check if the user pressed SPACE and make text flash
             input_manager.UpdateKeys();
             if (input_manager.lastKey == ' ') {
                 started = true;
             }
             if (frame_timer.getElapsedSeconds() >= 0.5) {
                 display_prompt = !display_prompt;
-                snakeBackground.Draw(display, 0, UI_HEIGHT);
+                snake_background.Draw(display, 0, UI_HEIGHT);
                 snake.DrawGame(display);
                 game_over_background.Draw(display, 0, UI_HEIGHT);
                 game_over_text.Draw(display, 29, 20);
                 if (display_prompt) {
                     press_space.Draw(display, 19, 59);
                     Beep(DWORD(500), DWORD(250));
-                }
+                }   
                 display.Refresh();
                 frame_timer.getElapsedSeconds(true);
             }
@@ -146,14 +154,3 @@ int main()
     }
     
 }
-
-// Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
-// Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
-
-// Astuces pour bien démarrer : 
-//   1. Utilisez la fenêtre Explorateur de solutions pour ajouter des fichiers et les gérer.
-//   2. Utilisez la fenêtre Team Explorer pour vous connecter au contrôle de code source.
-//   3. Utilisez la fenêtre Sortie pour voir la sortie de la génération et d'autres messages.
-//   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
-//   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
-//   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.

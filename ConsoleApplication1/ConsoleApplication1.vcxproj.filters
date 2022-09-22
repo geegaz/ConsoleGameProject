@@ -78,5 +78,8 @@
     <Media Include="resources\sounds\sfx23.wav">
       <Filter>Fichiers de ressources</Filter>
     </Media>
+    <Media Include="resources\sounds\death.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
   </ItemGroup>
 </Project>

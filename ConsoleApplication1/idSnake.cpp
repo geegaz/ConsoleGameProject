@@ -91,7 +91,7 @@ void idSnake::Update() {
 			if (logic_delay > 0.05f)
 				logic_delay*=0.95f;
 			GenerateFood();
-			Beep(DWORD(700), DWORD(75));
+			PlaySound(L".\\resources\\sounds\\sfx8.wav", NULL, SND_ASYNC);
 		}
 	}
 }
@@ -104,6 +104,5 @@ void idSnake::ChangeDirection(int newDirection) {
 }
 
 bool idSnake::CanMove() {
-	//cout << logic_timer << " " ;
 	return logic_timer >= logic_delay;
 }
