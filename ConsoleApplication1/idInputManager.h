@@ -13,7 +13,8 @@ private:
 	map<int, keyState_t> keys;
 public:
 	int lastKey;
-	idInputManager() {}
+	idInputManager():lastKey(-1){}
 	void AddKey(int keyCode);
+	void RemoveKey(int keyCode);
 	void UpdateKeys();
 };

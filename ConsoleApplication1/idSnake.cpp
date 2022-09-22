@@ -1,19 +1,14 @@
 #include "idSnake.h"
 
-idSnake::idSnake(idSprite& snake, idSprite& apple){
-	size = BASE_SIZE;
-	snakeSprite = snake;
-	appleSprite = apple;
-	direction = RIGHT;
+idSnake::idSnake(idSprite& snake, idSprite& apple):size(BASE_SIZE), snakeSprite(snake), appleSprite(apple),
+direction(RIGHT), headX(0), headY(0), gameOver(false), logic_delay(0.4f), logic_timer(0.0f){
 	map = new int[MAP_HEIGHT * MAP_WIDTH];
-	headX = 0;
-	headY = 0;
-	gameOver = false;
 }
 
 idSnake::~idSnake() {
 	delete[] map;
 }
+
 void idSnake::Start() {
 	gameOver = false;
 	for (int i = 0; i < MAP_HEIGHT * MAP_WIDTH; i++)
@@ -22,6 +17,10 @@ void idSnake::Start() {
 	map[TO_INDEX(center_x, center_y)] = size;
 	headX = center_x;
 	headY = center_y;
+	logic_delay = 0.4f;
+	logic_timer = 0.0f;
+	direction = RIGHT;
+	size = BASE_SIZE;
 	GenerateFood();
 }
 void idSnake::GenerateFood() {
@@ -51,6 +50,7 @@ void idSnake::DrawGame(idDisplay& display) {
 }
 
 void idSnake::Update() {
+	logic_timer -= logic_delay;
 	if (!gameOver) {
 		switch (direction) {
 		case RIGHT:
@@ -88,6 +88,8 @@ void idSnake::Update() {
 		else {
 			size++;
 			map[destination_index] = size;
+			if (logic_delay > 0.05f)
+				logic_delay*=0.95f;
 			GenerateFood();
 		}
 	}
@@ -98,4 +100,9 @@ void idSnake::ChangeDirection(int newDirection) {
 		return;
 
 	direction = newDirection;
+}
+
+bool idSnake::CanMove() {
+	//cout << logic_timer << " " ;
+	return logic_timer >= logic_delay;
 }

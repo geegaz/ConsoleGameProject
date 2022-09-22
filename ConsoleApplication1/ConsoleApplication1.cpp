@@ -15,64 +15,95 @@ using namespace std;
 int main()
 {
     const float frame_delay = 1.0f / 30.0f; // delay between frames
-    const float logic_delay = 1.0f / 10.0f; // delay between snake moves
-    float logic_timer = 0.0f; // elapsed time between a snake's move
-    float delta_time; // elapsed time between a frame
+    float delta_time = 0.0f; // elapsed time between a frame
+    float previous = 0.0f;
+    bool started = false;
 
     idDisplay display;
     NYTimer frame_timer;
     idInputManager input_manager;
 
-    frame_timer.start();
-
-    // add ZQSD as possible keys for inputs
-    input_manager.AddKey('Z');
-    input_manager.AddKey('Q');
-    input_manager.AddKey('S');
-    input_manager.AddKey('D');
+    // add SPACE keyboard key for the title screen
+    input_manager.AddKey(' ');
 
     // load sprites
     idSprite snakeBackground("SnakeBackground.txt");
     idSprite snakeSprite("SnakeSprite.txt"), appleSprite("AppleSprite.txt");
+    idSprite titleScreen("title_screen.txt");
 
     // initialize snake game
     idSnake snake(snakeSprite, appleSprite);
-    snake.Start();
 
-    snakeBackground.Draw(display, 0, UI_HEIGHT); // draw background for game
-    // TODO Title screen with flashing text
-    
-    while (true) {
-        delta_time = frame_timer.getElapsedSeconds();
+    titleScreen.Draw(display, 0, 0);
+    display.Refresh();
+    //TODO make text flash
+    while (!started) {
         input_manager.UpdateKeys();
-        if (delta_time >= frame_delay) {
-            logic_timer += delta_time;
-            if (logic_timer >= logic_delay) {
-                logic_timer -= logic_delay;
-                switch (input_manager.lastKey) {
-                case 'Z':
-                    snake.ChangeDirection(UP);
-                    break;
-                case 'Q':
-                    snake.ChangeDirection(LEFT);
-                    break;
-                case 'S':
-                    snake.ChangeDirection(DOWN);
-                    break;
-                case 'D':
-                    snake.ChangeDirection(RIGHT);
-                    break;
-                }
-                snake.Update();
-            }
-            // TODO Add score/UI manager
-            // TODO Add sound manager
-            snakeBackground.Draw(display, 0, UI_HEIGHT);
-            snake.DrawGame(display);
-            display.Refresh();
-            frame_timer.getElapsedSeconds(true);
+        if (input_manager.lastKey == ' ') {
+            started = true;
         }
-        // TODO Add input manager
+    }
+
+    while(true){
+        // add ZQSD as possible keys for inputs
+        input_manager.AddKey('Z');
+        input_manager.AddKey('Q');
+        input_manager.AddKey('S');
+        input_manager.AddKey('D');
+        // remove spacebar as input
+        input_manager.RemoveKey(' ');
+
+        frame_timer.start();
+        display.Fill(BLACK);
+        snakeBackground.Draw(display, 0, UI_HEIGHT); // draw background for game
+        snake.Start(); // initialize snake game
+        snake.DrawGame(display);
+        while (!snake.IsGameOver()) {
+            previous = delta_time;
+            delta_time = frame_timer.getElapsedSeconds();
+            snake.Forward(delta_time - previous);
+            input_manager.UpdateKeys();
+            if (delta_time >= frame_delay) {
+                if (snake.CanMove()) {
+                    switch (input_manager.lastKey) {
+                    case 'Z':
+                        snake.ChangeDirection(UP);
+                        break;
+                    case 'Q':
+                        snake.ChangeDirection(LEFT);
+                        break;
+                    case 'S':
+                        snake.ChangeDirection(DOWN);
+                        break;
+                    case 'D':
+                        snake.ChangeDirection(RIGHT);
+                        break;
+                    }
+                    snake.Update();
+                }
+                // TODO Add score/UI manager
+                // TODO Add sound manager
+                snakeBackground.Draw(display, 0, UI_HEIGHT);
+                snake.DrawGame(display);
+                display.Refresh();
+                delta_time = previous = 0.0f;
+                frame_timer.getElapsedSeconds(true);
+            }
+        }
+        started = false;
+        // add ZQSD as possible keys for inputs
+        input_manager.RemoveKey('Z');
+        input_manager.RemoveKey('Q');
+        input_manager.RemoveKey('S');
+        input_manager.RemoveKey('D');
+        // remove spacebar as input
+        input_manager.AddKey(' ');
+        while (!started) {
+            input_manager.UpdateKeys();
+            if (input_manager.lastKey == ' ') {
+                started = true;
+            }
+        }
     }
     
 }
