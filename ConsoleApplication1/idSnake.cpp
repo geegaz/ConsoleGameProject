@@ -1,7 +1,7 @@
 #include "idSnake.h"
 
 idSnake::idSnake(idSprite& snake, idSprite& apple):size(BASE_SIZE), snakeSprite(snake), appleSprite(apple),
-direction(RIGHT), headX(0), headY(0), gameOver(false), logic_delay(0.4f), logic_timer(0.0f){
+direction(RIGHT), headX(0), headY(0), gameOver(false), logic_delay(0.2f), logic_timer(0.0f){
 	map = new int[MAP_HEIGHT * MAP_WIDTH];
 }
 
@@ -17,7 +17,7 @@ void idSnake::Start() {
 	map[TO_INDEX(center_x, center_y)] = size;
 	headX = center_x;
 	headY = center_y;
-	logic_delay = 0.4f;
+	logic_delay = 0.2f;
 	logic_timer = 0.0f;
 	direction = RIGHT;
 	size = BASE_SIZE;
