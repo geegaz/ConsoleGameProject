@@ -1,7 +1,6 @@
 #include "idSnake.h"
 
-idSnake::idSnake(idSprite& snake, idSprite& apple):size(BASE_SIZE), snakeSprite(snake), appleSprite(apple),
-direction(RIGHT), headX(0), headY(0), gameOver(false), logic_delay(0.2f), logic_timer(0.0f){
+idSnake::idSnake(idSprite& snake, idSprite& apple):size(BASE_SIZE), snakeSprite(snake), appleSprite(apple), headX(0), headY(0), gameOver(true), logic_delay(0.5f), logic_timer(0.0f), state(gameState_t::MENU){
 	map = new int[MAP_HEIGHT * MAP_WIDTH];
 }
 
@@ -18,10 +17,10 @@ void idSnake::Start() {
 	map[TO_INDEX(center_x, center_y)] = size;
 	headX = center_x;
 	headY = center_y;
-	logic_delay = 0.2f;
+	logic_delay = 0.5f;
 	logic_timer = 0.0f;
-	direction = RIGHT;
 	GenerateFood();
+	state = gameState_t::IN_GAME;
 }
 void idSnake::GenerateFood() {
 	bool drawn = false;
@@ -49,25 +48,27 @@ void idSnake::DrawGame(idDisplay& display) {
 	}
 }
 
-void idSnake::Update() {
+void idSnake::Update(control_t direction) {
 	logic_timer -= logic_delay;
 	if (!gameOver) {
 		switch (direction) {
-		case RIGHT:
+		case control_t::RIGHT:
 			headX += 1;
 			break;
-		case LEFT:
+		case control_t::LEFT:
 			headX -= 1;
 			break;
-		case UP:
+		case control_t::UP:
 			headY -= 1;
 			break;
-		case DOWN:
+		case control_t::DOWN:
 			headY += 1;
-		default:
 			break;
+		default:
+			return;
 		}
 		if (headX < 0 || headX >= MAP_WIDTH || headY < 0 || headY >= MAP_HEIGHT) {
+			state = gameState_t::MENU;
 			gameOver = true;
 			return;
 		}
@@ -94,13 +95,6 @@ void idSnake::Update() {
 			PlaySound(L".\\resources\\sounds\\sfx8.wav", NULL, SND_ASYNC);
 		}
 	}
-}
-
-void idSnake::ChangeDirection(int newDirection) {
-	if (newDirection%2 == direction%2)
-		return;
-
-	direction = newDirection;
 }
 
 bool idSnake::CanMove() {

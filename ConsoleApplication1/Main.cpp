@@ -5,7 +5,7 @@
 #include "idDisplay.h"
 #include "idSprite.h"
 #include "idSnake.h"
-#include "idInputManager.h"
+#include "InputManager.h"
 #include "idScoreDisplay.h"
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "Xinput.lib")
