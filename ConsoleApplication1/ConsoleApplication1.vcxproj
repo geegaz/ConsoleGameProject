@@ -146,10 +146,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ControlsManager.cpp" />
-    <ClCompile Include="idDisplay.cpp" />
-    <ClCompile Include="idScoreDisplay.cpp" />
-    <ClCompile Include="idSnake.cpp" />
-    <ClCompile Include="idSprite.cpp" />
+    <ClCompile Include="Display.cpp" />
+    <ClCompile Include="ScoreDisplay.cpp" />
+    <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PhysicsTest.cpp" />
@@ -159,10 +159,10 @@
   <ItemGroup>
     <ClInclude Include="ControlsManager.h" />
     <ClInclude Include="GameConstants.h" />
-    <ClInclude Include="idDisplay.h" />
-    <ClInclude Include="idScoreDisplay.h" />
-    <ClInclude Include="idSnake.h" />
-    <ClInclude Include="idSprite.h" />
+    <ClInclude Include="Display.h" />
+    <ClInclude Include="ScoreDisplay.h" />
+    <ClInclude Include="Snake.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="NYTimer.h" />
     <ClInclude Include="PhysicsTest.h" />
