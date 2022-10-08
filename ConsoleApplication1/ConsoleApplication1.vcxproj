@@ -152,6 +152,7 @@
     <ClCompile Include="idSprite.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PhysicsTest.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SoundUtils.cpp" />
   </ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="idSprite.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="NYTimer.h" />
+    <ClInclude Include="PhysicsTest.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundUtils.h" />
   </ItemGroup>
