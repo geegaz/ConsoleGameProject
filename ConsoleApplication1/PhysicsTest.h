@@ -3,8 +3,7 @@
 #include "idDisplay.h"
 
 typedef struct {
-	
-
+	bool collide;
 } collision;
 
 class idPhysicsTest
@@ -14,7 +13,7 @@ private:
 	float posX, posY;
 	float velX, velY;
 
-	collision Collide(float vel_x, float vel_y);
+	bool Move();
 public:
 	float gravity;
 	float pushForce;

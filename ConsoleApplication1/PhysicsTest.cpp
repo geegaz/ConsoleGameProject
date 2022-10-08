@@ -11,9 +11,20 @@ idPhysicsTest::idPhysicsTest(idDisplay& displ):
 void idPhysicsTest::Update(float delta) {
 	
 
-	velY += gravity;
-
-
+	velY += gravity * delta;
 
 	display.DrawPixel(posX, posY, WHITE);
+}
+
+bool idPhysicsTest::Move() {
+	bool collided(false);
+
+	posX += velX;
+	posY += velY;
+	
+	if (posX > SCREEN_WIDTH) {
+	}
+
+
+	return collided;
 }
