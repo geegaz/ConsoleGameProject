@@ -1,4 +1,4 @@
-#include "idScoreDisplay.h"
+#include "ScoreDisplay.h"
 
 idScoreDisplay::idScoreDisplay(idSprite& numbers): numbersSprite(numbers) {}
 

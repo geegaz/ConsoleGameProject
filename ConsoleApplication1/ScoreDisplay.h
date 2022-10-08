@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-#include "idSprite.h"
-#include "idDisplay.h"
+#include "Sprite.h"
+#include "Display.h"
 
 using namespace std;
 

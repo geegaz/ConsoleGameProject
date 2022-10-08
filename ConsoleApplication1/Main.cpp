@@ -2,11 +2,11 @@
 #include <iostream>
 #include <string>
 #include "NYTimer.h"
-#include "idDisplay.h"
-#include "idSprite.h"
-#include "idSnake.h"
+#include "Display.h"
+#include "Sprite.h"
+#include "Snake.h"
 #include "InputManager.h"
-#include "idScoreDisplay.h"
+#include "ScoreDisplay.h"
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "Xinput.lib")
 #pragma comment(lib, "OpenAL32.lib")

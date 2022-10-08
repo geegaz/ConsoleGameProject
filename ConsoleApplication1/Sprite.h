@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "idDisplay.h"
+#include "Display.h"
 
 using namespace std;
 

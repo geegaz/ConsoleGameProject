@@ -1,4 +1,4 @@
-#include "idSnake.h"
+#include "Snake.h"
 
 idSnake::idSnake(idSprite& snake, idSprite& apple):size(BASE_SIZE), snakeSprite(snake), appleSprite(apple), headX(0), headY(0), gameOver(true), logic_delay(0.5f), logic_timer(0.0f), state(gameState_t::MENU){
 	map = new int[MAP_HEIGHT * MAP_WIDTH];

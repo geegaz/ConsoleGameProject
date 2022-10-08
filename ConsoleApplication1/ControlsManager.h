@@ -1,5 +1,5 @@
 #pragma once
-#include "idSnake.h"
+#include "Snake.h"
 #include "InputManager.h"
 #include <vector>
 #include <map>
