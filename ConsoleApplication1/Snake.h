@@ -1,6 +1,6 @@
 #pragma once
-#include "idDisplay.h"
-#include "idSprite.h"
+#include "Display.h"
+#include "Sprite.h"
 #include "GameConstants.h"
 #define MAP_HEIGHT ((SCREEN_HEIGHT*2-UI_HEIGHT)/4)
 #define MAP_WIDTH (SCREEN_WIDTH/4)

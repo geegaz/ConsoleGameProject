@@ -1,4 +1,4 @@
-#include "idSprite.h"
+#include "Sprite.h"
 
 idSprite::idSprite() {
     sizeX = 1;

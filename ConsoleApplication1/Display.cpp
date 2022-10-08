@@ -1,4 +1,4 @@
-#include "idDisplay.h"
+#include "Display.h"
 #include <iostream>
 #include <string>
 
