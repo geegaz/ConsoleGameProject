@@ -145,20 +145,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ControlsManager.cpp" />
     <ClCompile Include="idDisplay.cpp" />
-    <ClCompile Include="idInputManager.cpp" />
     <ClCompile Include="idScoreDisplay.cpp" />
     <ClCompile Include="idSnake.cpp" />
     <ClCompile Include="idSprite.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="SoundUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ControlsManager.h" />
+    <ClInclude Include="GameConstants.h" />
     <ClInclude Include="idDisplay.h" />
-    <ClInclude Include="idInputManager.h" />
     <ClInclude Include="idScoreDisplay.h" />
     <ClInclude Include="idSnake.h" />
     <ClInclude Include="idSprite.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="NYTimer.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="SoundUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\sprites\AppleSprite.txt" />
