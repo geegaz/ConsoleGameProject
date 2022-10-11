@@ -9,13 +9,13 @@
 class idControlsManager
 {
 private:
-	idSnake& controller;
 	map<gameState_t, map<int, control_t>> keyMappings, buttonMappings;
 	gameState_t state;
+	idInputManager& inputManager;
 public:
-	idControlsManager(idSnake&);
+	idControlsManager(idInputManager&);
 	void MapKeys();
-	void ReadInputStates(const map<int, keyState_t>&, const map<int, keyState_t>&) const;
 	void SetState(gameState_t newState) { state = newState; }
+	keyState_t GetControlState(control_t);
 };
 

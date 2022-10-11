@@ -1,16 +1,18 @@
 #pragma once
 #include <map>
 using namespace std;
-typedef struct {
+struct keyState_t {
 	bool justPressed;
 	bool pressed;
 	bool justReleased;
-}keyState_t;
 
-typedef struct {
+	keyState_t operator|=(keyState_t&);
+};
+
+struct keyInstantState_t {
 	bool press;
 	bool release;
-}keyInstantState_t;
+};
 
 class idInputManager
 {
