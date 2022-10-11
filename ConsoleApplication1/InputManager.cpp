@@ -10,6 +10,8 @@ keyState_t keyState_t::operator|=(keyState_t& other) {
 	this->justPressed |= other.justPressed;
 	this->pressed |= other.pressed;
 	this->justReleased |= other.justReleased;
+
+	return *this;
 }
 
 idInputManager::idInputManager() {

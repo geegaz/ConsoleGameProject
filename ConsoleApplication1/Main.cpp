@@ -6,6 +6,7 @@
 #include "Sprite.h"
 #include "Snake.h"
 #include "InputManager.h"
+#include "ControlsManager.h"
 #include "ScoreDisplay.h"
 #include "PhysicsTest.h"
 #include "SoundUtils.h"
@@ -24,20 +25,25 @@ int main()
     
     idDisplay display;
     idInputManager input;
+    idControlsManager controls(input);
     //idSoundManager sound; // makes everything crash
     NYTimer time;
 
     //--- Game setup
 
-    idPhysicsTest game(display, input);
+    idPhysicsTest game(display, controls);
 
     //--- Main loop
 
     time.start();
+    display.Fill(BLACK);
     while (true) {
+        input.CheckKeyInputs();
+
         delta = time.getElapsedSeconds();
         if (delta >= frame_delay) {
             display.Fill(BLACK);
+            input.UpdateStates();
 
             game.Update(delta);
 

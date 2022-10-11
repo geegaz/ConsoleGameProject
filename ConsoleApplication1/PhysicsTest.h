@@ -1,7 +1,7 @@
 #pragma once
 #include <windows.h>
 #include "Display.h"
-#include "InputManager.h"
+#include "ControlsManager.h"
 
 typedef struct {
 	int dirX;
@@ -12,7 +12,8 @@ class idPhysicsTest
 {
 private:
 	idDisplay& display;
-	idInputManager& input;
+	idControlsManager& controls;
+	idSprite ballSprite;
 	float posX, posY;
 	float velX, velY;
 	bool onGround;
@@ -22,10 +23,11 @@ public:
 	float gravity;
 	float pushForce;
 	float bounciness;
+	float friction;
 
-	idPhysicsTest(idDisplay& displ, idInputManager& in);
+	idPhysicsTest(idDisplay& displ, idControlsManager& in);
 	void Update(float delta);
 	void Jump();
-	void Dash(float dir);
+	void Dash(int dir);
 };
 
