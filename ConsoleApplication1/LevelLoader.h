@@ -4,7 +4,7 @@
 class idLevelLoader
 {
 public:
-	static void Load(std::string levelname, int xSize, int ySize);
+	static void LoadLevel(std::string levelname, int xSize, int ySize);
 	static int** LoadCsv(std::string filename, int xSize, int ySize);
 private:
 	static void LoadEntities(int** level, int xSize, int ySize);
