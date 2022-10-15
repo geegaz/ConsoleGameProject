@@ -2,6 +2,9 @@
 #include <fstream>
 
 #include "SoundUtils.h"
+/*
+Code provided by Alex VU
+*/
 
 static int32_t CharArrayToInt(const char* const array, const size_t size) {
 	int32_t res = 0;

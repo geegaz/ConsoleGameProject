@@ -1,5 +1,8 @@
 #ifndef __SOUND_UTILS__
 #define __SOUND_UTILS__
+/*
+Code provided by Alex VU
+*/
 
 char* LoadWavFile(
 	const std::string& fileName,
