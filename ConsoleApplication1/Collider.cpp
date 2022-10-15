@@ -28,7 +28,7 @@ idCollider::idCollider(float x, float y, float w, float h) : colliderRect(rect_t
 }
 
 idCollider::~idCollider() {
-	registeredColliders.
+	
 }
 
 void idCollider::RegisterCollider() {
