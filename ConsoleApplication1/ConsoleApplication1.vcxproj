@@ -147,6 +147,9 @@
   <ItemGroup>
     <ClCompile Include="ControlsManager.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="GameplayDisplay.cpp" />
+    <ClCompile Include="PlatformerGame.cpp" />
+    <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="ScoreDisplay.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -155,11 +158,15 @@
     <ClCompile Include="PhysicsTest.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SoundUtils.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ControlsManager.h" />
     <ClInclude Include="GameConstants.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="GameplayDisplay.h" />
+    <ClInclude Include="LevelLoader.h" />
+    <ClInclude Include="PlatformerGame.h" />
     <ClInclude Include="ScoreDisplay.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="Sprite.h" />
@@ -168,6 +175,7 @@
     <ClInclude Include="PhysicsTest.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundUtils.h" />
+    <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\sprites\AppleSprite.txt" />

@@ -18,3 +18,4 @@ enum class musicTrack_t { OVERWORLD_1, DEATH };
 enum class soundTrack_t { JUMP, COIN };
 const std::map<musicTrack_t, std::string> MUSIC_FILES = { {musicTrack_t::DEATH, ".\\resources\\sounds\\death_jingle.wav"} };
 const std::map<soundTrack_t, std::string> SOUND_FILES = { {soundTrack_t::COIN, ".\\resources\\sounds\\sfx8.wav"}, {soundTrack_t::JUMP, ".\\resources\\sounds\\death_goldenberry.wav"} };
+

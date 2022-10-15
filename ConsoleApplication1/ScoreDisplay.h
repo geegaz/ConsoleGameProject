@@ -10,7 +10,7 @@ class idScoreDisplay
 private:
 	idSprite numbersSprite;
 public:
-	idScoreDisplay(idSprite& numbers);
+	idScoreDisplay();
 	~idScoreDisplay();
 	void Draw(idDisplay& display, int score, int digits = 3);
 };
