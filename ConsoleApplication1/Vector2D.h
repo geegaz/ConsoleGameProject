@@ -1,5 +1,8 @@
 #pragma once
 #define DECIMAL_PLACES 4
+
+struct floatVector2_t;
+
 struct intVector2_t
 {
 public:
