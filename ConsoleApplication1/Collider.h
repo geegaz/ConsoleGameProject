@@ -1,34 +1,27 @@
 #pragma once
 
 #include <map>
+#include "Vector2D.h"
 
 using namespace std;
-
-typedef struct rect_t {
-	float x;
-	float y;
-
-	float w;
-	float h;
-};
 
 class idCollider
 {
 private:
-	static map<int, idCollider> registeredColliders;
+	static map<int, idCollider*> registeredColliders;
 	static int registeredIDs;
 	
 	int colliderID;
-
-	void RegisterCollider();
-public:
-	rect_t colliderRect;
+	floatVector2_t& position;
+	floatVector2_t size;
 
 	idCollider();
-	idCollider(rect_t& rect);
-	idCollider(float x, float y, float w, float h);
+	void RegisterCollider();
+public:
+	idCollider(floatVector2_t& _position, floatVector2_t _size);
+	idCollider(floatVector2_t& _position, float w, float h);
 	~idCollider();
 
-	bool Collide(idCollider& a, idCollider& b);
+	static bool Collide(idCollider& a, idCollider& b);
 };
 
