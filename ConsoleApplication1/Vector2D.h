@@ -10,28 +10,28 @@ public:
 	intVector2_t operator-(intVector2_t&);
 	intVector2_t& operator+=(intVector2_t&);
 	intVector2_t& operator-=(intVector2_t&);
-	Vector2_t toFloat();
+	floatVector2_t toFloat();
 };
 
-struct Vector2_t
+struct floatVector2_t
 {
 public:
 	float x;
 	float y;
-	Vector2_t(float _x, float _y) :x(_x), y(_y) {}
-	Vector2_t operator+(intVector2_t&);
-	Vector2_t operator-(intVector2_t&);
-	Vector2_t& operator+=(intVector2_t&);
-	Vector2_t& operator-=(intVector2_t&);
-	Vector2_t operator+(Vector2_t&);
-	Vector2_t operator-(Vector2_t&);
-	Vector2_t& operator+=(Vector2_t&);
-	Vector2_t& operator-=(Vector2_t&);
+	floatVector2_t(float _x, float _y) :x(_x), y(_y) {}
+	floatVector2_t operator+(intVector2_t&);
+	floatVector2_t operator-(intVector2_t&);
+	floatVector2_t& operator+=(intVector2_t&);
+	floatVector2_t& operator-=(intVector2_t&);
+	floatVector2_t operator+(floatVector2_t&);
+	floatVector2_t operator-(floatVector2_t&);
+	floatVector2_t& operator+=(floatVector2_t&);
+	floatVector2_t& operator-=(floatVector2_t&);
 	intVector2_t ToInt();
 	intVector2_t Round();
 
 private:
-	static void DecimalRound(Vector2_t&);
+	static floatVector2_t& DecimalRound(floatVector2_t&);
 };
 
 
