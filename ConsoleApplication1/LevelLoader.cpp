@@ -16,6 +16,7 @@ void idLevelLoader::LoadLevel(string levelname, int xSize, int ySize) {
 		delete[] level_background[i];
 		delete[] level_structure[i];
 	}
+
 	delete[] level_entities;
 	delete[] level_background;
 	delete[] level_structure;

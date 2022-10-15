@@ -1,6 +1,6 @@
 #include "ScoreDisplay.h"
 
-idScoreDisplay::idScoreDisplay(idSprite& numbers): numbersSprite(numbers) {}
+idScoreDisplay::idScoreDisplay(): numbersSprite("resources\\sprites\\Numbers.txt") {}
 
 idScoreDisplay::~idScoreDisplay() {}
 
