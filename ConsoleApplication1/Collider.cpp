@@ -2,6 +2,7 @@
 
 
 int idCollider::registeredIDs = 0;
+map<int, idCollider*> idCollider::registeredColliders;
 
 idCollider::idCollider(floatVector2_t& _position, floatVector2_t _size) : position(_position), size(_size) {
 	RegisterCollider();
@@ -12,21 +13,30 @@ idCollider::idCollider(floatVector2_t& _position, float w, float h) : position(_
 }
 
 idCollider::~idCollider() {
-	idCollider::registeredColliders.erase(colliderID);
+	registeredColliders.erase(colliderID);
 }
 
 void idCollider::RegisterCollider() {
-	colliderID = idCollider::registeredIDs;
-	idCollider::registeredIDs++;
+	colliderID = registeredIDs;
+	registeredIDs++;
 
-	idCollider::registeredColliders[colliderID] = this;
+	registeredColliders[colliderID] = this;
 }
 
 bool idCollider::Collide(idCollider& a, idCollider& b) {
 	return (
 		a.position.x < b.position.x + b.size.x &&
-		a.position.x + a.size.x > b.position.x &&
+		b.position.x < a.position.x + a.size.x &&
 		a.position.y < b.position.y + b.size.y &&
-		a.size.y + a.position.y > b.position.y
+		b.position.y < a.position.y + a.size.y
 	);
+}
+
+bool idCollider::CollideBounds(idCollider& a, idCollider& b) {
+	return (
+		a.position.x + a.size.x > b.position.x + b.size.x ||
+		b.position.x > a.position.x ||
+		a.position.y + a.size.y > b.position.y + b.size.y ||
+		b.position.y > a.position.y
+		);
 }

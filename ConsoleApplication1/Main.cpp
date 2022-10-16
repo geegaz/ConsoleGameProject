@@ -50,6 +50,7 @@ int main()
             display.Refresh();
             time.getElapsedSeconds(true);
         }
+        Sleep(1);
     }
 
     //const float frame_delay = 1.0f / 30.0f; // delay between frames

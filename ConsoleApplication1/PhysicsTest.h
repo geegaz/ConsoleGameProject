@@ -1,24 +1,25 @@
 #pragma once
 #include <windows.h>
+#include "Collider.h"
 #include "Display.h"
 #include "ControlsManager.h"
-
-typedef struct {
-	int dirX;
-	int dirY;
-} collision_t;
 
 class idPhysicsTest
 {
 private:
 	idDisplay& display;
 	idControlsManager& controls;
+	
 	idSprite ballSprite;
-	float posX, posY;
-	float velX, velY;
+	idCollider ballCollider;
+	idCollider bounds;
+
+	floatVector2_t boundsPosition;
+	floatVector2_t position;
+	floatVector2_t velocity;
 	bool onGround;
 
-	bool Move(float vel_x, float vel_y, collision_t& col);
+	bool Move(floatVector2_t vel, collision_t& col, int tries);
 public:
 	float gravity;
 	float pushForce;

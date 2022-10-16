@@ -8,6 +8,7 @@ struct intVector2_t
 public:
 	int x;
 	int y;
+	intVector2_t() :x(0), y(0) {};
 	intVector2_t(int _x, int _y) :x(_x), y(_y){}
 	intVector2_t operator+(intVector2_t&);
 	intVector2_t operator-(intVector2_t&);
@@ -21,6 +22,7 @@ struct floatVector2_t
 public:
 	float x;
 	float y;
+	floatVector2_t() :x(0.0f), y(0.0f) {};
 	floatVector2_t(float _x, float _y) :x(_x), y(_y) {}
 	floatVector2_t operator+(intVector2_t&);
 	floatVector2_t operator-(intVector2_t&);

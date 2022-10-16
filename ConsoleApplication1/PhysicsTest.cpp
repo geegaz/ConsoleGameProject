@@ -3,14 +3,14 @@
 idPhysicsTest::idPhysicsTest(idDisplay& displ, idControlsManager& in) :
 	display(displ),
 	controls(in),
-	ballSprite("resources\\sprites\\Sprite.txt")
+	
+	ballCollider(position, 8.0f, 8.0f),
+	bounds(boundsPosition, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT * 2)
 {
-
-	posX = 10.0f;
-	posY = 10.0f;
-	velX = 25.0f;
-	velY = 20.0f;
-
+	position.x = 10.0f;
+	position.y = 10.0f;
+	velocity.x = 25.0f;
+	
 	gravity = 40.0f;
 	pushForce = 25.0f;
 	bounciness = 0.95f;
@@ -21,7 +21,7 @@ idPhysicsTest::idPhysicsTest(idDisplay& displ, idControlsManager& in) :
 
 void idPhysicsTest::Update(float delta) {
 	
-	velY += gravity * delta;
+	velocity.y += gravity * delta;
 
 	if (onGround && controls.GetControlState(control_t::UP).pressed) {
 		Jump();
@@ -35,65 +35,41 @@ void idPhysicsTest::Update(float delta) {
 	}
 
 	collision_t col;
-	if (Move(velX * delta, velY * delta, col)) {
-		if (col.dirX != 0) velX = -velX * bounciness;
-		if (col.dirY != 0) velY = -velY * bounciness;
+	if (Move(velocity, col)) {
+		
 	}
 
 
 	//-- Smoothed 
 	int x, y;
-	if (abs(velX) > abs(velY)) {
-		x = round(posX);
-		y = round(posY + (x - posX) * velY / velX);
+	if (abs(velocity.x) > abs(velocity.y)) {
+		x = round(position.x);
+		y = round(position.y + (x - position.x) * velocity.y / velocity.x);
 	}
 	else {
-		y = round(posY);
-		x = round(posX + (y - posY) * velX / velY);
+		y = round(position.y);
+		x = round(position.x + (y - position.y) * velocity.x / velocity.y);
 	}
 	
 	ballSprite.Draw(display, x - 4, y - 4);
 }
 
-bool idPhysicsTest::Move(float vel_x, float vel_y, collision_t& col) {
-	bool collided(false);
+bool idPhysicsTest::Move(floatVector2_t vel, collision_t& col, int tries = 4) {
+	position += vel;
 
-	posX += vel_x;
-	posY += vel_y;
+	int tried = 0;
+	while (idCollider::CollideBounds(ballCollider, bounds) || tried > tries) {
 
-	col.dirX = 0;
-	col.dirY = 0;
-	
-	if (posX > SCREEN_WIDTH - 1) {
-		posX = SCREEN_WIDTH - 1;
-		collided = true;
-		col.dirX = 1;
-	}
-	else if (posX < 0) {
-		posX = 0;
-		collided = true;
-		col.dirX = -1;
-	}
-	if (posY > SCREEN_HEIGHT * 2 - 1) {
-		posY = SCREEN_HEIGHT * 2 - 1;
-		collided = true;
-		col.dirY = 1;
-
-		onGround = true;
-	}
-	else if (posY < 0) {
-		posY = 0;
-		collided = true;
-		col.dirY = -1;
+		tried++;
 	}
 
-	return collided;
+	return false;
 }
 
 void idPhysicsTest::Jump() {
-	velY = -gravity;
+	velocity.y = -gravity;
 }
 
 void idPhysicsTest::Dash(int dir) {
-	velX += dir * pushForce;
+	velocity.x += dir * pushForce;
 }
