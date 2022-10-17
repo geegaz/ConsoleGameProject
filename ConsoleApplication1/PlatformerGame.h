@@ -7,7 +7,7 @@
 #include "InputManager.h"
 #include "ScoreDisplay.h"
 #include "LevelLoader.h"
-#include "GameplayDisplay.h"
+#include "LevelDisplayer.h"
 #include <vector>
 class idPlatformerGame
 {
@@ -15,7 +15,7 @@ private:
 	idSprite gameBackground;
 	idDisplay display;
 	idScoreDisplay scoreDisplay;
-	idGameplayDisplay gameplayDisplay;
+	idLevelDisplayer gameplayDisplay;
 	NYTimer frameTimer;
 	idInputManager inputManager;
 	int** structure;

@@ -1,5 +1,5 @@
 #include "Sprite.h"
-
+#include "Vector2D.h"
 idSprite::idSprite() {
     sizeX = 1;
     sizeY = 1;
@@ -18,7 +18,8 @@ idSprite::idSprite(string filename) {
 
     framesX = 1;
     framesY = 1;
-
+    
+    data = nullptr;
     ifstream file(filename);
 
     string string_data;
@@ -61,6 +62,11 @@ idSprite::idSprite(string filename) {
         i++;
     }
     file.close();
+    if (data == nullptr) {
+        int data_size = 1;
+        data = new int[data_size];
+        data[0] = 0;
+    }
 }
 
 idSprite::idSprite(int color, int size_x, int size_y) {
@@ -80,27 +86,31 @@ idSprite::idSprite(int color, int size_x, int size_y) {
 }
 
 idSprite::~idSprite() {
-    delete this->data;
+    delete[] this->data;
 }
 
 void idSprite::Draw(idDisplay& display, int x, int y, int frame) {
+    idSprite& sprite = *this;
+    intVector2_t total_draw_offset = intVector2_t(x, y);
     frame = min(framesX * framesY - 1, frame);
-
-    int a = frame % framesX;
-    int b = frame / framesX;
-    int i = (sizeX * framesX) * (sizeY * b) + (sizeX * a);
-    for (int iter_y = 0; iter_y < sizeY; iter_y++) {
-        for (int iter_x = 0; iter_x < sizeX; iter_x++) {
-            if (data[i] >= 0) {
+    bool flipHorizontally = true, flipVertically = true;
+    int frame_column, frame_line, i;
+    frame_column = frame % sprite.framesX;
+    frame_line = frame / sprite.framesX;
+    // i = [go to line] + [go to column]
+    i = (sprite.sizeX * sprite.framesX) * (sprite.sizeY * frame_line) + (sprite.sizeX * frame_column);
+    for (int iter_y = 0; iter_y < sprite.sizeY; iter_y++) {
+        for (int iter_x = 0; iter_x < sprite.sizeX; iter_x++) {
+            if (sprite.data[i] >= 0) {
                 display.DrawPixel(
-                    x + iter_x,
-                    y + iter_y,
-                    data[i]
+                    total_draw_offset.x + iter_x,
+                    total_draw_offset.y + iter_y,
+                    sprite.data[i]
                 );
             }
             i++;
         }
-        i += sizeX * (framesX - 1);
+        i += sprite.sizeX * (sprite.framesX - 1);
     }
 }
 

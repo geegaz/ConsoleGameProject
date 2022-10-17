@@ -6,20 +6,18 @@
 
 using namespace std;
 
-const class idSprite
+struct idSprite
 {
-private:
+public:
 	int* data;
 	int sizeX, sizeY;
 	int framesX, framesY;
 
-public:
 	idSprite();
 	idSprite(string);
 	idSprite(int, int, int);
 
 	~idSprite();
 	void Draw(idDisplay& display, int x, int y, int frame = 0);
-
 };
 
