@@ -19,7 +19,7 @@ private:
 	floatVector2_t velocity;
 	bool onGround;
 
-	bool Move(floatVector2_t vel, collision_t& col, int tries);
+	bool Move(floatVector2_t vel, collision_t& col, float delta, int tries = 4);
 public:
 	float gravity;
 	float pushForce;

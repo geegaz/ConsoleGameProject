@@ -35,7 +35,7 @@ void idPhysicsTest::Update(float delta) {
 	}
 
 	collision_t col;
-	if (Move(velocity, col)) {
+	if (Move(velocity, col, delta)) {
 		
 	}
 
@@ -51,17 +51,20 @@ void idPhysicsTest::Update(float delta) {
 		x = round(position.x + (y - position.y) * velocity.x / velocity.y);
 	}
 	
-	ballSprite.Draw(display, x - 4, y - 4);
+	ballSprite.Draw(display, x, y);
 }
 
-bool idPhysicsTest::Move(floatVector2_t vel, collision_t& col, int tries = 4) {
+bool idPhysicsTest::Move(floatVector2_t vel, collision_t& col, float delta, int tries) {
+	vel.x *= delta;
+	vel.y *= delta;
 	position += vel;
 
-	int tried = 0;
+	/*int tried = 0;
 	while (idCollider::CollideBounds(ballCollider, bounds) || tried > tries) {
 
 		tried++;
-	}
+	}*/
+	if (idCollider::CollideBounds(ballCollider, bounds)) position -= vel;
 
 	return false;
 }

@@ -42,7 +42,7 @@ int main()
 
         delta = time.getElapsedSeconds();
         if (delta >= frame_delay) {
-            display.Fill(BLACK);
+            display.Fill(RED);
             input.UpdateStates();
 
             game.Update(delta);
