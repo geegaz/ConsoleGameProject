@@ -9,16 +9,16 @@ struct frameAnimation_t {
 };
 
 struct positionAnimation_t {
-    int* positions;
+    int* yPositions;
     int length;
-    bool flipVertically;
+    bool flipY;
 };
 
 struct animationState_t {
     positionAnimation_t* positionAnimation;
     frameAnimation_t* frameAnimation;
 	int frameStep;
-    int positionStep;
+    int yPositionStep;
 };
 
 struct animationRegister {
