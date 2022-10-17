@@ -1,15 +1,15 @@
-#include "GameplayDisplay.h"
-idGameplayDisplay::idGameplayDisplay(idDisplay& _display) :camera(0, 0), display(_display) {}
+#include "LevelDisplayer.h"
+idLevelDisplayer::idLevelDisplayer(idDisplay& _display) :camera(0, 0), display(_display) {}
 
-intVector2_t idGameplayDisplay::GetRelativeCoords(intVector2_t worldCoords) {
+intVector2_t idLevelDisplayer::GetRelativeCoords(intVector2_t worldCoords) {
 	return worldCoords - camera;
 }
 
-void idGameplayDisplay::MoveCameraIfNeeded() {
+void idLevelDisplayer::MoveCameraIfNeeded() {
 	camera.x += 1;
 }
 
-bool idGameplayDisplay::InBounds(intVector2_t coords, intVector2_t size) {
+bool idLevelDisplayer::InBounds(intVector2_t coords, intVector2_t size) {
 	intVector2_t top_left = GetRelativeCoords(coords);
 	intVector2_t bottom_right = GetRelativeCoords(coords + size);
 	
