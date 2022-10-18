@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 
+// idAnimationState --------------------------------------------------------
 bool idAnimationState::NextFrame() {
 	if (frameAnimation != nullptr) {
 		if (frameAnimation->loop) {
@@ -34,7 +35,7 @@ void idAnimationState::SetFrameAnimation(frameAnimation_t* _frameAnimation) {
 	frameAnimation = _frameAnimation;
 }
 
-
+// idAnimationRegister --------------------------------------------------------
 std::map<std::string, positionAnimation_t> idAnimationRegister::POSITION_ANIMATIONS;
 std::map<std::string, frameAnimation_t> idAnimationRegister::FRAME_ANIMATIONS;
 
