@@ -15,14 +15,18 @@ public:
 class idSpriteRenderer {
 protected:
     idSprite& sprite;
-    map<string, positionAnimation_t*> positionAnimations;
-    map<string, positionAnimation_t*> frameAnimations;
-    animationState_t animationState;
+    idAnimationState animationState;
+    idAnimationRegister& animationRegister;
     intVector2_t spriteOffset;
     intVector2_t& position;
     bool flipX;
 public:
+    idSpriteRenderer(idSprite _sprite, intVector2_t& _position, intVector2_t _spriteOffset = intVector2_t(0, 0));
+    bool SwitchPositionAnimation(string animationTitle);
+    bool SwitchFrameAnimation(string animationTitle);
+    void NextFrame();
+    void NextPosition();
     void Draw(idDisplay& display, intVector2_t drawOffset);
+    void SetFlipX(bool flip);
     intVector2_t& GetPosition() { return position; }
 };
-

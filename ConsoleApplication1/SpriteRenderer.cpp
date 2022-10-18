@@ -22,7 +22,7 @@ void idStaticSpriteRenderer::Draw(idDisplay& display, intVector2_t offset, int f
     }
 }
 
-// idSprite::Draw(idDisplay& display, int x, int y, int frame, bool flipX, bool flipY)
+
 void idSpriteRenderer::Draw(idDisplay& display, intVector2_t drawOffset) {
     intVector2_t total_draw_offset = drawOffset+spriteOffset;
     bool flipY = false;
