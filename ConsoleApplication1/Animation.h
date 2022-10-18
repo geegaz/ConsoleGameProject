@@ -20,23 +20,25 @@ public:
     frameAnimation_t* frameAnimation;
 	int frameStep;
     int yPositionStep;
-    void NextFrame();
-    void NextPosition();
-    void SetPositionAnimation(positionAnimation_t* positionAnimation);
-    void SetFrameAnimation(frameAnimation_t* frameAnimation);
+    bool NextFrame();
+    bool NextPosition();
+    void SetPositionAnimation(positionAnimation_t* _positionAnimation);
+    void SetFrameAnimation(frameAnimation_t* _frameAnimation);
 };
 
 class idAnimationRegister {
 private:
     static std::map<std::string, positionAnimation_t> POSITION_ANIMATIONS;
-    static std::map<std::string, positionAnimation_t> FRAME_ANIMATIONS;
+    static std::map<std::string, frameAnimation_t> FRAME_ANIMATIONS;
     std::map<std::string, positionAnimation_t*> positionAnimations;
     std::map<std::string, frameAnimation_t*> frameAnimations;
+    static void LoadAllPositionAnimations(std::string filename);
+    static void  LoadAllFrameAnimations(std::string filename);
 public:
-    static void LoadAllAnimations(std::string filename);
+    static void LoadAllAnimations(std::string positionFilename, std::string frameFilename);
     static void UnloadAllAnimations();
     void LoadPositionAnimations(std::string filename);
     void LoadFrameAnimations(std::string filename);
-    positionAnimation_t* getPositionAnimation(std::string);
-    frameAnimation_t* getFrameAnimation(std::string);
+    positionAnimation_t* getPositionAnimation(const std::string);
+    frameAnimation_t* getFrameAnimation(const std::string);
 };
