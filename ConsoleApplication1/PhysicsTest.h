@@ -11,15 +11,16 @@ private:
 	idControlsManager& controls;
 	
 	idSprite ballSprite;
+	idSprite boundSprite;
 	idCollider ballCollider;
-	idCollider bounds;
+	idCollider boundCollider;
 
-	floatVector2_t boundsPosition;
+	floatVector2_t boundPosition;
 	floatVector2_t position;
 	floatVector2_t velocity;
 	bool onGround;
 
-	bool Move(floatVector2_t vel, collision_t& col, float delta, int tries = 4);
+	bool Move(floatVector2_t vel, float delta, int tries = 4);
 public:
 	float gravity;
 	float pushForce;

@@ -9,6 +9,7 @@ struct collision_t
 {
 	floatVector2_t normal;
 	floatVector2_t distance;
+	float depth;
 };
 
 class idCollider
@@ -24,6 +25,7 @@ protected:
 
 public:
 	int colliderID;
+	bool trigger;
 	floatVector2_t& position;
 	floatVector2_t size;
 
@@ -32,6 +34,7 @@ public:
 	~idCollider();
 
 	static bool Collide(idCollider& a, idCollider& b);
+	static bool Collide(idCollider& a, idCollider& b, collision_t& col);
 	static bool CollideBounds(idCollider& a, idCollider& b);
 };
 

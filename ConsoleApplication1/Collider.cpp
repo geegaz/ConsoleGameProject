@@ -32,6 +32,35 @@ bool idCollider::Collide(idCollider& a, idCollider& b) {
 	);
 }
 
+bool idCollider::Collide(idCollider& a, idCollider& b, collision_t& col) {
+	if (!Collide(a, b)) return false;
+	
+	floatVector2_t axis((a.position + a.size / 2.0f) - (b.position + b.size / 2.0f));
+	
+	if (abs(axis.y) < abs(axis.x)) {
+		// Collision is on the Y axis
+		col.normal.x = 0.0f;
+		if (axis.y > 0.0f) {
+			col.normal.y = 1.0f;
+		}
+		else {
+			col.normal.y = -1.0f;
+		}
+	}
+	else {
+		// Collision is on the X axis
+		col.normal.y = 0.0f;
+		if (axis.x > 0.0f) {
+			col.normal.x = 1.0f;
+		}
+		else {
+			col.normal.x = -1.0f;
+		}
+	}
+
+	return true;
+}
+
 bool idCollider::CollideBounds(idCollider& a, idCollider& b) {
 	return (
 		a.position.x + a.size.x > b.position.x + b.size.x ||
