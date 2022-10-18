@@ -45,7 +45,6 @@ void idAnimationRegister::LoadAllPositionAnimations(std::string filename) {
 	std::string title;
 	int length, line = 1;
 	bool flip_y;
-	char latest_get;
 	do {
 		file >> title;
 		file >> flip_y;
@@ -78,7 +77,6 @@ void idAnimationRegister::LoadAllFrameAnimations(std::string filename) {
 	std::string title;
 	int length, line = 1;
 	bool loop;
-	char latest_get;
 	do {
 		file >> title;
 		file >> loop;
