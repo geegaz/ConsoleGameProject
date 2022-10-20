@@ -10,18 +10,19 @@
 #include "LevelDisplayer.h"
 #include <vector>
 #include "Mario.h"
-extern idMarioState mario;
+extern idMarioState marioState;
 class idPlatformerGame
 {
 private:
 	idSprite gameBackground;
 	idDisplay display;
 	idScoreDisplay scoreDisplay;
-	idLevelDisplayer gameplayDisplay;
+	idLevelDisplayer levelDisplayer;
 	NYTimer frameTimer;
 	idInputManager inputManager;
 	int** structure;
 	idSprite structureSprite;
+	idMario mario;
 	int levelx, levely;
 	int livesCount;
 	int level;

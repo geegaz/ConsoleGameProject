@@ -37,3 +37,9 @@ void idMarioState::Reset() {
 	big = false;
 	fire = false;
 }
+
+idMario::idMario():idLevelObject(20,20){}
+
+void idMario::OnCollide(idCollider& other, collision_t collision) {
+
+}
