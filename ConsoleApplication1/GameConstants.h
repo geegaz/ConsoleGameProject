@@ -3,6 +3,12 @@
 #include <map>
 #include <windows.h>
 #include <Xinput.h>
+#define PLAYER_MASK 1
+#define BLOCK_MASK 2
+#define WALL_MASK 4
+#define FIRE_MASK 8
+#define ENEMY_MASK 16
+#define POWERUP 32
 
 const std::string RESOURCES_PATH = ".\\resources\\";
 enum class gameState_t { MENU, IN_GAME };
@@ -13,7 +19,6 @@ const std::map<int, control_t> KEYBOARD_MAPPING = { {'Z', control_t::UP}, {'Q',c
 
 const std::map<int, control_t> XINPUT_MAPPING = { {XINPUT_GAMEPAD_DPAD_UP, control_t::UP}, {XINPUT_GAMEPAD_DPAD_LEFT,control_t::LEFT}, {XINPUT_GAMEPAD_DPAD_DOWN ,control_t::DOWN}, {XINPUT_GAMEPAD_DPAD_RIGHT,control_t::RIGHT},
 												{XINPUT_GAMEPAD_START, control_t::START} };
-
 
 const std::string SOUNDS_PATH = RESOURCES_PATH + "sounds\\";
 enum class musicTrack_t { OVERWORLD_1, DEATH };

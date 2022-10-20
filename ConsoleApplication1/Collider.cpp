@@ -4,11 +4,13 @@
 int idCollider::registeredIDs = 0;
 map<int, idCollider*> idCollider::registeredColliders;
 
-idCollider::idCollider(floatVector2_t& _position, floatVector2_t _size) : position(_position), size(_size) {
+idCollider::idCollider(floatVector2_t& _position, floatVector2_t _size, int _mask, int _interactionMask)
+	: position(_position),size(_size), mask(_mask), interactionMask(_mask) {
 	RegisterCollider();
 }
 
-idCollider::idCollider(floatVector2_t& _position, float w, float h) : position(_position), size(w, h) {
+idCollider::idCollider(floatVector2_t& _position, float w, float h, int _mask, int _interactionMask)
+	: position(_position), size(w, h), mask(_mask), interactionMask(_mask) {
 	RegisterCollider();
 }
 
