@@ -6,7 +6,7 @@ intVector2_t idLevelDisplayer::GetRelativeCoords(intVector2_t worldCoords) {
 }
 
 void idLevelDisplayer::MoveCameraIfNeeded() {
-	//camera.x += 1;
+	camera.x += 1;
 }
 
 bool idLevelDisplayer::InBounds(intVector2_t coords, intVector2_t size) {
