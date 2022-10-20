@@ -8,8 +8,7 @@ using namespace std;
 struct collision_t
 {
 	floatVector2_t normal;
-	floatVector2_t distance;
-	float depth;
+	floatVector2_t depth;
 };
 
 class idCollider
@@ -35,6 +34,5 @@ public:
 
 	static bool Collide(idCollider& a, idCollider& b);
 	static bool Collide(idCollider& a, idCollider& b, collision_t& col);
-	static bool CollideBounds(idCollider& a, idCollider& b);
 };
 
