@@ -1,7 +1,6 @@
 #pragma once
 
 #include <map>
-#include <vector>
 #include "Vector2D.h"
 
 using namespace std;

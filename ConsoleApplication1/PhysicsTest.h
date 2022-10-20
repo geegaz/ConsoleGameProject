@@ -1,9 +1,12 @@
 #pragma once
 #include <windows.h>
+#include <cmath>
 #include "Collider.h"
 #include "Display.h"
 #include "ScoreDisplay.h"
 #include "ControlsManager.h"
+
+using namespace std;
 
 class idPhysicsTest
 {

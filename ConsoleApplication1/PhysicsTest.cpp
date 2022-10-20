@@ -38,12 +38,15 @@ void idPhysicsTest::Update(float delta) {
 		Jump();
 		onGround = false;
 	}
-	if (controls.GetControlState(control_t::LEFT).justPressed) {
-		Dash(-1);
+
+	float dir = 0.0f;
+	if (controls.GetControlState(control_t::LEFT).pressed) {
+		dir = -1.0f;
 	}
-	if (controls.GetControlState(control_t::RIGHT).justPressed) {
-		Dash(1);
+	if (controls.GetControlState(control_t::RIGHT).pressed) {
+		dir = 1.0f;
 	}
+	velocity.x = dir * 25.0f;
 
 	Move(velocity, delta);
 
@@ -102,8 +105,4 @@ bool idPhysicsTest::Move(floatVector2_t vel, float delta, int tries) {
 
 void idPhysicsTest::Jump() {
 	velocity.y = -gravity;
-}
-
-void idPhysicsTest::Dash(int dir) {
-	velocity.x += dir * pushForce;
 }
