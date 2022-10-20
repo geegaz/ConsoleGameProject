@@ -9,6 +9,8 @@
 #include "LevelLoader.h"
 #include "LevelDisplayer.h"
 #include <vector>
+#include "Mario.h"
+extern idMarioState mario;
 class idPlatformerGame
 {
 private:

@@ -22,6 +22,12 @@ void idStaticSpriteRenderer::Draw(idDisplay& display, intVector2_t offset, int f
     }
 }
 
+idSpriteRenderer::idSpriteRenderer(idSprite& _sprite, intVector2_t& _position,
+    idAnimationRegister& _animationRegister,
+    intVector2_t _spriteOffset)
+    : sprite(_sprite), spriteOffset(_spriteOffset), position(_position),
+    animationRegister(_animationRegister) {
+}
 
 void idSpriteRenderer::Draw(idDisplay& display, intVector2_t drawOffset) {
     intVector2_t total_draw_offset = drawOffset+spriteOffset;

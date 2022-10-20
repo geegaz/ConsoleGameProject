@@ -1,5 +1,7 @@
 #include "PlatformerGame.h"
 
+idMarioState mario;
+
 idPlatformerGame::idPlatformerGame():
 gameBackground("resources\\sprites\\gameBackground.txt"),
 structureSprite("resources\\sprites\\tileset_1.txt"),
@@ -9,6 +11,7 @@ livesCount(0), level(0),levelx(32),levely(10), score(69){
 }
 
 void idPlatformerGame::Start() {
+
 	float frame_delay = 1.0f / 120.0f; // delay between frames
 	float delta_time = 0.0f; // elapsed time between a frame
 	frameTimer.getElapsedSeconds(true);
@@ -21,6 +24,7 @@ void idPlatformerGame::Start() {
 		Sleep(1);
 	}
 }
+
 void idPlatformerGame::IterateGameLoop() {
 	int element;
 	intVector2_t camera = gameplayDisplay.GetRelativeCoords(intVector2_t(0, 0));

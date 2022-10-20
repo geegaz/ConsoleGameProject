@@ -21,7 +21,9 @@ protected:
     intVector2_t& position;
     bool flipX;
 public:
-    idSpriteRenderer(idSprite _sprite, intVector2_t& _position, intVector2_t _spriteOffset = intVector2_t(0, 0));
+    idSpriteRenderer(idSprite& _sprite, intVector2_t& _position,
+        idAnimationRegister& _animationRegister,
+        intVector2_t _spriteOffset = intVector2_t(0, 0));
     bool SwitchPositionAnimation(string animationTitle);
     bool SwitchFrameAnimation(string animationTitle);
     void NextFrame();

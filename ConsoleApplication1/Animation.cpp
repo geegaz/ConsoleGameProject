@@ -3,6 +3,13 @@
 #include <iostream>
 
 // idAnimationState --------------------------------------------------------
+idAnimationState::idAnimationState() {
+	frameStep = 0;
+	yPositionStep = 0;
+	positionAnimation = nullptr;
+	frameAnimation = nullptr;
+}
+
 bool idAnimationState::NextFrame() {
 	if (frameAnimation != nullptr) {
 		if (frameAnimation->loop) {
@@ -29,10 +36,12 @@ bool idAnimationState::NextPosition() {
 
 void idAnimationState::SetPositionAnimation(positionAnimation_t* _positionAnimation) {
 	 positionAnimation = _positionAnimation;
+	 yPositionStep = 0;
 }
 
 void idAnimationState::SetFrameAnimation(frameAnimation_t* _frameAnimation) {
 	frameAnimation = _frameAnimation;
+	frameStep = 0;
 }
 
 // idAnimationRegister --------------------------------------------------------

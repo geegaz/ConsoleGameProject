@@ -20,6 +20,7 @@ public:
     frameAnimation_t* frameAnimation;
 	int frameStep;
     int yPositionStep;
+    idAnimationState();
     bool NextFrame();
     bool NextPosition();
     void SetPositionAnimation(positionAnimation_t* _positionAnimation);
