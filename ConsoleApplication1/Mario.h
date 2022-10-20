@@ -1,5 +1,5 @@
 #pragma once
-#include "SpriteRenderer.h"
+#include "LevelObject.h"
 class idMarioState
 {
 private:
@@ -22,9 +22,12 @@ enum class marioAnimations_t {
 	TURN
 };
 
-class idMario {
+class idMario: public idLevelObject {
 private:
 	static std::map<marioAnimations_t, std::string> smallAnimationTitles;
+	static const int MASK;
+	static const int INTERACTION_MASK;
 public:
 	idMario();
+	virtual void OnCollide(idCollider& other, collision_t collision);
 };

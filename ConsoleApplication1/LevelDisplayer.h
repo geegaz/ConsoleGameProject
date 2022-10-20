@@ -3,13 +3,15 @@
 #include "Display.h"
 #include "Vector2D.h"
 #include "SpriteRenderer.h"
+#include "LevelObject.h"
 class idLevelDisplayer
 {
 private:
 	intVector2_t camera; // top left corner of camera
 	idDisplay& display;
+	idLevelObject& cameraTarget;
 public:
-	idLevelDisplayer(idDisplay& _display);
+	idLevelDisplayer(idDisplay& _display, idLevelObject& _cameraTarget);
 	void MoveCameraIfNeeded();
 	void DrawLevel(std::map<int, idSpriteRenderer> level); // level = any object with collision
 	void DrawParticles(std::vector<idSpriteRenderer> particles);

@@ -1,11 +1,11 @@
 #include "PlatformerGame.h"
 
-idMarioState mario;
+idMarioState marioState;
 
 idPlatformerGame::idPlatformerGame():
 gameBackground("resources\\sprites\\gameBackground.txt"),
 structureSprite("resources\\sprites\\tileset_1.txt"),
-gameplayDisplay(display),
+levelDisplayer(display, mario),
 livesCount(0), level(0),levelx(32),levely(10), score(69){
 	structure = idLevelLoader::LoadCsv("resources\\levels\\test.txt", 32, 10);
 }
@@ -27,20 +27,20 @@ void idPlatformerGame::Start() {
 
 void idPlatformerGame::IterateGameLoop() {
 	int element;
-	intVector2_t camera = gameplayDisplay.GetRelativeCoords(intVector2_t(0, 0));
+	intVector2_t camera = levelDisplayer.GetRelativeCoords(intVector2_t(0, 0));
 	gameBackground.Draw(display, 0, 0);
 	scoreDisplay.Draw(display, score);
 	for (int i = 0; i < levely; i++) {
 		for (int j = 0; j < levelx; j++) {
 			element = structure[j][i];
 			if (element != -1) {
-				if(gameplayDisplay.InBounds(intVector2_t(j * 8, i * 8),intVector2_t(8,8)))
+				if(levelDisplayer.InBounds(intVector2_t(j * 8, i * 8),intVector2_t(8,8)))
 					structureSprite.Draw(display, j * 8 + camera.x, i * 8 + camera.y, element);
 			}
 		}
 	}
 	display.Refresh();
-	gameplayDisplay.MoveCameraIfNeeded();
+	levelDisplayer.MoveCameraIfNeeded();
 }
 
 idPlatformerGame::~idPlatformerGame() {

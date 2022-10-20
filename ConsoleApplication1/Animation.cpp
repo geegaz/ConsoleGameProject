@@ -159,3 +159,5 @@ frameAnimation_t* idAnimationRegister::getFrameAnimation(std::string key) {
 	auto end = frameAnimations.end();
 	return (value != end) ? value->second : nullptr;
 }
+
+idAnimationRegister idAnimationRegister::defaultRegister;
