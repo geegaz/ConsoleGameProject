@@ -8,7 +8,8 @@
 #define WALL_MASK 4
 #define FIRE_MASK 8
 #define ENEMY_MASK 16
-#define POWERUP 32
+#define POWERUP_MASK 32
+#define NONE_MASK 0
 
 const std::string RESOURCES_PATH = ".\\resources\\";
 enum class gameState_t { MENU, IN_GAME };
