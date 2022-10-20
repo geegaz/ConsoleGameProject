@@ -26,8 +26,6 @@ void idCollider::RegisterCollider() {
 }
 
 
-//TODO: implement TestCollisions()
-
 
 bool idCollider::Collide(idCollider& a, idCollider& b) {
 	return (
@@ -41,35 +39,35 @@ bool idCollider::Collide(idCollider& a, idCollider& b) {
 bool idCollider::Collide(idCollider& a, idCollider& b, collision_t& col) {
 	if (!Collide(a, b)) return false;
 
-	float bottomCollide = b.position.y - (a.position.y + a.size.y);
-	float topCollide = (b.position.y + b.size.y) - a.position.y;
-	float rightCollide = b.position.x - (a.position.x + a.size.x);
-	float leftCollide = (b.position.x + b.size.x) - a.position.x;
+	float bottomCollide = a.position.y - (b.position.y + b.size.y);
+	float topCollide = (a.position.y + a.size.y) - b.position.y;
+	float rightCollide = a.position.x - (b.position.x + b.size.x);
+	float leftCollide = (a.position.x + a.size.x) - b.position.x;
 
 	floatVector2_t axis = (a.position + a.size / 2.0f) - (b.position + b.size / 2.0f);
 	
-	if (axis.y < 0.0f) {
-		axis.y = bottomCollide;
+	if (axis.y > 0.0f) {
+		axis.y = bottomCollide; // +
 	}
 	else {
-		axis.y = topCollide;
+		axis.y = topCollide; // -
 	}
-	if (axis.x < 0.0f) {
-		axis.x = rightCollide;
+	if (axis.x > 0.0f) {
+		axis.x = rightCollide; // +
 	}
 	else {
-		axis.x = leftCollide;
+		axis.x = leftCollide; // -
 	}
 
 	if (abs(axis.x) > abs(axis.y)) {
 		col.normal.x = 0.0f;
-		col.normal.y = signbit(axis.y) ? -1.0f : 1.0f;
-		col.depth = axis.y;
+		col.normal.y = signbit(axis.y) ? 1.0f : -1.0f;
+		col.depth = abs(axis.y);
 	}
 	else {
-		col.normal.x = signbit(axis.x) ? -1.0f : 1.0f;
+		col.normal.x = signbit(axis.x) ? 1.0f : -1.0f;
 		col.normal.y = 0.0f;
-		col.depth = axis.x;
+		col.depth = abs(axis.x);
 	}
 
 	return true;

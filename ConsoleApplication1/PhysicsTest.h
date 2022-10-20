@@ -2,6 +2,7 @@
 #include <windows.h>
 #include "Collider.h"
 #include "Display.h"
+#include "ScoreDisplay.h"
 #include "ControlsManager.h"
 
 class idPhysicsTest
@@ -12,6 +13,8 @@ private:
 	
 	idSprite ballSprite;
 	idCollider ballCollider;
+
+	idScoreDisplay score;
 
 	idSprite bottomBoundSprite;
 	idSprite leftBoundSprite;
