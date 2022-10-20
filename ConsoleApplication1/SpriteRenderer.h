@@ -18,10 +18,10 @@ protected:
     idAnimationState animationState;
     idAnimationRegister& animationRegister;
     intVector2_t spriteOffset;
-    intVector2_t& position;
+    floatVector2_t& floatPosition;
     bool flipX;
 public:
-    idSpriteRenderer(idSprite& _sprite, intVector2_t& _position,
+    idSpriteRenderer(idSprite& _sprite, floatVector2_t& _position,
         idAnimationRegister& _animationRegister,
         intVector2_t _spriteOffset = intVector2_t(0, 0));
     bool SwitchPositionAnimation(string animationTitle);
@@ -30,5 +30,6 @@ public:
     void NextPosition();
     void Draw(idDisplay& display, intVector2_t drawOffset);
     void SetFlipX(bool flip);
-    intVector2_t& GetPosition() { return position; }
+    floatVector2_t& GetPosition() { return floatPosition; }
+    intVector2_t GetIntPosition() { return floatPosition.Round(); }
 };
