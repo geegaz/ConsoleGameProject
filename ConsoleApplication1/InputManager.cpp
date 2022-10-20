@@ -5,6 +5,15 @@
 
 #define DOWN_MASK 0x8000
 using namespace std;
+
+keyState_t keyState_t::operator|=(keyState_t& other) {
+	this->justPressed |= other.justPressed;
+	this->pressed |= other.pressed;
+	this->justReleased |= other.justReleased;
+
+	return *this;
+}
+
 idInputManager::idInputManager() {
 	auto i = KEYBOARD_MAPPING.begin();
 	auto end = KEYBOARD_MAPPING.end();
@@ -25,16 +34,6 @@ idInputManager::idInputManager() {
 	}
 	RefreshXinputInfo();
 }
-
-/*
-void idInputManager::AddKey(int keyCode) {
-	keys[keyCode] = keyState_t();
-}
-
-void idInputManager::RemoveKey(int keyCode) {
-	keys.erase(keyCode);
-}
-*/
 
 void idInputManager::CheckKeyInputs() {
 	auto i = keys.begin();

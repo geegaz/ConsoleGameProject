@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="ControlsManager.cpp" />
     <ClCompile Include="Display.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="ControlsManager.h" />
     <ClInclude Include="GameConstants.h" />

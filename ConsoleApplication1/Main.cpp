@@ -6,7 +6,11 @@
 #include "Sprite.h"
 #include "Snake.h"
 #include "InputManager.h"
+#include "ControlsManager.h"
 #include "ScoreDisplay.h"
+#include "PhysicsTest.h"
+#include "SoundUtils.h"
+#include "SoundManager.h"
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "Xinput.lib")
 #pragma comment(lib, "OpenAL32.lib")
@@ -14,6 +18,40 @@ using namespace std;
 
 int main()
 {
+    //--- Engine setup
+
+    float delta = 0.0f;
+    float frame_delay = 1.0f / 30.0f;
+    
+    idDisplay display;
+    idInputManager input;
+    idControlsManager controls(input);
+    //idSoundManager sound; // makes everything crash
+    NYTimer time;
+
+    //--- Game setup
+
+    idPhysicsTest game(display, controls);
+
+    //--- Main loop
+
+    time.start();
+    display.Fill(BLACK);
+    while (true) {
+        input.CheckKeyInputs();
+
+        delta = time.getElapsedSeconds();
+        if (delta >= frame_delay) {
+            display.Fill(RED);
+            input.UpdateStates();
+
+            game.Update(delta);
+
+            display.Refresh();
+            time.getElapsedSeconds(true);
+        }
+        Sleep(1);
+    }
 
     //const float frame_delay = 1.0f / 30.0f; // delay between frames
     //float delta_time = 0.0f; // elapsed time between a frame

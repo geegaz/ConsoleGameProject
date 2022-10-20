@@ -1,20 +1,37 @@
 #include "Vector2D.h"
 #include <cmath>
 
-intVector2_t intVector2_t::operator+(intVector2_t& other) {
+intVector2_t intVector2_t::operator+(const intVector2_t& other) {
 	return intVector2_t(this->x + other.x, this->y+other.y);
 }
-intVector2_t intVector2_t::operator-(intVector2_t& other) {
+intVector2_t intVector2_t::operator-(const intVector2_t& other) {
 	return intVector2_t(this->x - other.x, this->y - other.y);
 }
-intVector2_t& intVector2_t::operator+=(intVector2_t& other) {
+intVector2_t& intVector2_t::operator+=(const intVector2_t& other) {
 	this->x += other.x;
 	this->y += other.y;
 	return *this;
 }
-intVector2_t& intVector2_t::operator-=(intVector2_t& other) {
+intVector2_t& intVector2_t::operator-=(const intVector2_t& other) {
 	this->x -= other.x;
 	this->y -= other.y;
+	return *this;
+}
+
+intVector2_t intVector2_t::operator*(const int other) {
+	return intVector2_t(this->x * other, this->y * other);
+}
+intVector2_t intVector2_t::operator/(const int other) {
+	return intVector2_t(this->x / other, this->y / other);
+}
+intVector2_t& intVector2_t::operator*=(const int other) {
+	this->x *= other;
+	this->y *= other;
+	return *this;
+}
+intVector2_t& intVector2_t::operator/=(const int other) {
+	this->x /= other;
+	this->y /= other;
 	return *this;
 }
 
@@ -23,48 +40,70 @@ floatVector2_t intVector2_t::toFloat() {
 }
 
 
-floatVector2_t floatVector2_t::operator+(intVector2_t& other) {
+floatVector2_t floatVector2_t::operator+(const intVector2_t& other) {
 	floatVector2_t res(this->x + other.x, this->y + other.y);
 	return DecimalRound(res);
 }
-floatVector2_t floatVector2_t::operator-(intVector2_t& other) {
+floatVector2_t floatVector2_t::operator-(const intVector2_t& other) {
 	floatVector2_t res(this->x - other.x, this->y - other.y);
 	return DecimalRound(res);
 }
-floatVector2_t& floatVector2_t::operator+=(intVector2_t& other) {
+floatVector2_t& floatVector2_t::operator+=(const intVector2_t& other) {
 	this->x += other.x;
 	this->y += other.y;
 	DecimalRound(*this);
 	return *this;
 }
 
-floatVector2_t& floatVector2_t::operator-=(intVector2_t& other) {
+floatVector2_t& floatVector2_t::operator-=(const intVector2_t& other) {
 	this->x -= other.x;
 	this->y -= other.y;
 	DecimalRound(*this);
 	return *this;
 }
 
-floatVector2_t floatVector2_t:: operator+(floatVector2_t& other) {
+floatVector2_t floatVector2_t:: operator+(const floatVector2_t& other) {
 	floatVector2_t res(this->x + other.x, this->y + other.y);
 	return DecimalRound(res);
 }
-floatVector2_t floatVector2_t::operator-(floatVector2_t& other) {
+floatVector2_t floatVector2_t::operator-(const floatVector2_t& other) {
 	floatVector2_t res(this->x - other.x, this->y - other.y);
 	return DecimalRound(res);
 }
-floatVector2_t& floatVector2_t::operator+=(floatVector2_t& other) {
+floatVector2_t& floatVector2_t::operator+=(const floatVector2_t& other) {
 	this->x += other.x;
 	this->y += other.y;
 	DecimalRound(*this);
 	return *this;
 }
-floatVector2_t& floatVector2_t::operator-=(floatVector2_t& other) {
+floatVector2_t& floatVector2_t::operator-=(const floatVector2_t& other) {
 	this->x -= other.x;
 	this->y -= other.y;
 	DecimalRound(*this);
 	return *this;
 }
+
+floatVector2_t floatVector2_t:: operator*(const float other) {
+	floatVector2_t res(this->x * other, this->y * other);
+	return DecimalRound(res);
+}
+floatVector2_t floatVector2_t::operator/(const float other) {
+	floatVector2_t res(this->x / other, this->y / other);
+	return DecimalRound(res);
+}
+floatVector2_t& floatVector2_t::operator*=(const float other) {
+	this->x *= other;
+	this->y *= other;
+	DecimalRound(*this);
+	return *this;
+}
+floatVector2_t& floatVector2_t::operator/=(const float other) {
+	this->x /= other;
+	this->y /= other;
+	DecimalRound(*this);
+	return *this;
+}
+
 intVector2_t floatVector2_t::ToInt() {
 	return intVector2_t(this->x, this->y);
 }
