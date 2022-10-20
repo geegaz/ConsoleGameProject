@@ -36,6 +36,7 @@ private:
     static void LoadAllPositionAnimations(std::string filename);
     static void  LoadAllFrameAnimations(std::string filename);
 public:
+    static idAnimationRegister defaultRegister;
     static void LoadAllAnimations(std::string positionFilename, std::string frameFilename);
     static void UnloadAllAnimations();
     void LoadPositionAnimations(std::string filename);
