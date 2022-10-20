@@ -1,4 +1,8 @@
 #include "Mario.h"
+#include "GameConstants.h"
+int idMario::MASK = PLAYER_MASK;
+int idMario::INTERACTION_MASK = BLOCK_MASK+WALL_MASK+ENEMY_MASK+POWERUP_MASK;
+
 idMarioState::idMarioState() : big(false), fire(false) {}
 
 bool idMarioState::IsBig() {
