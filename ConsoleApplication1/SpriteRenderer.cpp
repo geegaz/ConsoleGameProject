@@ -26,7 +26,7 @@ idSpriteRenderer::idSpriteRenderer(idSprite& _sprite, floatVector2_t& _position,
     idAnimationRegister& _animationRegister,
     intVector2_t _spriteOffset)
     : sprite(_sprite), spriteOffset(_spriteOffset), floatPosition(_position),
-    animationRegister(_animationRegister) {}
+    animationRegister(_animationRegister), flipX(false) {}
 
 void idSpriteRenderer::Draw(idDisplay& display, intVector2_t drawOffset) {
     intVector2_t total_draw_offset = drawOffset+spriteOffset;
@@ -36,7 +36,7 @@ void idSpriteRenderer::Draw(idDisplay& display, intVector2_t drawOffset) {
         frame = animationState.frameAnimation->frames[animationState.frameStep];
     }
     else
-        frame = 1;
+        frame = animationState.defaultFrame;
     if (animationState.positionAnimation != nullptr) {
         flipY = animationState.positionAnimation->flipY;
         total_draw_offset.y += animationState.positionAnimation->yPositions[animationState.yPositionStep];
@@ -115,4 +115,8 @@ void idSpriteRenderer::Draw(idDisplay& display, intVector2_t drawOffset) {
             }
         }
     }
+}
+
+void idSpriteRenderer::SetDefault(int frame) {
+    animationState.defaultFrame = frame;
 }
