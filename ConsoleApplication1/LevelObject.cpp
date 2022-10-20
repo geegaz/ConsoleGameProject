@@ -14,3 +14,7 @@ void idLevelObject::MoveTo(int x, int y){
 }
 
 idLevelObject::~idLevelObject() {}
+
+idSpriteRenderer& idLevelObject::GetRenderer() {
+	return spriteRenderer;
+}
