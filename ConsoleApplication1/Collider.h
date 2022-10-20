@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <vector>
 #include "Vector2D.h"
 
 using namespace std;
@@ -9,7 +10,7 @@ struct collision_t
 {
 	floatVector2_t normal;
 	int otherMask;
-	floatVector2_t depth;
+	float depth;
 };
 
 class idCollider
@@ -20,7 +21,6 @@ private:
 protected:
 	static map<int, idCollider*> registeredColliders;
 	static int registeredIDs;
-	
 
 	void RegisterCollider();
 
@@ -35,6 +35,8 @@ public:
 	idCollider(floatVector2_t& _position, floatVector2_t _size, int _mask = 1, int _interactionMask = 1);
 	idCollider(floatVector2_t& _position, float w, float h, int _mask = 1 , int _interactionMask = 1);
 	~idCollider();
+
+	int TestCollisions();
 
 	static bool Collide(idCollider& a, idCollider& b);
 	static bool Collide(idCollider& a, idCollider& b, collision_t& col);

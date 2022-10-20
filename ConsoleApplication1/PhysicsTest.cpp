@@ -6,10 +6,17 @@ idPhysicsTest::idPhysicsTest(idDisplay& displ, idControlsManager& in) :
 
 	ballSprite("resources/sprites/Sprite.txt"),
 	ballCollider(position, 8.0f, 8.0f),
-	boundSprite(BLUE, (float)SCREEN_WIDTH, 8.0f),
-	boundCollider(boundPosition, (float)SCREEN_WIDTH, 8.0f)
+	
+	bottomBoundSprite(BLUE, (float)SCREEN_WIDTH, 8.0f),
+	bottomBoundCollider(bottomBoundPosition, (float)SCREEN_WIDTH, 8.0f),
+	leftBoundSprite(BLUE, 8.0f, (float)SCREEN_HEIGHT * 2.0f),
+	leftBoundCollider(bottomBoundPosition, (float)SCREEN_WIDTH, 8.0f),
+	rightBoundSprite(BLUE, 8.0f, (float)SCREEN_HEIGHT * 2.0f),
+	rightBoundCollider(bottomBoundPosition, (float)SCREEN_WIDTH, 8.0f)
 {
-	boundPosition.y = (float)SCREEN_HEIGHT * 2.0f - 10.0f;
+	bottomBoundPosition.y = (float)SCREEN_HEIGHT * 2.0f - 8.0f;
+	leftBoundPosition.x = 0.0f;
+	rightBoundPosition.x = (float)SCREEN_WIDTH - 8.0f;
 	
 	position.x = 10.0f;
 	position.y = 10.0f;
@@ -53,7 +60,9 @@ void idPhysicsTest::Update(float delta) {
 	x = position.x;
 	y = position.y;
 	
-	boundSprite.Draw(display, boundPosition.x, boundPosition.y);
+	bottomBoundSprite.Draw(display, bottomBoundPosition.x, bottomBoundPosition.y);
+	leftBoundSprite.Draw(display, leftBoundPosition.x, leftBoundPosition.y);
+	rightBoundSprite.Draw(display, rightBoundPosition.x, rightBoundPosition.y);
 	ballSprite.Draw(display, x, y);
 }
 
@@ -63,19 +72,17 @@ bool idPhysicsTest::Move(floatVector2_t vel, float delta, int tries) {
 	position += vel;
 
 	collision_t col;
-	if (idCollider::Collide(ballCollider, boundCollider, col)) {
+	if (idCollider::Collide(ballCollider, bottomBoundCollider, col)) {
+		
+		position -= col.normal * col.depth;
 		if (abs(col.normal.y) > 0.0f) {
-			position.y -= vel.y;
 			velocity.y = 0.0f;
 		}
 		if (abs(col.normal.x) > 0.0f) {
-			position.x -= vel.x;
 			velocity.x = 0.0f;
 		}
 
-		// TODO: Ball gets stuck in collider (and clips through it)
-		// Idea: position ball to collision surface
-
+		// Ground handling
 		if (col.normal.y < 0.0f) {
 			onGround = true;
 		}

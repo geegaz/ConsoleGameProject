@@ -11,11 +11,18 @@ private:
 	idControlsManager& controls;
 	
 	idSprite ballSprite;
-	idSprite boundSprite;
 	idCollider ballCollider;
-	idCollider boundCollider;
 
-	floatVector2_t boundPosition;
+	idSprite bottomBoundSprite;
+	idSprite leftBoundSprite;
+	idSprite rightBoundSprite;
+	idCollider bottomBoundCollider;
+	idCollider leftBoundCollider;
+	idCollider rightBoundCollider;
+
+	floatVector2_t bottomBoundPosition;
+	floatVector2_t leftBoundPosition;
+	floatVector2_t rightBoundPosition;
 	floatVector2_t position;
 	floatVector2_t velocity;
 	bool onGround;
