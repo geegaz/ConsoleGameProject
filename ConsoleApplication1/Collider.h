@@ -3,6 +3,8 @@
 #include <map>
 #include "Vector2D.h"
 
+class idLevelObject;
+
 using namespace std;
 
 struct collision_t
@@ -27,12 +29,14 @@ public:
 	const int mask;
 	const int interactionMask;
 	int colliderID;
+	idLevelObject& parent;
 	bool trigger;
 	floatVector2_t& position;
 	floatVector2_t size;
 
-	idCollider(floatVector2_t& _position, floatVector2_t _size, int _mask = 1, int _interactionMask = 1);
-	idCollider(floatVector2_t& _position, float w, float h, int _mask = 1 , int _interactionMask = 1);
+
+	idCollider(idLevelObject& _parent, floatVector2_t& _position, floatVector2_t _size, int _mask = 1, int _interactionMask = 1);
+	idCollider(idLevelObject& _parent, floatVector2_t& _position, float w, float h, int _mask = 1 , int _interactionMask = 1);
 	~idCollider();
 
 	static bool Collide(idCollider& a, idCollider& b);

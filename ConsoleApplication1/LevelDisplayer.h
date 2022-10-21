@@ -13,7 +13,7 @@ private:
 public:
 	idLevelDisplayer(idDisplay& _display, idLevelObject& _cameraTarget);
 	void MoveCameraIfNeeded();
-	void DrawLevel(std::map<int, idSpriteRenderer> level); // level = any object with collision
+	void DrawLevel(std::vector<idLevelObject*>& level); // level = any object with collision
 	void DrawParticles(std::vector<idSpriteRenderer> particles);
 	bool InBounds(intVector2_t coords, intVector2_t size);
 	intVector2_t GetRelativeCoords(intVector2_t worldCoords);

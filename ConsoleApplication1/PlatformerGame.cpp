@@ -4,16 +4,15 @@ idMarioState marioState;
 
 idPlatformerGame::idPlatformerGame():
 gameBackground("resources\\sprites\\gameBackground.txt"),
-structureSprite("resources\\sprites\\tileset_1.txt"),
 levelDisplayer(display, mario),
 livesCount(0), level(0),levelx(32),levely(10), score(69){
-	structure = idLevelLoader::LoadCsv("resources\\levels\\test.txt", 32, 10);
 }
 
 void idPlatformerGame::Start() {
 
 	float frame_delay = 1.0f / 120.0f; // delay between frames
 	float delta_time = 0.0f; // elapsed time between a frame
+	LoadLevel();
 	frameTimer.getElapsedSeconds(true);
 	while (true) {
 		delta_time = frameTimer.getElapsedSeconds();
@@ -30,23 +29,28 @@ void idPlatformerGame::IterateGameLoop() {
 	intVector2_t camera = levelDisplayer.GetRelativeCoords(intVector2_t(0, 0));
 	gameBackground.Draw(display, 0, 0);
 	scoreDisplay.Draw(display, score);
-	for (int i = 0; i < levely; i++) {
-		for (int j = 0; j < levelx; j++) {
-			element = structure[j][i];
-			if (element != -1) {
-				if(levelDisplayer.InBounds(intVector2_t(j * 8, i * 8),intVector2_t(8,8)))
-					structureSprite.Draw(display, j * 8 + camera.x, i * 8 + camera.y, element);
-			}
-		}
-	}
+	UpdateView();
 	display.Refresh();
 	levelDisplayer.MoveCameraIfNeeded();
 }
 
 idPlatformerGame::~idPlatformerGame() {
-	for (int i = 0; i < 32; i++) {
-		delete[] structure[i];
+	auto i = levelStructure.begin();
+	auto end = levelStructure.end();
+	while (i != end) {
+		delete (*i);
+		i++;
 	}
-	delete[] structure;
 }
 
+void idPlatformerGame::LoadLevel() {
+	idLevelLoader::LoadLevel("\\resources\\levels\\test.txt", levelx, levely, levelStructure);
+}
+
+void idPlatformerGame::UpdateView() {
+	levelDisplayer.DrawLevel(levelStructure);
+}
+
+void idPlatformerGame::UpdateLogic() {
+
+}

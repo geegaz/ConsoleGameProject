@@ -20,17 +20,19 @@ private:
 	idLevelDisplayer levelDisplayer;
 	NYTimer frameTimer;
 	idInputManager inputManager;
-	int** structure;
-	idSprite structureSprite;
 	idMario mario;
 	int levelx, levely;
 	int livesCount;
 	int level;
 	int score;
+	vector<idLevelObject*> levelStructure;
 public:
 	idPlatformerGame();
 	void Start();
 	void IterateGameLoop();
+	void LoadLevel();
+	void UpdateView();
+	void UpdateLogic();
 	~idPlatformerGame();
 };
 

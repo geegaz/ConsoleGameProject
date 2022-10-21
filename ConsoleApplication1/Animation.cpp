@@ -3,12 +3,8 @@
 #include <iostream>
 
 // idAnimationState --------------------------------------------------------
-idAnimationState::idAnimationState() {
-	frameStep = 0;
-	yPositionStep = 0;
-	positionAnimation = nullptr;
-	frameAnimation = nullptr;
-}
+idAnimationState::idAnimationState(): frameStep(0), yPositionStep(0), defaultFrame(0),
+positionAnimation(nullptr), frameAnimation(nullptr){}
 
 bool idAnimationState::NextFrame() {
 	if (frameAnimation != nullptr) {

@@ -1,14 +1,15 @@
 #include "LevelLoader.h"
 #include <fstream>
+#include "Wall.h"
 
 using namespace std;
-void idLevelLoader::LoadLevel(string levelname, int xSize, int ySize) {
-	int** level_entities = LoadCsv("levelname", xSize, ySize);
-	int** level_background = LoadCsv("levelname", xSize, ySize);
-	int** level_structure = LoadCsv("levelname", xSize, ySize);
+void idLevelLoader::LoadLevel(string levelname, int xSize, int ySize, vector<idLevelObject*>& levelStructureOut) {
+	int** level_entities = LoadCsv(levelname, xSize, ySize);
+	int** level_background = LoadCsv(levelname, xSize, ySize);
+	int** level_structure = LoadCsv(levelname, xSize, ySize);
 
 	LoadBackground(level_background, xSize, ySize);
-	LoadStructure(level_structure, xSize, ySize);
+	LoadStructure(level_structure, xSize, ySize, levelStructureOut);
 	LoadEntities(level_entities, xSize, ySize);
 
 	for (int i = 0; i < xSize; i++) {
@@ -45,13 +46,14 @@ void idLevelLoader::LoadBackground(int** level, int xSize, int ySize) {
 		}
 	}
 }
-void idLevelLoader::LoadStructure(int** level, int xSize, int ySize) {
+
+void idLevelLoader::LoadStructure(int** level, int xSize, int ySize, vector<idLevelObject*>& levelStructure) {
 	int element;
 	for (int i = 0; i < ySize; i++) {
 		for (int j = 0; j < xSize; j++) {
 			element = level[j][i];
 			if (element != -1) {
-				// TODO Place element
+				levelStructure.push_back(new idWall(j * 8, i * 8, element));
 			}
 		}
 	}
@@ -60,7 +62,6 @@ void idLevelLoader::LoadStructure(int** level, int xSize, int ySize) {
 int** idLevelLoader::LoadCsv(string filename, int xSize, int ySize) {
 	int** xArray = new int*[xSize];
 	ifstream file(filename);
-
 	for (int i = 0; i < xSize; i++) {
 		xArray[i] = new int[ySize];
 	}
@@ -69,6 +70,7 @@ int** idLevelLoader::LoadCsv(string filename, int xSize, int ySize) {
 		for (int j = 0; j < xSize; j++) {
 			
 			file >> xArray[j][i];
+			cout << xArray[j][i];
 			file.get(); // removes '\n' and ','
 		}
 	}

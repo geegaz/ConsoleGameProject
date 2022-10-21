@@ -25,8 +25,8 @@ enum class marioAnimations_t {
 class idMario: public idLevelObject {
 private:
 	static std::map<marioAnimations_t, std::string> smallAnimationTitles;
-	static const int MASK;
-	static const int INTERACTION_MASK;
+	static int MASK;
+	static int INTERACTION_MASK;
 public:
 	idMario();
 	virtual void OnCollide(idCollider& other, collision_t collision);

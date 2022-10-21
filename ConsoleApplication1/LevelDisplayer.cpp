@@ -25,3 +25,15 @@ void idLevelDisplayer::GetCameraCorners(intVector2_t out[]) {
 	out[0] = camera;
 	out[1] = intVector2_t(camera.x + SCREEN_WIDTH, camera.y + SCREEN_HEIGHT * 2);
 }
+
+void idLevelDisplayer::DrawLevel(std::vector<idLevelObject*>& level) {
+	auto i = level.begin();
+	auto end = level.end();
+	idSpriteRenderer* renderer;
+	while (i != end) {
+		renderer = &( (*(*i)).GetRenderer() );
+		if (InBounds(renderer->GetIntPosition(), renderer->GetSize()))
+			renderer->Draw(display, camera);
+		i++;
+	}
+}
