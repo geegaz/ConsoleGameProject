@@ -25,6 +25,7 @@ enum class marioAnimations_t {
 class idMario: public idLevelObject {
 private:
 	static std::map<marioAnimations_t, std::string> smallAnimationTitles;
+	static idSprite MARIO_SPRITES;
 	static int MASK;
 	static int INTERACTION_MASK;
 

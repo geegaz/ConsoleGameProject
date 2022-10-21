@@ -26,6 +26,7 @@ private:
 	int level;
 	int score;
 	vector<idLevelObject*> levelStructure;
+	void UpdatePhysics();
 public:
 	idPlatformerGame();
 	void Start();

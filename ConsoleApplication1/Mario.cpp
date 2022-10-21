@@ -1,8 +1,8 @@
 #include "Mario.h"
 #include "GameConstants.h"
-int idMario::MASK = PLAYER_MASK;
-int idMario::INTERACTION_MASK = BLOCK_MASK+WALL_MASK+ENEMY_MASK+POWERUP_MASK;
-
+int idMario::MASK(PLAYER_MASK);
+int idMario::INTERACTION_MASK(BLOCK_MASK+WALL_MASK+ENEMY_MASK+POWERUP_MASK);
+idSprite idMario::MARIO_SPRITES(SPRITES_PATH + "mariospritesheet.txt");
 idMarioState::idMarioState() : big(false), fire(false) {}
 
 bool idMarioState::IsBig() {
@@ -42,7 +42,7 @@ void idMarioState::Reset() {
 	fire = false;
 }
 
-idMario::idMario():idLevelObject(20,20){}
+idMario::idMario():idLevelObject(20,20,idAnimationRegister::defaultRegister,MARIO_SPRITES){}
 
 void idMario::Update() {
 
