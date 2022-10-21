@@ -32,5 +32,6 @@ public:
     void SetFlipX(bool flip);
     floatVector2_t& GetPosition() { return floatPosition; }
     intVector2_t GetIntPosition() { return floatPosition.Round(); }
+    intVector2_t& GetSize();
     void SetDefault(int frame);
 };

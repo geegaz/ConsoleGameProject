@@ -1,23 +1,13 @@
 #include "Sprite.h"
 #include "Vector2D.h"
-idSprite::idSprite() {
-    sizeX = 1;
-    sizeY = 1;
-
-    framesX = 1;
-    framesY = 1;
+idSprite::idSprite(): size(1,1), frames(1,1) {
 
     int data_size = 1;
     data = new int[data_size];
     data[0] = 0;
 }
 
-idSprite::idSprite(string filename) {
-    sizeX = 1;
-    sizeY = 1;
-
-    framesX = 1;
-    framesY = 1;
+idSprite::idSprite(string filename) : size(1, 1), frames(1, 1) {
     
     data = nullptr;
     ifstream file(filename);
@@ -30,7 +20,7 @@ idSprite::idSprite(string filename) {
     while (file >> string_data) {
         if (string_data == "---") {
             i = 0;
-            data = new int[sizeX * framesX * sizeY * framesY];
+            data = new int[size.x * frames.x * size.y * frames.y];
             break;
         }
         else {
@@ -38,16 +28,16 @@ idSprite::idSprite(string filename) {
             switch (i)
             {
             case 0:
-                sizeX = int_data;
+                size.x = int_data;
                 break;
             case 1:
-                sizeY = int_data;
+                size.y = int_data;
                 break;
             case 2:
-                framesX = int_data;
+                frames.x = int_data;
                 break;
             case 3:
-                framesY = int_data;
+                frames.y = int_data;
             default:
                 break;
             }
@@ -69,12 +59,7 @@ idSprite::idSprite(string filename) {
     }
 }
 
-idSprite::idSprite(int color, int size_x, int size_y) {
-    sizeX = size_x;
-    sizeY = size_y;
-
-    framesX = 1;
-    framesY = 1;
+idSprite::idSprite(int color, int size_x, int size_y) : size(size_x, size_y), frames(1,1) {
 
     int data_size = size_x * size_y;
     data = new int[data_size];
@@ -86,21 +71,21 @@ idSprite::idSprite(int color, int size_x, int size_y) {
 }
 
 idSprite::~idSprite() {
-    delete[] this->data;
+    delete[] data;
 }
 
 void idSprite::Draw(idDisplay& display, int x, int y, int frame) {
     idSprite& sprite = *this;
     intVector2_t total_draw_offset = intVector2_t(x, y);
-    frame = min(framesX * framesY - 1, frame);
+    frame = min(frames.x * frames.y - 1, frame);
     bool flipHorizontally = true, flipVertically = true;
     int frame_column, frame_line, i;
-    frame_column = frame % sprite.framesX;
-    frame_line = frame / sprite.framesX;
+    frame_column = frame % sprite.frames.x;
+    frame_line = frame / sprite.frames.x;
     // i = [go to line] + [go to column]
-    i = (sprite.sizeX * sprite.framesX) * (sprite.sizeY * frame_line) + (sprite.sizeX * frame_column);
-    for (int iter_y = 0; iter_y < sprite.sizeY; iter_y++) {
-        for (int iter_x = 0; iter_x < sprite.sizeX; iter_x++) {
+    i = (sprite.size.x * sprite.frames.x) * (sprite.size.y * frame_line) + (sprite.size.x * frame_column);
+    for (int iter_y = 0; iter_y < sprite.size.y; iter_y++) {
+        for (int iter_x = 0; iter_x < sprite.size.x; iter_x++) {
             if (sprite.data[i] >= 0) {
                 display.DrawPixel(
                     total_draw_offset.x + iter_x,
@@ -110,7 +95,7 @@ void idSprite::Draw(idDisplay& display, int x, int y, int frame) {
             }
             i++;
         }
-        i += sprite.sizeX * (sprite.framesX - 1);
+        i += sprite.size.x * (sprite.frames.x - 1);
     }
 }
 

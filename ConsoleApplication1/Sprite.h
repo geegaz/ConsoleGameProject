@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include "Display.h"
+#include "Vector2D.h"
 
 using namespace std;
 
@@ -10,8 +11,8 @@ struct idSprite
 {
 public:
 	int* data;
-	int sizeX, sizeY;
-	int framesX, framesY;
+	intVector2_t size;
+	intVector2_t frames;
 
 	idSprite();
 	idSprite(string);
