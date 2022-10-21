@@ -20,3 +20,5 @@ idLevelObject::~idLevelObject() {}
 idSpriteRenderer& idLevelObject::GetRenderer() {
 	return spriteRenderer;
 }
+
+void idLevelObject::Update() {}

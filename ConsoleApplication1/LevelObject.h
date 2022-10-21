@@ -17,6 +17,7 @@ public:
 		int mask = 1, int interactionMask = 1);
 	virtual void OnCollide(idCollider& other, collision_t collision) = 0;
 	void MoveTo(int x, int y);
+	virtual void Update();
 	idSpriteRenderer& GetRenderer();
 	virtual ~idLevelObject();
 
