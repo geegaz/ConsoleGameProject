@@ -45,8 +45,6 @@ int main()
             display.Fill(RED);
             input.UpdateStates();
 
-            game.Update(delta);
-
             display.Refresh();
             time.getElapsedSeconds(true);
         }
