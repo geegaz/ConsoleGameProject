@@ -72,6 +72,9 @@
     <ClCompile Include="LevelObject.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="BouncingBall.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClInclude>
     <ClCompile Include="Wall.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -135,6 +138,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="LevelObject.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="BouncingBall.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Wall.h">
