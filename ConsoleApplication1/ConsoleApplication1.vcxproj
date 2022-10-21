@@ -150,7 +150,6 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="ControlsManager.cpp" />
     <ClCompile Include="Display.cpp" />
-    <ClCompile Include="BouncingBall.cpp" />
     <ClCompile Include="LevelObject.cpp" />
     <ClCompile Include="Mario.cpp" />
     <ClCompile Include="LevelDisplayer.cpp" />
@@ -174,7 +173,6 @@
     <ClInclude Include="ControlsManager.h" />
     <ClInclude Include="GameConstants.h" />
     <ClInclude Include="Display.h" />
-    <ClInclude Include="BouncingBall.h" />
     <ClInclude Include="LevelDisplayer.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="LevelObject.h" />

@@ -44,6 +44,14 @@ void idMarioState::Reset() {
 
 idMario::idMario():idLevelObject(20,20){}
 
+void idMario::Update() {
+
+}
+
+void idMario::Move(floatVector2_t vel, float delta) {
+
+}
+
 void idMario::OnCollide(idCollider& other, collision_t collision) {
 
 }

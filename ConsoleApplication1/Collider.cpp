@@ -26,25 +26,24 @@ void idCollider::RegisterCollider() {
 }
 
 
-
-bool idCollider::Collide(idCollider& a, idCollider& b) {
-	return (
-		a.position.x < b.position.x + b.size.x &&
-		b.position.x < a.position.x + a.size.x &&
-		a.position.y < b.position.y + b.size.y &&
-		b.position.y < a.position.y + a.size.y
+bool idCollider::Collide(idCollider& other) {
+	return ( interactionMask & other.mask &&
+		position.x < other.position.x + other.size.x &&
+		other.position.x < position.x + size.x &&
+		position.y < other.position.y + other.size.y &&
+		other.position.y < position.y + size.y
 	);
 }
 
-bool idCollider::Collide(idCollider& a, idCollider& b, collision_t& col) {
-	if (!Collide(a, b)) return false;
+bool idCollider::Collide(idCollider& other, collision_t& col) {
+	if (!Collide(other)) return false;
 
-	float bottomCollide = a.position.y - (b.position.y + b.size.y);
-	float topCollide = (a.position.y + a.size.y) - b.position.y;
-	float rightCollide = a.position.x - (b.position.x + b.size.x);
-	float leftCollide = (a.position.x + a.size.x) - b.position.x;
+	float bottomCollide = position.y - (other.position.y + other.size.y);
+	float topCollide = (position.y + size.y) - other.position.y;
+	float rightCollide = position.x - (other.position.x + other.size.x);
+	float leftCollide = (position.x + size.x) - other.position.x;
 
-	floatVector2_t axis = (a.position + a.size / 2.0f) - (b.position + b.size / 2.0f);
+	floatVector2_t axis = (position + size / 2.0f) - (other.position + other.size / 2.0f);
 	
 	if (axis.y > 0.0f) {
 		axis.y = bottomCollide; // +
