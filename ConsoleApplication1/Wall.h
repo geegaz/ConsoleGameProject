@@ -4,7 +4,7 @@ class idWall :
     public idLevelObject
 {
 protected:
-    static const idSprite BLOCK_SPRITE;
+    static idSprite WALL_SPRITE;
     static int MASK;
     static int INTERACTION_MASK;
 public:
