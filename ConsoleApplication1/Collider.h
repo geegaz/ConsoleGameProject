@@ -1,7 +1,6 @@
 #pragma once
 
 #include <map>
-#include <vector>
 #include "Vector2D.h"
 
 class idLevelObject;
@@ -21,12 +20,12 @@ private:
 	idCollider();
 
 protected:
-	static map<int, idCollider*> registeredColliders;
-	static int registeredIDs;
-
 	void RegisterCollider();
 
 public:
+	static map<int, idCollider*> registeredColliders;
+	static int registeredIDs;
+
 	const int mask;
 	const int interactionMask;
 	int colliderID;
@@ -39,8 +38,6 @@ public:
 	idCollider(idLevelObject& _parent, floatVector2_t& _position, floatVector2_t _size, int _mask = 1, int _interactionMask = 1);
 	idCollider(idLevelObject& _parent, floatVector2_t& _position, float w, float h, int _mask = 1 , int _interactionMask = 1);
 	~idCollider();
-
-	int TestCollisions();
 
 	static bool Collide(idCollider& a, idCollider& b);
 	static bool Collide(idCollider& a, idCollider& b, collision_t& col);
