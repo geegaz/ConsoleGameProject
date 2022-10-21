@@ -22,6 +22,9 @@ const std::map<int, control_t> XINPUT_MAPPING = { {XINPUT_GAMEPAD_DPAD_UP, contr
 												{XINPUT_GAMEPAD_START, control_t::START} };
 
 const std::string SOUNDS_PATH = RESOURCES_PATH + "sounds\\";
+
+const std::string SPRITES_PATH = RESOURCES_PATH + "sprites\\";
+
 enum class musicTrack_t { OVERWORLD_1, DEATH };
 enum class soundTrack_t { JUMP, COIN };
 const std::map<musicTrack_t, std::string> MUSIC_FILES = { {musicTrack_t::DEATH, SOUNDS_PATH+"death_jingle.wav"} };

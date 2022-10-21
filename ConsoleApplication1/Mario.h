@@ -27,6 +27,7 @@ private:
 	static std::map<marioAnimations_t, std::string> smallAnimationTitles;
 	static int MASK;
 	static int INTERACTION_MASK;
+	static idSprite MARIO_SPRITES;
 public:
 	idMario();
 	virtual void OnCollide(idCollider& other, collision_t collision);
