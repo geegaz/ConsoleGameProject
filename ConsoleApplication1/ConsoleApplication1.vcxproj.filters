@@ -74,7 +74,7 @@
     </ClCompile>
     <ClCompile Include="BouncingBall.cpp">
       <Filter>Fichiers sources</Filter>
-    </ClInclude>
+    </ClCompile>
     <ClCompile Include="Wall.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
