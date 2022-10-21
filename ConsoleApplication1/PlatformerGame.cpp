@@ -3,7 +3,7 @@
 idMarioState marioState;
 
 idPlatformerGame::idPlatformerGame():
-gameBackground("resources\\sprites\\gameBackground.txt"),
+gameBackground(".\\resources\\sprites\\gameBackground.txt"),
 levelDisplayer(display, mario),
 livesCount(0), level(0),levelx(32),levely(10), score(69){
 }
@@ -44,7 +44,7 @@ idPlatformerGame::~idPlatformerGame() {
 }
 
 void idPlatformerGame::LoadLevel() {
-	idLevelLoader::LoadLevel("\\resources\\levels\\test.txt", levelx, levely, levelStructure);
+	idLevelLoader::LoadLevel(".\\resources\\levels\\test.txt", levelx, levely, levelStructure);
 }
 
 void idPlatformerGame::UpdateView() {

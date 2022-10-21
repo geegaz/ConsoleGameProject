@@ -30,10 +30,12 @@ void idLevelDisplayer::DrawLevel(std::vector<idLevelObject*>& level) {
 	auto i = level.begin();
 	auto end = level.end();
 	idSpriteRenderer* renderer;
+	intVector2_t position;
 	while (i != end) {
 		renderer = &( (*(*i)).GetRenderer() );
-		if (InBounds(renderer->GetIntPosition(), renderer->GetSize()))
-			renderer->Draw(display, camera);
+		position = renderer->GetIntPosition();
+		if (InBounds(position, renderer->GetSize()))
+			renderer->Draw(display, camera*(-1)+position);
 		i++;
 	}
 }
