@@ -70,7 +70,7 @@ int** idLevelLoader::LoadCsv(string filename, int xSize, int ySize) {
 		for (int j = 0; j < xSize; j++) {
 			
 			file >> xArray[j][i];
-			cout << xArray[j][i];
+			//cout << xArray[j][i];
 			file.get(); // removes '\n' and ','
 		}
 	}
