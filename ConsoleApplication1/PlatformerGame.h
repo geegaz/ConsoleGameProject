@@ -5,7 +5,7 @@
 #include "Sprite.h"
 #include "Snake.h"
 #include "InputManager.h"
-#include "ScoreDisplay.h"
+#include "NumberDisplay.h"
 #include "LevelLoader.h"
 #include "LevelDisplayer.h"
 #include <vector>

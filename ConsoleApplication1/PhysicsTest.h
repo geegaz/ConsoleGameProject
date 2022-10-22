@@ -3,7 +3,7 @@
 #include <vector>
 #include "Collider.h"
 #include "Display.h"
-#include "ScoreDisplay.h"
+#include "NumberDisplay.h"
 #include "ControlsManager.h"
 
 using namespace std;

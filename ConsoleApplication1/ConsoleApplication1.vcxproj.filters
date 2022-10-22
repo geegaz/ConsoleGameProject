@@ -24,7 +24,7 @@
     <ClCompile Include="Snake.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreDisplay.cpp">
+    <ClCompile Include="NumberDisplay.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
@@ -89,7 +89,7 @@
     <ClInclude Include="NYTimer.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreDisplay.h">
+    <ClInclude Include="NumberDisplay.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="ControlsManager.h">
