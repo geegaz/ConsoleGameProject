@@ -2,13 +2,14 @@
 #include <string>
 #include "Sprite.h"
 #include "Display.h"
-
+#include "SpriteRenderer.h"
 using namespace std;
 
 class idScoreDisplay
 {
 private:
-	idSprite numbersSprite;
+	static idSprite NUMBERS_SPRITE;
+	idStaticSpriteRenderer renderer;
 public:
 	idScoreDisplay();
 	~idScoreDisplay();
