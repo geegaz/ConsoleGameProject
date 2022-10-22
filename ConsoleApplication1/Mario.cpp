@@ -42,7 +42,7 @@ void idMarioState::Reset() {
 	fire = false;
 }
 
-idMario::idMario():idLevelObject(20,20,idAnimationRegister::defaultRegister,MARIO_SPRITES){}
+idMario::idMario():idLevelObject(0,0,idAnimationRegister::defaultRegister,MARIO_SPRITES){}
 
 void idMario::Update() {
 
