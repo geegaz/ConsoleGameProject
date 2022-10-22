@@ -5,14 +5,16 @@
 #include "SpriteRenderer.h"
 using namespace std;
 
-class idScoreDisplay
+class idNumberDisplay
 {
 private:
 	static idSprite NUMBERS_SPRITE;
 	idStaticSpriteRenderer renderer;
+	int digits;
+	intVector2_t position;
 public:
-	idScoreDisplay();
-	~idScoreDisplay();
-	void Draw(idDisplay& display, int score, int digits = 3);
+	idNumberDisplay(int _digits, int x, int y);
+	~idNumberDisplay();
+	void Draw(idDisplay& display, int value);
 };
 

@@ -3,10 +3,13 @@
 idMarioState marioState;
 float delta_time;
 
-idPlatformerGame::idPlatformerGame():
-gameBackground(".\\resources\\sprites\\gameBackground.txt"),
-levelDisplayer(display, mario),
-livesCount(0), level(0),levelx(32),levely(10), score(69){
+idSprite idPlatformerGame::OVERWORLD_BACKGROUND(".\\resources\\sprites\\gameBackground.txt");
+
+idPlatformerGame::idPlatformerGame() :
+	gameBackground(OVERWORLD_BACKGROUND), levelDisplayer(display, mario),
+	livesCount(3), level(0), levelx(32), levely(10), score(69), started(false),
+	scoreDisplay(3, 0, 1), coinsCountDisplay(2, 50, 1),
+	livesCountDisplay(1, 70, 35),livesIconSprite(SPRITES_PATH+"livesCount.txt"), livesIcon(livesIconSprite) {
 }
 
 void idPlatformerGame::Start() {
@@ -17,26 +20,34 @@ void idPlatformerGame::Start() {
 	LoadLevel();
 	frameTimer.getElapsedSeconds(true);
 	levelStructure.push_back(&mario);
+	ShowLifeScreen();
 	while (true) {
+		inputManager.CheckKeyInputs();
 		delta_time += current_time - previous_time;
 		previous_time = current_time;
 		if (delta_time >= frame_delay) {	
-			IterateGameLoop();
+			Update();
 			delta_time = 0;
 		}
+		Sleep(1);
 		current_time = frameTimer.getElapsedSeconds();
 	}
 }
 
-void idPlatformerGame::IterateGameLoop() {
-	int element;
-	intVector2_t camera = levelDisplayer.GetRelativeCoords(intVector2_t(0, 0));
-	gameBackground.Draw(display, 0, 0);
-	scoreDisplay.Draw(display, score);
+void idPlatformerGame::Update() {
+	inputManager.UpdateStates();
 	UpdateLogic();
 	UpdateView();
 	display.Refresh();
 	levelDisplayer.MoveCameraIfNeeded(); // move camera
+}
+
+void idPlatformerGame::ShowLifeScreen() {
+	display.Fill(BLACK);
+	livesIcon.Draw(display, intVector2_t(54, 33));
+	livesCountDisplay.Draw(display, livesCount);
+	display.Refresh();
+	Sleep(3000);
 }
 
 idPlatformerGame::~idPlatformerGame() {
@@ -54,7 +65,9 @@ void idPlatformerGame::LoadLevel() {
 }
 
 void idPlatformerGame::UpdateView() {
+	gameBackground.Draw(display);
 	levelDisplayer.DrawLevel(levelStructure);
+	scoreDisplay.Draw(display, score);
 }
 
 void idPlatformerGame::UpdateLogic() {

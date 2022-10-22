@@ -14,9 +14,14 @@ extern idMarioState marioState;
 class idPlatformerGame
 {
 private:
-	idSprite gameBackground;
+	static idSprite OVERWORLD_BACKGROUND;
+	idStaticSpriteRenderer gameBackground;
 	idDisplay display;
-	idScoreDisplay scoreDisplay;
+	idNumberDisplay scoreDisplay;
+	idStaticSpriteRenderer livesIcon;
+	idSprite livesIconSprite;
+	idNumberDisplay livesCountDisplay;
+	idNumberDisplay coinsCountDisplay;
 	idLevelDisplayer levelDisplayer;
 	NYTimer frameTimer;
 	idInputManager inputManager;
@@ -25,15 +30,18 @@ private:
 	int livesCount;
 	int level;
 	int score;
+	bool started;
 	vector<idLevelObject*> levelStructure;
+	void ShowLifeScreen();
+	void Update();
+	void LoadLevel();
+	void UpdateView();
 	void UpdatePhysics();
+	void UpdateLogic();
+
 public:
 	idPlatformerGame();
 	void Start();
-	void IterateGameLoop();
-	void LoadLevel();
-	void UpdateView();
-	void UpdateLogic();
 	~idPlatformerGame();
 };
 
