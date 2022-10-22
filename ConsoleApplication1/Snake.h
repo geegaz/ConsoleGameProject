@@ -1,7 +1,12 @@
 #pragma once
 #include "Display.h"
 #include "Sprite.h"
+#include "NYTimer.h"
+#include "InputManager.h"
+#include "ControlsManager.h"
+#include "NumberDisplay.h"
 #include "GameConstants.h"
+#include "SoundManager.h"
 #define MAP_HEIGHT ((SCREEN_HEIGHT*2-UI_HEIGHT)/4)
 #define MAP_WIDTH (SCREEN_WIDTH/4)
 
@@ -17,21 +22,36 @@ private:
 	float logic_timer; // elapsed time between a snake's move
 	int* map;
 	int size;
-	int headX, headY;
+	intVector2_t headPosition;
+	control_t direction, nextDirection;
 	bool gameOver;
-	gameState_t state;
+	idSprite snakeSprite, appleSprite,
+		gameBackground, titleScreen,
+		pressSpacePrompt,
+		gameOverBackground, gameOverText, deadSprite;
+	idDisplay display;
+	NYTimer timer;
+	idInputManager inputManager;
+	idControlsManager controlsManager;
+	idSoundManager soundManager;
+	idNumberDisplay scoreDisplay, gameOverScoreDisplay;
+	const float frame_delay;
+	void GenerateFood();
+	void DisplayStartPrompt(bool reset = false);
+	void DrawGame(idDisplay& display);
+	void DrawGameOver(idDisplay& display);
+	void LoopTitle();
+	void LoopGame();
+	void LoopGameOver();
+	void Update();
+	void CheckInputs();
+	void ChangeDirection(control_t newDirection);
+	int Score() { return size - BASE_SIZE; }
+	intVector2_t NextMove();
+	void Initialize();
 public:
-	idSprite snakeSprite, appleSprite;
-	idSnake(idSprite& snake, idSprite& apple);
+	idSnake();
 	~idSnake();
 	void Start();
-	void GenerateFood();
-	void DrawGame(idDisplay& display);
-	void Update(control_t);
-	int Score() { return size - BASE_SIZE; }
-	bool IsGameOver() { return gameOver; }
-	bool CanMove();
-	void Forward(float time) { logic_timer += time; }
-	gameState_t GetState() { return state; }
 };
 

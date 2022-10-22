@@ -15,20 +15,20 @@ keyState_t keyState_t::operator|=(keyState_t& other) {
 }
 
 idInputManager::idInputManager() {
-	auto i = KEYBOARD_MAPPING.begin();
-	auto end = KEYBOARD_MAPPING.end();
+	auto i = KEYBOARD_KEYS.begin();
+	auto end = KEYBOARD_KEYS.end();
 	int key;
 	while (i != end) {
-		key = (*i).first;
+		key = (*i);
 		keys[key] = keyState_t();
 		i++;
 	}
 
-	i = XINPUT_MAPPING.begin();
-	end = XINPUT_MAPPING.end();
+	i = XINPUT_KEYS.begin();
+	end = XINPUT_KEYS.end();
 	int button;
 	while (i != end) {
-		button = (*i).first;
+		button = (*i);
 		buttons[button] = keyState_t();
 		i++;
 	}

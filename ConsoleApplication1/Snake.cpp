@@ -1,7 +1,20 @@
 #include "Snake.h"
 
-idSnake::idSnake(idSprite& snake, idSprite& apple):size(BASE_SIZE), snakeSprite(snake), appleSprite(apple), headX(0), headY(0), gameOver(true), logic_delay(0.5f), logic_timer(0.0f), state(gameState_t::MENU){
-	map = new int[MAP_HEIGHT * MAP_WIDTH];
+idSnake::idSnake() :
+    size(BASE_SIZE),
+    headPosition(0, 0),
+    gameOver(true),
+    logic_delay(0.5f), logic_timer(0.0f),
+    gameBackground(SPRITES_PATH + "SnakeBackground.txt"),
+    snakeSprite(SPRITES_PATH + "SnakeSprite.txt"),
+    appleSprite(SPRITES_PATH + "AppleSprite.txt"),
+    titleScreen(SPRITES_PATH + "title_screen.txt"),
+    pressSpacePrompt(SPRITES_PATH + "press_space.txt"),
+    gameOverBackground(SPRITES_PATH + "GameOverBackground.txt"),
+    gameOverText(SPRITES_PATH + "GameOver.txt"),
+    deadSprite(GRAY, 4, 4),
+    scoreDisplay(3, 0, 0), gameOverScoreDisplay(3, 0, 0), frame_delay(1.0f / 30.0f),
+    controlsManager(inputManager), direction(control_t::RIGHT), nextDirection(control_t::RIGHT){
 }
 
 idSnake::~idSnake() {
@@ -9,31 +22,142 @@ idSnake::~idSnake() {
 }
 
 void idSnake::Start() {
+    map = new int[MAP_HEIGHT * MAP_WIDTH];
+
+    timer.start();
+
+    // title screen
+    controlsManager.SetState(gameState_t::MENU);
+    LoopTitle();
+
+    srand(time(NULL)); // set seed for the game's random apple placement
+
+    while (true) {
+        //
+        controlsManager.SetState(gameState_t::IN_GAME);
+        LoopGame();
+
+        // game over screen
+        controlsManager.SetState(gameState_t::MENU);
+        LoopGameOver();
+    }
+}
+
+void idSnake::LoopTitle() {
+    titleScreen.Draw(display, 0, 0);
+    display.Refresh();
+    bool start_pressed = false;
+    while (!start_pressed) {
+        inputManager.CheckKeyInputs();
+        inputManager.UpdateStates();
+        if (controlsManager.GetControlState(control_t::START).pressed)
+            start_pressed = true;
+        titleScreen.Draw(display, 0, 0);
+        DisplayStartPrompt();
+        display.Refresh();
+        Sleep(1);
+    }
+}
+
+void idSnake::LoopGame() {
+    float delta_time = 0.0f; // elapsed time between a frame
+    float previous_time = 0.0f;
+    float current_time = 0.0f;
+    logic_timer = 0.0f;
+    timer.getElapsedSeconds(true);
+    Initialize(); // initialize snake game
+    DrawGame(display);
+    // main game screen
+    while (!gameOver) {
+        delta_time += current_time - previous_time;
+        logic_timer += current_time - previous_time;
+        previous_time = current_time;
+        inputManager.CheckKeyInputs();
+        if (delta_time >= frame_delay) {
+            inputManager.UpdateStates();
+            CheckInputs();
+            if (logic_timer >= logic_delay) {
+                Update();
+            }
+            DrawGame(display);
+
+            scoreDisplay.Draw(display, Score());
+
+            display.Refresh();
+            delta_time -= frame_delay;
+        }
+        current_time = timer.getElapsedSeconds();
+    }
+}
+
+void idSnake::LoopGameOver() {
+    bool start_pressed = false;
+    DrawGameOver(display);
+    display.Refresh();
+    soundManager.PlaySoundTrack(soundTrack_t::DEATH);
+    Sleep(1500);
+    soundManager.PlayMusicTrack(musicTrack_t::DEATH);
+    DisplayStartPrompt(true);
+    display.Refresh();
+    while (!start_pressed) {
+        inputManager.CheckKeyInputs();
+        inputManager.UpdateStates();
+        if (controlsManager.GetControlState(control_t::START).pressed)
+            start_pressed = true;
+        DrawGameOver(display);
+        gameOverScoreDisplay.Draw(display, Score());
+        gameOverBackground.Draw(display, 0, UI_HEIGHT);
+        gameOverText.Draw(display, 29, 20);
+        DisplayStartPrompt();
+        display.Refresh();
+        Sleep(1);
+    }
+    soundManager.PlayMusicTrack(musicTrack_t::NONE);
+}
+void idSnake::DisplayStartPrompt(bool reset) {
+    static bool display_prompt;
+    if (reset) {
+        display_prompt = true;
+        timer.getElapsedSeconds(true);
+    }
+    if (display_prompt)
+        pressSpacePrompt.Draw(display, 19, 59);
+    if (timer.getElapsedSeconds() >= 0.5) {
+        display_prompt = !display_prompt;
+        //Beep(DWORD(500), DWORD(250));
+        timer.getElapsedSeconds(true);
+    }
+}
+
+void idSnake::Initialize() {
 	gameOver = false;
 	size = BASE_SIZE;
 	for (int i = 0; i < MAP_HEIGHT * MAP_WIDTH; i++)
 		map[i] = 0;
 	int center_x = MAP_WIDTH / 2, center_y = MAP_HEIGHT / 2;
 	map[TO_INDEX(center_x, center_y)] = size;
-	headX = center_x;
-	headY = center_y;
+	headPosition.x = center_x;
+	headPosition.y = center_y;
 	logic_delay = 0.5f;
-	logic_timer = 0.0f;
 	GenerateFood();
-	state = gameState_t::IN_GAME;
+    direction = control_t::RIGHT;
+    nextDirection = control_t::RIGHT;
 }
+
 void idSnake::GenerateFood() {
-	bool drawn = false;
-	while (!drawn) {
+	bool placed = false;
+	while (!placed) {
 		int ypos = rand() % MAP_HEIGHT, xpos = rand() % MAP_WIDTH;
 		if (map[TO_INDEX(xpos, ypos)] == 0) {
 			map[TO_INDEX(xpos, ypos)] = APPLE_TILE;
-			drawn = true;
+			placed = true;
 		}
 	}
 }
 
 void idSnake::DrawGame(idDisplay& display) {
+    display.Fill(BLACK);
+    gameBackground.Draw(display, 0, UI_HEIGHT);
 	for (int i = 0; i < MAP_HEIGHT; i++) {
 		for (int j = 0; j < MAP_WIDTH; j++) {
 			int tile = map[TO_INDEX(j, i)];
@@ -48,31 +172,28 @@ void idSnake::DrawGame(idDisplay& display) {
 	}
 }
 
-void idSnake::Update(control_t direction) {
+void idSnake::DrawGameOver(idDisplay& display) {
+    display.Fill(BLACK);
+    for (int i = 0; i < MAP_HEIGHT; i++) {
+        for (int j = 0; j < MAP_WIDTH; j++) {
+            int tile = map[TO_INDEX(j, i)];
+            if (tile > 0) {
+                deadSprite.Draw(display, j * SPRITE_SIZE, i * SPRITE_SIZE + UI_HEIGHT);
+            }
+        }
+    }
+}
+
+void idSnake::Update() {
 	logic_timer -= logic_delay;
+    intVector2_t next = headPosition+NextMove();
+    inputManager.CheckKeyInputs();
 	if (!gameOver) {
-		switch (direction) {
-		case control_t::RIGHT:
-			headX += 1;
-			break;
-		case control_t::LEFT:
-			headX -= 1;
-			break;
-		case control_t::UP:
-			headY -= 1;
-			break;
-		case control_t::DOWN:
-			headY += 1;
-			break;
-		default:
-			return;
-		}
-		if (headX < 0 || headX >= MAP_WIDTH || headY < 0 || headY >= MAP_HEIGHT) {
-			state = gameState_t::MENU;
+		if (next.x < 0 || next.x >= MAP_WIDTH || next.y < 0 || next.y >= MAP_HEIGHT) {
 			gameOver = true;
 			return;
 		}
-		int destination_index = TO_INDEX(headX, headY);
+		int destination_index = TO_INDEX(next.x, next.y);
 		if (map[destination_index] != APPLE_TILE) {
 			for (int i = 0; i < MAP_HEIGHT; i++) {
 				for (int j = 0; j < MAP_WIDTH; j++) {
@@ -85,18 +206,83 @@ void idSnake::Update(control_t direction) {
 				return;
 			}
 			map[destination_index] = size;
+            headPosition = next;
 		}
 		else {
 			size++;
+            soundManager.PlaySoundTrack(soundTrack_t::COLLECT);
 			map[destination_index] = size;
+            headPosition = next;
 			if (logic_delay > 0.05f)
 				logic_delay*=0.95f;
 			GenerateFood();
-			PlaySound(L".\\resources\\sounds\\sfx8.wav", NULL, SND_ASYNC);
+			//PlaySound(L".\\resources\\sounds\\sfx8.wav", NULL, SND_ASYNC);
 		}
 	}
 }
 
-bool idSnake::CanMove() {
-	return logic_timer >= logic_delay;
+intVector2_t idSnake::NextMove() {
+	intVector2_t next;
+    direction = nextDirection;
+	switch (direction) {
+	case control_t::RIGHT:
+		next.x = 1;
+		break;
+	case control_t::LEFT:
+		next.x = -1;
+		break;
+	case control_t::UP:
+		next.y = -1;
+		break;
+	case control_t::DOWN:
+		next.y = 1;
+		break;
+	default:
+		break;
+	}
+	return next;
+}
+
+void idSnake::CheckInputs() {
+    if (controlsManager.GetControlState(control_t::DOWN).pressed) {
+        ChangeDirection(control_t::DOWN);
+        return;
+    }
+    if (controlsManager.GetControlState(control_t::LEFT).pressed) {
+        ChangeDirection(control_t::LEFT);
+        return;
+    }
+    if (controlsManager.GetControlState(control_t::RIGHT).pressed) {
+        ChangeDirection(control_t::RIGHT);
+        return;
+    }
+    if (controlsManager.GetControlState(control_t::UP).pressed) {
+        ChangeDirection(control_t::UP);
+        return;
+    } 
+}
+
+void idSnake::ChangeDirection(control_t newDirection) {
+	switch (direction) {
+	case control_t::RIGHT:
+		if (newDirection == control_t::LEFT)
+			return;
+		break;
+	case control_t::LEFT:
+		if (newDirection == control_t::RIGHT)
+			return;
+		break;
+	case control_t::UP:
+		if (newDirection == control_t::DOWN)
+			return;
+		break;
+	case control_t::DOWN:
+		if (newDirection == control_t::UP)
+			return;
+		break;
+	default:
+		return;
+		break;
+	}
+	nextDirection = newDirection;
 }

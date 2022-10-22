@@ -1,6 +1,6 @@
 #pragma once
-#include "Snake.h"
 #include "InputManager.h"
+#include "GameConstants.h"
 #include <vector>
 #include <map>
 

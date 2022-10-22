@@ -26,10 +26,6 @@ private:
 	unsigned short xinputInfo;
 public:
 	idInputManager();
-	/*
-	void AddKey(int keyCode);
-	void RemoveKey(int keyCode);
-	*/
 	void CheckKeyInputs();
 	void UpdateStates();
 	map<int, keyState_t> GetKeyStates() { return keys; }

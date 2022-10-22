@@ -7,9 +7,9 @@ idControlsManager::idControlsManager(idInputManager& inputManagerRef): inputMana
 }
 
 void idControlsManager::MapKeys() {
-    keyMappings[gameState_t::MENU] = KEYBOARD_MAPPING;
+    keyMappings[gameState_t::MENU] = KEYBOARD_MENU_MAPPING;
     keyMappings[gameState_t::IN_GAME] = KEYBOARD_MAPPING;
-	buttonMappings[gameState_t::MENU] = XINPUT_MAPPING;
+	buttonMappings[gameState_t::MENU] = XINPUT_MENU_MAPPING;
 	buttonMappings[gameState_t::IN_GAME] = XINPUT_MAPPING;
 }
 
