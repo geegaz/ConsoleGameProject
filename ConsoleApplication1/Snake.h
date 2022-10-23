@@ -7,6 +7,7 @@
 #include "NumberDisplay.h"
 #include "GameConstants.h"
 #include "SoundManager.h"
+#include "ParticlesManager.h"
 #define MAP_HEIGHT ((SCREEN_HEIGHT*2-UI_HEIGHT)/4)
 #define MAP_WIDTH (SCREEN_WIDTH/4)
 
@@ -35,6 +36,7 @@ private:
 	idControlsManager controlsManager;
 	idSoundManager soundManager;
 	idNumberDisplay scoreDisplay, gameOverScoreDisplay;
+	idParticlesManager particlesManager;
 	const float frame_delay;
 	void GenerateFood();
 	void DisplayStartPrompt(bool reset = false);

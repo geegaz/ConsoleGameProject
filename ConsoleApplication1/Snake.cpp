@@ -79,6 +79,8 @@ void idSnake::LoopGame() {
                 Update();
             }
             DrawGame(display);
+            particlesManager.DrawParticles(display);
+            particlesManager.UpdateParticles();
 
             scoreDisplay.Draw(display, Score());
 
@@ -210,6 +212,7 @@ void idSnake::Update() {
 		}
 		else {
 			size++;
+            particlesManager.CreateAppleCollectEffect(next.x * SPRITE_SIZE, next.y * SPRITE_SIZE + UI_HEIGHT);
             soundManager.PlaySoundTrack(soundTrack_t::COLLECT);
 			map[destination_index] = size;
             headPosition = next;

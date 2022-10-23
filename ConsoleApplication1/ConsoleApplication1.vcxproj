@@ -145,7 +145,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AppleCollectEffect.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Animation.cpp" />
@@ -168,7 +170,9 @@
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppleCollectEffect.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticlesManager.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Animation.h" />
