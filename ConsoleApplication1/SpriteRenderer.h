@@ -28,6 +28,7 @@ public:
     bool SwitchFrameAnimation(string animationTitle);
     void NextFrame();
     void NextPosition();
+    void Draw(idDisplay& display);
     void Draw(idDisplay& display, intVector2_t drawOffset);
     void SetFlipX(bool flip);
     floatVector2_t& GetPosition() { return floatPosition; }

@@ -28,6 +28,10 @@ idSpriteRenderer::idSpriteRenderer(idSprite& _sprite, floatVector2_t& _position,
     : sprite(_sprite), spriteOffset(_spriteOffset), floatPosition(_position),
     animationRegister(_animationRegister), flipX(false) {}
 
+void idSpriteRenderer::Draw(idDisplay& display) {
+    Draw(display, GetIntPosition());
+}
+
 void idSpriteRenderer::Draw(idDisplay& display, intVector2_t drawOffset) {
     intVector2_t total_draw_offset = drawOffset+spriteOffset;
     bool flipY = false;
@@ -123,4 +127,28 @@ void idSpriteRenderer::SetDefault(int frame) {
 
 intVector2_t& idSpriteRenderer::GetSize() {
     return sprite.size;
+}
+
+bool idSpriteRenderer::SwitchPositionAnimation(string animationTitle) {
+    positionAnimation_t* pos_anim = animationRegister.getPositionAnimation(animationTitle);
+    animationState.SetPositionAnimation(pos_anim);
+    return pos_anim == nullptr;
+}
+
+bool idSpriteRenderer::SwitchFrameAnimation(string animationTitle) {
+    frameAnimation_t* frame_anim = animationRegister.getFrameAnimation(animationTitle);
+    animationState.SetFrameAnimation(frame_anim);
+    return frame_anim == nullptr;
+}
+
+void idSpriteRenderer::NextFrame() {
+    animationState.NextFrame();
+}
+
+void idSpriteRenderer::NextPosition() {
+    animationState.NextPosition();
+}
+
+void idSpriteRenderer::SetFlipX(bool flip) {
+    flipX = flip;
 }
