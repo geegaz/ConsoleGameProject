@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include <string>
+#include "GameConstants.h"
 
 struct frameAnimation_t {
     int* frames;
@@ -38,6 +39,8 @@ private:
     static void  LoadAllFrameAnimations(std::string filename);
 public:
     static idAnimationRegister defaultRegister;
+    idAnimationRegister();
+    idAnimationRegister(std::string positionFilename, std::string frameFilename);
     static void LoadAllAnimations(std::string positionFilename, std::string frameFilename);
     static void UnloadAllAnimations();
     void LoadPositionAnimations(std::string filename);

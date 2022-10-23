@@ -1,3 +1,4 @@
+#include "GameConstants.h"
 #include "Animation.h"
 #include <fstream>
 #include <iostream>
@@ -92,9 +93,9 @@ void idAnimationRegister::LoadAllFrameAnimations(std::string filename) {
 			break;
 		}
 		frames = new int[length];
-		POSITION_ANIMATIONS[title].yPositions = frames;
-		POSITION_ANIMATIONS[title].length = length;
-		POSITION_ANIMATIONS[title].flipY = loop;
+		FRAME_ANIMATIONS[title].frames = frames;
+		FRAME_ANIMATIONS[title].length = length;
+		FRAME_ANIMATIONS[title].loop = loop;
 		for (int i = 0; i < length; i++) {
 			file.get();
 			file >> frames[i];
@@ -154,6 +155,13 @@ frameAnimation_t* idAnimationRegister::getFrameAnimation(std::string key) {
 	auto value = frameAnimations.find(key);
 	auto end = frameAnimations.end();
 	return (value != end) ? value->second : nullptr;
+}
+
+idAnimationRegister::idAnimationRegister(){}
+idAnimationRegister::idAnimationRegister(std::string positionFilename, std::string frameFilename) {
+	std::string a = POSITION_ANIMATIONS_FILE;
+	LoadFrameAnimations(frameFilename);
+	LoadPositionAnimations(positionFilename);
 }
 
 idAnimationRegister idAnimationRegister::defaultRegister;
