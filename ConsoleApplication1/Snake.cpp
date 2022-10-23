@@ -12,9 +12,10 @@ idSnake::idSnake() :
     pressSpacePrompt(SPRITES_PATH + "press_space.txt"),
     gameOverBackground(SPRITES_PATH + "GameOverBackground.txt"),
     gameOverText(SPRITES_PATH + "GameOver.txt"),
-    deadSprite(GRAY, 4, 4),
-    scoreDisplay(3, 0, 0), gameOverScoreDisplay(3, 0, 0), frame_delay(1.0f / 30.0f),
+    deadSprite(DARK_GRAY, 4, 4),
+    scoreDisplay(3, 1, 1), gameOverScoreDisplay(3, 60, 39), frame_delay(1.0f / 60.0f),
     controlsManager(inputManager), direction(control_t::RIGHT), nextDirection(control_t::RIGHT){
+    map = new int[MAP_HEIGHT * MAP_WIDTH];
 }
 
 idSnake::~idSnake() {
@@ -22,8 +23,6 @@ idSnake::~idSnake() {
 }
 
 void idSnake::Start() {
-    map = new int[MAP_HEIGHT * MAP_WIDTH];
-
     timer.start();
 
     // title screen
@@ -105,9 +104,10 @@ void idSnake::LoopGameOver() {
         if (controlsManager.GetControlState(control_t::START).pressed)
             start_pressed = true;
         DrawGameOver(display);
-        gameOverScoreDisplay.Draw(display, Score());
         gameOverBackground.Draw(display, 0, UI_HEIGHT);
-        gameOverText.Draw(display, 29, 20);
+        gameOverText.Draw(display, 29, 15);
+        gameOverScoreDisplay.Draw(display, Score());
+        appleSprite.Draw(display, 53, 40);
         DisplayStartPrompt();
         display.Refresh();
         Sleep(1);
@@ -138,7 +138,7 @@ void idSnake::Initialize() {
 	map[TO_INDEX(center_x, center_y)] = size;
 	headPosition.x = center_x;
 	headPosition.y = center_y;
-	logic_delay = 0.5f;
+	logic_delay = 0.4f;
 	GenerateFood();
     direction = control_t::RIGHT;
     nextDirection = control_t::RIGHT;
@@ -213,7 +213,7 @@ void idSnake::Update() {
             soundManager.PlaySoundTrack(soundTrack_t::COLLECT);
 			map[destination_index] = size;
             headPosition = next;
-			if (logic_delay > 0.05f)
+			if (logic_delay > 0.03f)
 				logic_delay*=0.95f;
 			GenerateFood();
 			//PlaySound(L".\\resources\\sounds\\sfx8.wav", NULL, SND_ASYNC);
