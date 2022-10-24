@@ -28,7 +28,7 @@ keyState_t idControlsManager::GetControlState(control_t control) {
 	}
 	while (i_x != end_x) {
 		if ((*i_x).second == control) {
-			control_state |= inputManager.GetKeyStates()[(*i_x).first];
+			control_state |= inputManager.GetButtonStates()[(*i_x).first];
 		}
 		i_x++;
 	}
