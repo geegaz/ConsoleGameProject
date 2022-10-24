@@ -26,8 +26,13 @@ void idParticlesManager::CreateAppleCollectEffect(int x, int y) {
 	particles.push_back(new idAppleCollectEffect(x,y));
 }
 
-idParticlesManager::~idParticlesManager() {
-	for (int i = 0; i < particles.size(); i++) {
+void idParticlesManager::Clear() {
+	for (int i = particles.size()-1; i >= 0 ; i--) {
 		delete particles[i];
+		particles.pop_back();
 	}
+}
+
+idParticlesManager::~idParticlesManager() {
+	Clear();
 }

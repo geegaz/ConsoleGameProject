@@ -9,7 +9,7 @@ idSnake::idSnake() :
     snakeSprite(SPRITES_PATH + "SnakeSprite.txt"),
     appleSprite(SPRITES_PATH + "AppleSprite.txt"),
     titleScreen(SPRITES_PATH + "title_screen.txt"),
-    pressSpacePrompt(SPRITES_PATH + "press_space.txt"),
+    pressSpacePrompt(SPRITES_PATH + "press_space_start.txt"),
     gameOverBackground(SPRITES_PATH + "GameOverBackground.txt"),
     gameOverText(SPRITES_PATH + "GameOver.txt"),
     deadSprite(DARK_GRAY, 4, 4),
@@ -59,6 +59,7 @@ void idSnake::LoopTitle() {
 }
 
 void idSnake::LoopGame() {
+    particlesManager.Clear();
     float delta_time = 0.0f; // elapsed time between a frame
     float previous_time = 0.0f;
     float current_time = 0.0f;
@@ -123,8 +124,8 @@ void idSnake::DisplayStartPrompt(bool reset) {
         timer.getElapsedSeconds(true);
     }
     if (display_prompt)
-        pressSpacePrompt.Draw(display, 19, 59);
-    if (timer.getElapsedSeconds() >= 0.5) {
+        pressSpacePrompt.Draw(display, 10, 55);
+    if (timer.getElapsedSeconds() >= 0.75) {
         display_prompt = !display_prompt;
         //Beep(DWORD(500), DWORD(250));
         timer.getElapsedSeconds(true);
@@ -197,15 +198,15 @@ void idSnake::Update() {
 		}
 		int destination_index = TO_INDEX(next.x, next.y);
 		if (map[destination_index] != APPLE_TILE) {
+            if (map[destination_index] > 1) {
+                gameOver = true;
+                return;
+            }
 			for (int i = 0; i < MAP_HEIGHT; i++) {
 				for (int j = 0; j < MAP_WIDTH; j++) {
 					if (map[TO_INDEX(j, i)] > 0)
 						map[TO_INDEX(j, i)]--;
 				}
-			}
-			if (map[destination_index] >= 1) {
-				gameOver = true;
-				return;
 			}
 			map[destination_index] = size;
             headPosition = next;
