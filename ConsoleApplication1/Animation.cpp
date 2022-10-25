@@ -129,39 +129,14 @@ void idAnimationRegister::UnloadAllAnimations() {
 	}
 }
 
-void idAnimationRegister::LoadPositionAnimations(std::string filename) {
-	std::ifstream file(filename);
-	std::string line;
-	while (std::getline(file, line)) {
-		positionAnimations[line] = & (POSITION_ANIMATIONS.at(line));
-	}
-}
-
-void idAnimationRegister::LoadFrameAnimations(std::string filename) {
-	std::ifstream file(filename);
-	std::string line;
-	while (std::getline(file, line)) {
-		frameAnimations[line] = &(FRAME_ANIMATIONS.at(line));
-	}
-}
-
 positionAnimation_t* idAnimationRegister::getPositionAnimation(std::string key) {
-	auto value = positionAnimations.find(key);
-	auto end = positionAnimations.end();
-	return (value != end) ? value->second : nullptr;
+	auto value = POSITION_ANIMATIONS.find(key);
+	auto end = POSITION_ANIMATIONS.end();
+	return (value != end) ? &(value->second) : nullptr;
 }
 
 frameAnimation_t* idAnimationRegister::getFrameAnimation(std::string key) {
-	auto value = frameAnimations.find(key);
-	auto end = frameAnimations.end();
-	return (value != end) ? value->second : nullptr;
+	auto value = FRAME_ANIMATIONS.find(key);
+	auto end = FRAME_ANIMATIONS.end();
+	return (value != end) ? &(value->second) : nullptr;
 }
-
-idAnimationRegister::idAnimationRegister(){}
-idAnimationRegister::idAnimationRegister(std::string positionFilename, std::string frameFilename) {
-	std::string a = POSITION_ANIMATIONS_FILE;
-	LoadFrameAnimations(frameFilename);
-	LoadPositionAnimations(positionFilename);
-}
-
-idAnimationRegister idAnimationRegister::defaultRegister;

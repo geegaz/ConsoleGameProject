@@ -37,14 +37,10 @@ private:
     std::map<std::string, frameAnimation_t*> frameAnimations;
     static void LoadAllPositionAnimations(std::string filename);
     static void  LoadAllFrameAnimations(std::string filename);
-public:
-    static idAnimationRegister defaultRegister;
     idAnimationRegister();
-    idAnimationRegister(std::string positionFilename, std::string frameFilename);
+public:
     static void LoadAllAnimations(std::string positionFilename, std::string frameFilename);
     static void UnloadAllAnimations();
-    void LoadPositionAnimations(std::string filename);
-    void LoadFrameAnimations(std::string filename);
-    positionAnimation_t* getPositionAnimation(const std::string);
-    frameAnimation_t* getFrameAnimation(const std::string);
+    static positionAnimation_t* getPositionAnimation(const std::string);
+    static frameAnimation_t* getFrameAnimation(const std::string);
 };

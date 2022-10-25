@@ -16,13 +16,12 @@ class idSpriteRenderer {
 protected:
     idSprite& sprite;
     idAnimationState animationState;
-    idAnimationRegister& animationRegister;
     intVector2_t spriteOffset;
     floatVector2_t& floatPosition;
     bool flipX;
 public:
     idSpriteRenderer(idSprite& _sprite, floatVector2_t& _position,
-        idAnimationRegister& _animationRegister,
+        std::string positionAnimation = "", std::string frameAnimation = "", 
         intVector2_t _spriteOffset = intVector2_t(0, 0));
     bool SwitchPositionAnimation(string animationTitle);
     bool SwitchFrameAnimation(string animationTitle);

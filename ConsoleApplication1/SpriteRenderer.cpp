@@ -23,10 +23,11 @@ void idStaticSpriteRenderer::Draw(idDisplay& display, intVector2_t offset, int f
 }
 
 idSpriteRenderer::idSpriteRenderer(idSprite& _sprite, floatVector2_t& _position,
-    idAnimationRegister& _animationRegister,
-    intVector2_t _spriteOffset)
-    : sprite(_sprite), spriteOffset(_spriteOffset), floatPosition(_position),
-    animationRegister(_animationRegister), flipX(false) {}
+    std::string positionAnimation, std::string frameAnimation,  intVector2_t _spriteOffset)
+    : sprite(_sprite), spriteOffset(_spriteOffset), floatPosition(_position), flipX(false) {
+    SwitchPositionAnimation(positionAnimation);
+    SwitchFrameAnimation(frameAnimation);
+}
 
 void idSpriteRenderer::Draw(idDisplay& display) {
     Draw(display, GetIntPosition());
@@ -130,13 +131,13 @@ intVector2_t& idSpriteRenderer::GetSize() {
 }
 
 bool idSpriteRenderer::SwitchPositionAnimation(string animationTitle) {
-    positionAnimation_t* pos_anim = animationRegister.getPositionAnimation(animationTitle);
+    positionAnimation_t* pos_anim = idAnimationRegister::getPositionAnimation(animationTitle);
     animationState.SetPositionAnimation(pos_anim);
     return pos_anim == nullptr;
 }
 
 bool idSpriteRenderer::SwitchFrameAnimation(string animationTitle) {
-    frameAnimation_t* frame_anim = animationRegister.getFrameAnimation(animationTitle);
+    frameAnimation_t* frame_anim = idAnimationRegister::getFrameAnimation(animationTitle);
     animationState.SetFrameAnimation(frame_anim);
     return frame_anim == nullptr;
 }
