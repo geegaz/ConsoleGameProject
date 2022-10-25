@@ -1,18 +1,16 @@
 #pragma once
-#include "SpriteRenderer.h"
 #include "Vector2D.h"
+#include "Display.h"
 class idParticle
 {
 protected:
-	idSpriteRenderer spriteRenderer;
-	floatVector2_t position;
+	floatVector2_t startPosition;
 	int lifespan;
 	int life;
 public:
-	idParticle(int x, int y, idSprite& sprite, int _lifespan, std::string positionAnimation = "",
-		std::string frameAnimation = "", intVector2_t spriteOffset = intVector2_t(0, 0));
+	idParticle(int x, int y, int _lifespan);
 	virtual void Update();
-	idSpriteRenderer& GetRenderer();
+	virtual void Draw(idDisplay& display) = 0;
 	virtual ~idParticle();
 	bool IsDead();
 };

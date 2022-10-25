@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AppleCollectEffect.cpp" />
+    <ClCompile Include="EffectParticle.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Collider.cpp" />
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppleCollectEffect.h" />
+    <ClInclude Include="EffectParticle.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticlesManager.h" />
     <ClInclude Include="Collider.h" />

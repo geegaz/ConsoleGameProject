@@ -1,5 +1,6 @@
 #include "ParticlesManager.h"
-#include "AppleCollectEffect.h"
+#include "EffectParticle.h"
+
 idParticlesManager::idParticlesManager(){}
 void idParticlesManager::UpdateParticles() {
 	int size = particles.size();
@@ -19,11 +20,12 @@ void idParticlesManager::UpdateParticles() {
 void idParticlesManager::DrawParticles(idDisplay display) {
 	int size = particles.size();
 	for (int i = 0; i < size; i++) {
-		particles[i]->GetRenderer().Draw(display);
+		particles[i]->Draw(display);
 	}
 }
 void idParticlesManager::CreateAppleCollectEffect(int x, int y) {
-	particles.push_back(new idAppleCollectEffect(x,y));
+	static idSprite APPLE_COLLECT_FRAMES(SPRITES_PATH + "apple_pop.txt");
+	particles.push_back(new idEffectParticle(x, y, 20, APPLE_COLLECT_FRAMES, 4, "apple.collect", "apple.collect", intVector2_t(-2, -1)));
 }
 
 void idParticlesManager::Clear() {
