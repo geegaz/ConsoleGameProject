@@ -1,7 +1,6 @@
 #pragma once
 #include "Particle.h"
 #include "Display.h"
-#include "AppleCollectEffect.h"
 #include <vector>
 class idParticlesManager
 {
