@@ -1,5 +1,7 @@
 #include "Snake.h"
 
+float delta_time = 0.0f;
+
 idSnake::idSnake() :
     size(BASE_SIZE),
     headPosition(0, 0),
@@ -63,7 +65,7 @@ void idSnake::LoopTitle() {
 
 void idSnake::LoopGame() {
     particlesManager.Clear();
-    float delta_time = 0.0f; // elapsed time between a frame
+    delta_time = 0.0f; // elapsed time between a frame
     float previous_time = 0.0f;
     float current_time = 0.0f;
     logicTimer = 0.0f;
@@ -93,32 +95,49 @@ void idSnake::LoopGame() {
             delta_time -= frameDelay;
         }
         current_time = timer.getElapsedSeconds();
+        Sleep(1);
     }
     soundManager.PlayMusicTrack(musicTrack_t::NONE);
 }
 
 void idSnake::LoopGameOver() {
     bool start_pressed = false;
+    delta_time = 0.0f; // elapsed time between a frame
+    float previous_time = 0.0f;
+    float current_time = 0.0f;
     DrawGameOver(display);
     display.Refresh();
     soundManager.PlaySoundTrack(soundTrack_t::DEATH);
     soundManager.PlaySoundTrack(soundTrack_t::SNAAKE);
     Sleep(2000);
     soundManager.PlayMusicTrack(musicTrack_t::DEATH);
+    CreateDeathEffect();
     DisplayStartPrompt(true);
     display.Refresh();
     while (!start_pressed) {
+        delta_time += current_time - previous_time;
+        previous_time = current_time;
         inputManager.CheckKeyInputs();
-        inputManager.UpdateStates();
-        if (controlsManager.GetControlState(control_t::START).pressed)
-            start_pressed = true;
-        DrawGameOver(display);
-        gameOverBackground.Draw(display, 0, UI_HEIGHT);
-        gameOverText.Draw(display, 29, 15);
-        gameOverScoreDisplay.Draw(display, Score());
-        appleSprite.Draw(display, 53, 40);
-        DisplayStartPrompt();
-        display.Refresh();
+        if (delta_time >= frameDelay) {
+            inputManager.UpdateStates();
+            if (controlsManager.GetControlState(control_t::START).pressed)
+                start_pressed = true;
+            
+            DrawGameOver(display);
+
+            gameOverBackground.Draw(display, 0, UI_HEIGHT);
+            gameOverText.Draw(display, 29, 15);
+            gameOverScoreDisplay.Draw(display, Score());
+            appleSprite.Draw(display, 53, 40);
+
+            particlesManager.DrawParticles(display);
+            particlesManager.UpdateParticles();
+            
+            DisplayStartPrompt();
+            display.Refresh();
+            delta_time -= frameDelay;
+        }
+        current_time = timer.getElapsedSeconds();
         Sleep(1);
     }
     soundManager.PlayMusicTrack(musicTrack_t::NONE);
@@ -162,6 +181,17 @@ void idSnake::GenerateFood() {
 			placed = true;
 		}
 	}
+}
+
+void idSnake::CreateDeathEffect() {
+    for (int i = 0; i < MAP_HEIGHT; i++) {
+        for (int j = 0; j < MAP_WIDTH; j++) {
+            int tile = map[TO_INDEX(j, i)];
+            if (tile > 0) {
+                particlesManager.CreateDeathParticles(j * SPRITE_SIZE, i * SPRITE_SIZE, 4);
+            }
+        }
+    }
 }
 
 void idSnake::DrawGame(idDisplay& display) {

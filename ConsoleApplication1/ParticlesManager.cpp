@@ -36,8 +36,10 @@ void idParticlesManager::Clear() {
 }
 
 void idParticlesManager::CreateDeathParticles(int x, int y, int count) {
-	//static idSprite nomSprite(SPRITES_PATH + "");
-	// TODO
+	static idSprite SHATTER_PARTICLES(SPRITES_PATH + "shatter_particles.txt");
+	for (int i = 0; i < count; i++) {
+		particles.push_back(new idEffectParticle(x, y, 3, SHATTER_PARTICLES));
+	}
 }
 
 idParticlesManager::~idParticlesManager() {

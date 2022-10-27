@@ -39,6 +39,7 @@ private:
 	idParticlesManager particlesManager;
 	const float frameDelay;
 	void GenerateFood();
+	void CreateDeathEffect();
 	void DisplayStartPrompt(bool reset = false);
 	void DrawGame(idDisplay& display);
 	void DrawGameOver(idDisplay& display);
