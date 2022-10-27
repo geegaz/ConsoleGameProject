@@ -33,8 +33,8 @@ const std::string SPRITES_PATH = RESOURCES_PATH + "sprites\\";
 
 enum class musicTrack_t { NONE, DEATH };
 enum class soundTrack_t { DEATH, COLLECT };
-const std::map<musicTrack_t, std::string> MUSIC_FILES = { {musicTrack_t::DEATH, SOUNDS_PATH + "death_jingle.wav"}, {musicTrack_t::NONE, SOUNDS_PATH+"music_none.wav"}};
-const std::map<soundTrack_t, std::string> SOUND_FILES = { {soundTrack_t::COLLECT, SOUNDS_PATH+"sfx8.wav"}, {soundTrack_t::DEATH, SOUNDS_PATH+"death_goldenberry.wav"} };
+const std::map<musicTrack_t, std::string> MUSIC_FILES = { {musicTrack_t::DEATH, SOUNDS_PATH + "death_jingle.wav"}, {musicTrack_t::NONE, SOUNDS_PATH + "music_none.wav"} };
+const std::map<soundTrack_t, std::string> SOUND_FILES = { {soundTrack_t::COLLECT, SOUNDS_PATH + "apple_get.wav"}, {soundTrack_t::DEATH, SOUNDS_PATH + "death_sfx.wav"} };
 
 const std::string ANIMATIONS_PATH = RESOURCES_PATH + "animations\\";
 const std::string POSITION_ANIMATIONS_FILE = ANIMATIONS_PATH +"position_animations.txt";
