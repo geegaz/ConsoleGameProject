@@ -7,7 +7,7 @@
 
 using namespace std;
 
-struct idSprite
+class idSprite
 {
 public:
 	int* data;
