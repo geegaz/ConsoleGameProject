@@ -1,6 +1,6 @@
 *Jeu développé par Tanguy DEPRAZ et Danny VU*
 
-Le repository GitHub du projet est accessible [ici](www.monlienici.fr) *(monlienici.fr)*.
+Le repository GitHub du projet est accessible [ici](https://github.com/geegaz/ConsoleGameProject/) *(https://github.com/geegaz/ConsoleGameProject/)*.
 
 # Description
 
