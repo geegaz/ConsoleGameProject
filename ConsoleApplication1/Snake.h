@@ -19,8 +19,8 @@
 class idSnake
 {
 private:
-	float logic_delay; // delay in seconds between snake moves
-	float logic_timer; // elapsed time between a snake's move
+	float logicDelay; // delay in seconds between snake moves
+	float logicTimer; // elapsed time between a snake's move
 	int* map;
 	int size;
 	intVector2_t headPosition;
@@ -37,7 +37,7 @@ private:
 	idSoundManager soundManager;
 	idNumberDisplay scoreDisplay, gameOverScoreDisplay;
 	idParticlesManager particlesManager;
-	const float frame_delay;
+	const float frameDelay;
 	void GenerateFood();
 	void DisplayStartPrompt(bool reset = false);
 	void DrawGame(idDisplay& display);

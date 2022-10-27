@@ -4,7 +4,7 @@ idSnake::idSnake() :
     size(BASE_SIZE),
     headPosition(0, 0),
     gameOver(true),
-    logic_delay(0.5f), logic_timer(0.0f),
+    logicDelay(0.5f), logicTimer(0.0f),
     gameBackground(SPRITES_PATH + "SnakeBackground.txt"),
     snakeSprite(SPRITES_PATH + "SnakeSprite.txt"),
     appleSprite(SPRITES_PATH + "AppleSprite.txt"),
@@ -13,7 +13,7 @@ idSnake::idSnake() :
     gameOverBackground(SPRITES_PATH + "GameOverBackground.txt"),
     gameOverText(SPRITES_PATH + "GameOver.txt"),
     deadSprite(DARK_GRAY, 4, 4),
-    scoreDisplay(3, 1, 1), gameOverScoreDisplay(3, 60, 39), frame_delay(1.0f / 60.0f),
+    scoreDisplay(3, 1, 1), gameOverScoreDisplay(3, 60, 39), frameDelay(1.0f / 60.0f),
     controlsManager(inputManager), direction(control_t::RIGHT), nextDirection(control_t::RIGHT){
     map = new int[MAP_HEIGHT * MAP_WIDTH];
 }
@@ -63,20 +63,20 @@ void idSnake::LoopGame() {
     float delta_time = 0.0f; // elapsed time between a frame
     float previous_time = 0.0f;
     float current_time = 0.0f;
-    logic_timer = 0.0f;
+    logicTimer = 0.0f;
     timer.getElapsedSeconds(true);
     Initialize(); // initialize snake game
     DrawGame(display);
     // main game screen
     while (!gameOver) {
         delta_time += current_time - previous_time;
-        logic_timer += current_time - previous_time;
+        logicTimer += current_time - previous_time;
         previous_time = current_time;
         inputManager.CheckKeyInputs();
-        if (delta_time >= frame_delay) {
+        if (delta_time >= frameDelay) {
             inputManager.UpdateStates();
             CheckInputs();
-            if (logic_timer >= logic_delay) {
+            if (logicTimer >= logicDelay) {
                 Update();
             }
             DrawGame(display);
@@ -86,7 +86,7 @@ void idSnake::LoopGame() {
             scoreDisplay.Draw(display, Score());
 
             display.Refresh();
-            delta_time -= frame_delay;
+            delta_time -= frameDelay;
         }
         current_time = timer.getElapsedSeconds();
     }
@@ -141,7 +141,7 @@ void idSnake::Initialize() {
 	map[TO_INDEX(center_x, center_y)] = size;
 	headPosition.x = center_x;
 	headPosition.y = center_y;
-	logic_delay = 0.4f;
+	logicDelay = 0.4f;
 	GenerateFood();
     direction = control_t::RIGHT;
     nextDirection = control_t::RIGHT;
@@ -188,7 +188,7 @@ void idSnake::DrawGameOver(idDisplay& display) {
 }
 
 void idSnake::Update() {
-	logic_timer -= logic_delay;
+	logicTimer -= logicDelay;
     intVector2_t next = headPosition+NextMove();
     inputManager.CheckKeyInputs();
 	if (!gameOver) {
@@ -217,8 +217,8 @@ void idSnake::Update() {
             soundManager.PlaySoundTrack(soundTrack_t::COLLECT);
 			map[destination_index] = size;
             headPosition = next;
-			if (logic_delay > 0.03f)
-				logic_delay*=0.95f;
+			if (logicDelay > 0.03f)
+				logicDelay*=0.95f;
 			GenerateFood();
 			//PlaySound(L".\\resources\\sounds\\sfx8.wav", NULL, SND_ASYNC);
 		}
