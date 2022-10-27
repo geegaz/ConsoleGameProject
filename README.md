@@ -21,7 +21,7 @@ Le jeu peut être joué au **clavier** et à la **manette** (Xinput).
 
 ## Projet initial
 
-Au départ, nous avons commencé par créer un **Snake**.
+Au départ, nous avons commencé par créer un jeu **Snake**. Avec toutes les mécaniques de jeu fonctionnelles.
 
 ## Transformation
 
@@ -33,7 +33,86 @@ Lors de cette phase, nous avons ajouté OpenAL au projet, amélioré le système
 Après avoir avancé sur le jeu de plate-formes, nous avons réalisé que le projet était trop ambitieux vu notre avancement et le temps qu'il nous restait. Nous avons donc décidé de s'arrêter et de plutôt améliorer le **Snake** en y incorporant des éléments créés lors de la phase précédente (contrôles, animations, son, ...).
 
 # Description des sources
-## 
+Ne seront présentés ici que les sources que nous avons développés. Sauf si précisé, tous les fichiers marqués ".[h,cpp]" ne contiennent qu'une seule classe ou structure.
+
+Nous avons essayé de respecter la [convention de nommage **idSoftware**](https://cours.guillaumelevieux.xyz/seances/cppprojet/IdCodeStyleConventions.pdf).   
+A noter que certains paramètres de constructeurs ont pour nom `_nomAttribut` quand `nomAttribut` est un attribut de la classe.
+
+## Main.cpp
+
+Point d'entrée du logiciel, contenant la fonction `int main()`.
+
+## GameConstants.h
+
+## Snake.[h,cpp]
+
+## Display.[h,cpp]
+
+Intermédiaire entre le programme et la console Windows. Permet de placer des pixels colorés.
+
+## InputManager.[h,cpp]
+
+Gestionnaire d'**entrées** (Clavier ou Xinput) pures, permet de savoir quelle **touche** ou **bouton** est appuyée.
+
+## ControlsManager.[h,cpp]
+
+Intermediaire entre les **entrées** joueur et les **actions** du jeu. Indique quelle **action** est effectuée par le joueur à partir des entrées enregistrées par l'**InputManager**.
+
+## SoundManager.[h,cpp]
+
+Gestionnaire de son, permet de jouer des sons et de lancer des musiques.
+
+## Vector2D.[h,cpp]
+
+### intVector2
+
+vecteur d'**entiers** de 2 dimensions (x,y).
+
+### floatVector2
+
+vecteur de **flottants** de 2 dimensions (x,y).
+
+## Sprite.[h,cpp]
+
+Objet affichable consititué de plusieurs pixels.
+
+L'image d'un sprite peut être une **image unique**, ou une **feuille de sprite**.
+
+## Animation.[h,cpp]
+
+
+
+## SpriteRenderer.[h,cpp]
+
+
+
+## NumberDisplay.[h,cpp]
+
+Affiche un nombre à l'écran avec un nombre de chiffres fixe et à une position fixe.
+
+*(Utilisé pour afficher le score)*
+
+## Animation.[h,cpp]
+
+
+
+## Particle.[h,cpp]
+
+Classe abstraite affichable à l'écran avec une position et un comportement définissable dans les classes enfant.
+
+## EffectParticle.[h,cpp]
+
+Particule animée utilisant des `positionAnimation` et des `frameAnimation`.
+
+*(**Exemple** : particule animée lors de la collecte de pomme)*
+
+## ParticlesManager.[h,cpp]
+
+Instancie et met à jour les **particules** affichées à l'écran.
+
+## png_to_console_txt.py
+
+Script **python** permettant de convertir une image `.png` (avec canal alpha) en fichier `.txt` traitable par la classe `idSprite` de **Sprite.[h,cpp]**.
 
 # Crédits visuels
 ## Sprites
