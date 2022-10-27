@@ -1,5 +1,15 @@
 *Jeu développé par Tanguy DEPRAZ et Danny VU*
 
+Le repository GitHub du projet est accessible [ici](www.monlienici.fr) *(monlienici.fr)*.
+
+# Description
+
+Le jeu développé est basé sur le jeu "Snake" et porte le même nom.
+
+Le but du jeu est de collecter le plus de pommes possibles avant de mourir.
+
+Plus il y a de pommes collectées, plus le jeu avance vite.
+
 # Instructions de compilation
 
 # Contrôles
@@ -33,17 +43,56 @@ Lors de cette phase, nous avons ajouté OpenAL au projet, amélioré le système
 Après avoir avancé sur le jeu de plate-formes, nous avons réalisé que le projet était trop ambitieux vu notre avancement et le temps qu'il nous restait. Nous avons donc décidé de s'arrêter et de plutôt améliorer le **Snake** en y incorporant des éléments créés lors de la phase précédente (contrôles, animations, son, ...).
 
 # Description des sources
-## 
+Ne seront présentés ici que les sources que nous avons développés. Sauf si précisé, tous les fichiers marqués ".[h,cpp]" ne contiennent qu'une seule classe ou structure.
+
+## Main.cpp
+
+Point d'entrée du logiciel, contenant la fonction `int main()`.
+
+## GameConstants.h
+
+## Snake.[h,cpp]
+
+## Display.[h,cpp]
+
+## InputManager.[h,cpp]
+
+## ControlsManager.[h,cpp]
+
+## SoundManager.[h,cpp]
+
+## Vector2D.[h,cpp]
+
+## Sprite.[h,cpp]
+
+## Animation.[h,cpp]
+
+## SpriteRenderer.[h,cpp]
+
+## NumberDisplay.[h,cpp]
+
+## Animation.[h,cpp]
+
+## Particle.[h,cpp]
+
+## EffectParticle.[h,cpp]
+
+## ParticlesManager.[h,cpp]
 
 # Crédits visuels
+
 ## Sprites
+
 ### Tanguy DEPRAZ
+
 **GameOver.png**  
 **Numbers.png**  
 **SnakeSprites.png**  
 **title_screen.png**  
 **GameOverBackground.png**  
+
 ### Danny VU
+
 **apple_pop.png** (inspiré de Celeste)  
 **press_space_start.png** (edited by Tanguy)  
 **SnakeBackground.png**  
@@ -54,7 +103,7 @@ Après avoir avancé sur le jeu de plate-formes, nous avons réalisé que le pro
 
 ### OpenAL
 
-Bibliothèque permettant le chargement et l'utilisation de **sons** dans le jeu. Nous l'avons choisie car elle est beaucoup utilisée dans le jeu vidéo et parce qu'elle est fiable et simple à utiliser.
+Bibliothèque permettant le chargement et l'utilisation de **sons** dans le jeu. Nous l'avons choisie car elle est beaucoup utilisée dans le domaine du jeu vidéo et parce qu'elle est fiable et simple à utiliser.
 
 ## Fichiers Sources
 
