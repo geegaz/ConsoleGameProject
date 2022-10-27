@@ -46,6 +46,7 @@ void idSnake::LoopTitle() {
     titleScreen.Draw(display, 0, 0);
     display.Refresh();
     bool start_pressed = false;
+    soundManager.PlayMusicTrack(musicTrack_t::TITLE);
     while (!start_pressed) {
         inputManager.CheckKeyInputs();
         inputManager.UpdateStates();
@@ -56,6 +57,8 @@ void idSnake::LoopTitle() {
         display.Refresh();
         Sleep(1);
     }
+    soundManager.PlaySoundTrack(soundTrack_t::START);
+    soundManager.PlayMusicTrack(musicTrack_t::NONE);
 }
 
 void idSnake::LoopGame() {
@@ -67,6 +70,7 @@ void idSnake::LoopGame() {
     timer.getElapsedSeconds(true);
     Initialize(); // initialize snake game
     DrawGame(display);
+    soundManager.PlayMusicTrack(musicTrack_t::IN_GAME);
     // main game screen
     while (!gameOver) {
         delta_time += current_time - previous_time;
@@ -90,6 +94,7 @@ void idSnake::LoopGame() {
         }
         current_time = timer.getElapsedSeconds();
     }
+    soundManager.PlayMusicTrack(musicTrack_t::NONE);
 }
 
 void idSnake::LoopGameOver() {
@@ -97,7 +102,8 @@ void idSnake::LoopGameOver() {
     DrawGameOver(display);
     display.Refresh();
     soundManager.PlaySoundTrack(soundTrack_t::DEATH);
-    Sleep(1500);
+    soundManager.PlaySoundTrack(soundTrack_t::SNAAKE);
+    Sleep(2000);
     soundManager.PlayMusicTrack(musicTrack_t::DEATH);
     DisplayStartPrompt(true);
     display.Refresh();
@@ -220,7 +226,6 @@ void idSnake::Update() {
 			if (logicDelay > 0.03f)
 				logicDelay*=0.95f;
 			GenerateFood();
-			//PlaySound(L".\\resources\\sounds\\sfx8.wav", NULL, SND_ASYNC);
 		}
 	}
 }

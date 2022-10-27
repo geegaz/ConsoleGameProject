@@ -31,10 +31,10 @@ const std::string SOUNDS_PATH = RESOURCES_PATH + "sounds\\";
 
 const std::string SPRITES_PATH = RESOURCES_PATH + "sprites\\";
 
-enum class musicTrack_t { NONE, DEATH };
-enum class soundTrack_t { DEATH, COLLECT };
-const std::map<musicTrack_t, std::string> MUSIC_FILES = { {musicTrack_t::DEATH, SOUNDS_PATH + "death_jingle.wav"}, {musicTrack_t::NONE, SOUNDS_PATH + "music_none.wav"} };
-const std::map<soundTrack_t, std::string> SOUND_FILES = { {soundTrack_t::COLLECT, SOUNDS_PATH + "apple_get.wav"}, {soundTrack_t::DEATH, SOUNDS_PATH + "death_sfx.wav"} };
+enum class musicTrack_t { NONE, DEATH, TITLE, IN_GAME };
+enum class soundTrack_t { DEATH, COLLECT, START, SNAAKE };
+const std::map<musicTrack_t, std::string> MUSIC_FILES = { {musicTrack_t::DEATH, SOUNDS_PATH + "death_jingle.wav"}, {musicTrack_t::NONE, SOUNDS_PATH + "music_none.wav"}, {musicTrack_t::TITLE, SOUNDS_PATH + "title_theme.wav"}, {musicTrack_t::IN_GAME, SOUNDS_PATH + "music_ingame.wav"} };
+const std::map<soundTrack_t, std::string> SOUND_FILES = { {soundTrack_t::COLLECT, SOUNDS_PATH + "apple_get.wav"}, {soundTrack_t::DEATH, SOUNDS_PATH + "death_sfx.wav"}, {soundTrack_t::START, SOUNDS_PATH + "game_start.wav"}, {soundTrack_t::SNAAKE, SOUNDS_PATH + "snake_scream.wav"} };
 
 const std::string ANIMATIONS_PATH = RESOURCES_PATH + "animations\\";
 const std::string POSITION_ANIMATIONS_FILE = ANIMATIONS_PATH +"position_animations.txt";
