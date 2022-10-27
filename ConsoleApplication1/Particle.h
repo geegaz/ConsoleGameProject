@@ -4,7 +4,7 @@
 class idParticle
 {
 protected:
-	floatVector2_t startPosition;
+	floatVector2_t position;
 	int lifespan;
 	int life;
 public:

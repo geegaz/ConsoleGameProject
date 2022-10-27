@@ -1,7 +1,7 @@
 #include "Particle.h"
 
 idParticle::idParticle(int x, int y, int _lifespan)
-	:startPosition(x, y), lifespan(_lifespan), life(0) {}
+	:position(x, y), lifespan(_lifespan), life(0) {}
 
 idParticle::~idParticle() {}
 
