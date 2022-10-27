@@ -11,6 +11,7 @@ public:
 	void UpdateParticles();
 	void DrawParticles(idDisplay display);
 	void CreateAppleCollectEffect(int x, int y);
+	void CreateDeathParticles(int x, int y, int count);
 	void Clear();
 	~idParticlesManager();
 };

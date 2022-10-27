@@ -1,15 +1,5 @@
 *Jeu développé par Tanguy DEPRAZ et Danny VU*
 
-Le repository GitHub du projet est accessible [ici](https://github.com/geegaz/ConsoleGameProject/) *(https://github.com/geegaz/ConsoleGameProject/)*.
-
-# Description
-
-Le jeu développé est basé sur le jeu "Snake" et porte le même nom.
-
-Le but du jeu est de collecter le plus de pommes possibles avant de mourir.
-
-Plus il y a de pommes collectées, plus le jeu avance vite.
-
 # Instructions de compilation
 
 # Contrôles
@@ -125,19 +115,14 @@ Instancie et met à jour les **particules** affichées à l'écran.
 Script **python** permettant de convertir une image `.png` (avec canal alpha) en fichier `.txt` traitable par la classe `idSprite` de **Sprite.[h,cpp]**.
 
 # Crédits visuels
-
 ## Sprites
-
 ### Tanguy DEPRAZ
-
 **GameOver.png**  
 **Numbers.png**  
 **SnakeSprites.png**  
 **title_screen.png**  
 **GameOverBackground.png**  
-
 ### Danny VU
-
 **apple_pop.png** (inspiré de Celeste)  
 **press_space_start.png** (edited by Tanguy)  
 **SnakeBackground.png**  
@@ -148,7 +133,7 @@ Script **python** permettant de convertir une image `.png` (avec canal alpha) en
 
 ### OpenAL
 
-Bibliothèque permettant le chargement et l'utilisation de **sons** dans le jeu. Nous l'avons choisie car elle est beaucoup utilisée dans le domaine du jeu vidéo et parce qu'elle est fiable et simple à utiliser.
+Bibliothèque permettant le chargement et l'utilisation de **sons** dans le jeu. Nous l'avons choisie car elle est beaucoup utilisée dans le jeu vidéo et parce qu'elle est fiable et simple à utiliser.
 
 ## Fichiers Sources
 

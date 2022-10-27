@@ -148,7 +148,6 @@
     <ClCompile Include="EffectParticle.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
-    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="ControlsManager.cpp" />
     <ClCompile Include="Display.cpp" />
@@ -157,7 +156,6 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PhysicsTest.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SoundUtils.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
@@ -167,7 +165,6 @@
     <ClInclude Include="EffectParticle.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticlesManager.h" />
-    <ClInclude Include="Collider.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="ControlsManager.h" />
     <ClInclude Include="GameConstants.h" />
@@ -177,7 +174,6 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="NYTimer.h" />
-    <ClInclude Include="PhysicsTest.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundUtils.h" />
     <ClInclude Include="SpriteRenderer.h" />

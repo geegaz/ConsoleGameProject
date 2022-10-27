@@ -35,6 +35,11 @@ void idParticlesManager::Clear() {
 	}
 }
 
+void idParticlesManager::CreateDeathParticles(int x, int y, int count) {
+	//static idSprite nomSprite(SPRITES_PATH + "");
+	// TODO
+}
+
 idParticlesManager::~idParticlesManager() {
 	Clear();
 }
