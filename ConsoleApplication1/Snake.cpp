@@ -122,7 +122,7 @@ void idSnake::LoopDeath() {
     soundManager.PlaySoundTrack(soundTrack_t::SNAAKE, 1);
 
     timer.getElapsedSeconds(true);
-    while (death_time > -1.0f) {
+    while (death_time > -1.5f) {
         delta_time += current_time - previous_time;
         previous_time = current_time;
 

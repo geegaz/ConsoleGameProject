@@ -8,12 +8,13 @@ class idDeathParticle :
     public idParticle
 {
 private:
+    static idSprite SPRITE;
+
     floatVector2_t velocity;
-    idSprite& sprite;
     int frame;
     float timer;
 public:
-    idDeathParticle(int x, int y, int _lifespan, idSprite& _sprite);
+    idDeathParticle(int x, int y, int _lifespan);
     void Update();
     void Draw(idDisplay& display);
 };
