@@ -23,6 +23,7 @@ public:
 	idSoundManager();
 	~idSoundManager();
 	void PlaySoundTrack(soundTrack_t);
+	void PlaySoundTrack(soundTrack_t track, int canal);
 	void PlayMusicTrack(musicTrack_t);
 };
 
