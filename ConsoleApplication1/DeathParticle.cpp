@@ -8,11 +8,14 @@ idDeathParticle::idDeathParticle(int x, int y, int _lifespan, idSprite& _sprite)
 	float pi = 3.141592;
 	float angle = ((float)rand() / (RAND_MAX)) * 2*pi;
 	frame = rand() % (sprite.frames.x * sprite.frames.y);
-	velocity.x = cosf(angle) * 10.0f;
-	velocity.y = sinf(angle) * 10.0f;
+	velocity.x = cosf(angle) * 40.0f;
+	velocity.y = sinf(angle) * 40.0f - 20.0f;
 }
 
 void idDeathParticle::Update() {
+	velocity.y += 60.0f * delta_time;
+	velocity.x *= 0.99f;
+	velocity.y *= 0.99f;
 	position += velocity * delta_time;
 	timer += delta_time;
 }
