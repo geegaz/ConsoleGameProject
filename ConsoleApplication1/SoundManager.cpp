@@ -104,6 +104,12 @@ void idSoundManager::PlaySoundTrack(soundTrack_t track) {
     alSourcePlay(source);
 }
 
+void idSoundManager::PlaySoundTrack(soundTrack_t track, int canal) {
+    ALuint source = soundSources[canal]% SOUND_SOURCES_COUNT;
+    alSourcei(source, AL_BUFFER, soundBuffers[track]);
+    alSourcePlay(source);
+}
+
 void idSoundManager::PlayMusicTrack(musicTrack_t track) {
     alSourceStop(musicSource);
     alSourcei(musicSource, AL_BUFFER, musicBuffers[track]);
