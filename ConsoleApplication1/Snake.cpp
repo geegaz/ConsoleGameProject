@@ -65,16 +65,19 @@ void idSnake::LoopTitle() {
 }
 
 void idSnake::LoopGame() {
-    particlesManager.Clear();
     delta_time = 0.0f; // elapsed time between a frame
     float previous_time = 0.0f;
     float current_time = 0.0f;
     logicTimer = 0.0f;
-    timer.getElapsedSeconds(true);
+
     Initialize(); // initialize snake game
+
+    particlesManager.Clear();
     DrawGame(display);
     soundManager.PlayMusicTrack(musicTrack_t::IN_GAME);
     // main game screen
+
+    timer.getElapsedSeconds(true);
     while (!gameOver) {
         delta_time += current_time - previous_time;
         logicTimer += current_time - previous_time;
@@ -105,18 +108,20 @@ void idSnake::LoopDeath() {
     delta_time = 0.0f; // elapsed time between a frame
     float previous_time = 0.0f;
     float current_time = 0.0f;
-    timer.getElapsedSeconds(true);
 
     float length = (float)size;
-    float death_time = 1.0f + length * 0.2f;
+    float death_time = 1.0f + length * 0.1f;
     float step = death_time / length;
 
+    particlesManager.Clear();
     DrawGameOver(display);
     display.Refresh();
 
-    soundManager.PlaySoundTrack(soundTrack_t::DEATH);
-    soundManager.PlaySoundTrack(soundTrack_t::SNAAKE);
+    soundManager.PlaySoundTrack(soundTrack_t::DEATH, 0);
+    Sleep(1200);
+    soundManager.PlaySoundTrack(soundTrack_t::SNAAKE, 1);
 
+    timer.getElapsedSeconds(true);
     while (death_time > -1.0f) {
         delta_time += current_time - previous_time;
         previous_time = current_time;
@@ -146,11 +151,12 @@ void idSnake::LoopGameOver() {
     delta_time = 0.0f; // elapsed time between a frame
     float previous_time = 0.0f;
     float current_time = 0.0f;
-    timer.getElapsedSeconds(true);
     
     soundManager.PlayMusicTrack(musicTrack_t::DEATH);
     DisplayStartPrompt(true);
     display.Refresh();
+
+    timer.getElapsedSeconds(true);
     while (!start_pressed) {
         delta_time += current_time - previous_time;
         previous_time = current_time;
@@ -230,13 +236,13 @@ void idSnake::CreateDeathEffect() {
                     switch (rand() % 3)
                     {
                     case 0:
-                        soundManager.PlaySoundTrack(soundTrack_t::SHATTER_1);
+                        soundManager.PlaySoundTrack(soundTrack_t::SHATTER_1, 2);
                         break;
                     case 1:
-                        soundManager.PlaySoundTrack(soundTrack_t::SHATTER_2);
+                        soundManager.PlaySoundTrack(soundTrack_t::SHATTER_2, 2);
                         break;
                     case 2:
-                        soundManager.PlaySoundTrack(soundTrack_t::SHATTER_3);
+                        soundManager.PlaySoundTrack(soundTrack_t::SHATTER_3, 2);
                         break;
                     default:
                         break;

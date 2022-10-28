@@ -18,12 +18,12 @@ void idDeathParticle::Update() {
 	velocity.y *= 0.99f;
 	position += velocity * delta_time;
 	timer += delta_time;
+
+	if (timer > lifespan) {
+		life = lifespan;
+	}
 }
 
 void idDeathParticle::Draw(idDisplay& display) {
 	sprite.Draw(display, position.x, position.y, frame);
-}
-
-bool idDeathParticle::IsDead() {
-	return timer > (float)lifespan;
 }

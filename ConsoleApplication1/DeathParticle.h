@@ -16,6 +16,5 @@ public:
     idDeathParticle(int x, int y, int _lifespan, idSprite& _sprite);
     void Update();
     void Draw(idDisplay& display);
-    bool IsDead();
 };
 
