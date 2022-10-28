@@ -1,5 +1,6 @@
 #include "ParticlesManager.h"
 #include "EffectParticle.h"
+#include "DeathParticle.h"
 
 idParticlesManager::idParticlesManager(){}
 void idParticlesManager::UpdateParticles() {
@@ -38,7 +39,7 @@ void idParticlesManager::Clear() {
 void idParticlesManager::CreateDeathParticles(int x, int y, int count) {
 	static idSprite SHATTER_PARTICLES(SPRITES_PATH + "shatter_particles.txt");
 	for (int i = 0; i < count; i++) {
-		particles.push_back(new idEffectParticle(x, y, 3, SHATTER_PARTICLES));
+		particles.push_back(new idDeathParticle(x, y, 3, SHATTER_PARTICLES));
 	}
 }
 
