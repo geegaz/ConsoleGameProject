@@ -226,6 +226,21 @@ void idSnake::CreateDeathEffect() {
             if (tile > 0) {
                 if (tile == 1) {
                     particlesManager.CreateDeathParticles(j * SPRITE_SIZE, i * SPRITE_SIZE + UI_HEIGHT, 4);
+                    
+                    switch (rand() % 3)
+                    {
+                    case 0:
+                        soundManager.PlaySoundTrack(soundTrack_t::SHATTER_1);
+                        break;
+                    case 1:
+                        soundManager.PlaySoundTrack(soundTrack_t::SHATTER_2);
+                        break;
+                    case 2:
+                        soundManager.PlaySoundTrack(soundTrack_t::SHATTER_3);
+                        break;
+                    default:
+                        break;
+                    }
                 }
                 map[TO_INDEX(j, i)] -= 1;
             }
