@@ -25,7 +25,7 @@ void idParticlesManager::DrawParticles(idDisplay display) {
 }
 void idParticlesManager::CreateAppleCollectEffect(int x, int y) {
 	static idSprite APPLE_COLLECT_FRAMES(SPRITES_PATH + "apple_pop.txt");
-	particles.push_back(new idEffectParticle(x, y, 20, APPLE_COLLECT_FRAMES, 4, "apple.collect", "apple.collect", intVector2_t(-2, -1)));
+	particles.push_back(new idEffectParticle(x, y, 20, APPLE_COLLECT_FRAMES, 2, "apple.collect", "apple.collect", intVector2_t(-2, -1)));
 }
 
 void idParticlesManager::Clear() {
