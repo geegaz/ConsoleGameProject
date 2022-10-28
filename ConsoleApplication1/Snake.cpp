@@ -95,8 +95,8 @@ void idSnake::LoopGame() {
             display.Refresh();
             delta_time -= frameDelay;
         }
-        current_time = timer.getElapsedSeconds();
         Sleep(1);
+        current_time = timer.getElapsedSeconds();
     }
     soundManager.PlayMusicTrack(musicTrack_t::NONE);
 }
@@ -173,22 +173,23 @@ void idSnake::LoopGameOver() {
             
             delta_time -= frameDelay;
         }
-        current_time = timer.getElapsedSeconds();
         Sleep(1);
+        current_time = timer.getElapsedSeconds();
     }
     soundManager.PlayMusicTrack(musicTrack_t::NONE);
 }
 void idSnake::DisplayStartPrompt(bool reset) {
     static bool display_prompt;
+    static NYTimer displayPromptTimer;
     if (reset) {
         display_prompt = true;
-        timer.getElapsedSeconds(true);
+        displayPromptTimer.getElapsedSeconds(true);
     }
     if (display_prompt)
         pressSpacePrompt.Draw(display, 10, 55);
-    if (timer.getElapsedSeconds() >= 0.75) {
+    if (displayPromptTimer.getElapsedSeconds() >= 0.75) {
         display_prompt = !display_prompt;
-        timer.getElapsedSeconds(true);
+        displayPromptTimer.getElapsedSeconds(true);
     }
 }
 
