@@ -40,6 +40,7 @@ void idSnake::Start() {
 
         // game over screen
         controlsManager.SetState(gameState_t::MENU);
+        LoopDeath();
         LoopGameOver();
     }
 }
@@ -100,6 +101,10 @@ void idSnake::LoopGame() {
     soundManager.PlayMusicTrack(musicTrack_t::NONE);
 }
 
+void idSnake::LoopDeath() {
+    //TODO
+}
+
 void idSnake::LoopGameOver() {
     bool start_pressed = false;
     delta_time = 0.0f; // elapsed time between a frame
@@ -152,7 +157,6 @@ void idSnake::DisplayStartPrompt(bool reset) {
         pressSpacePrompt.Draw(display, 10, 55);
     if (timer.getElapsedSeconds() >= 0.75) {
         display_prompt = !display_prompt;
-        //Beep(DWORD(500), DWORD(250));
         timer.getElapsedSeconds(true);
     }
 }

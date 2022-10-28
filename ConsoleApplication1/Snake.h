@@ -46,6 +46,7 @@ private:
 	void LoopTitle();
 	void LoopGame();
 	void LoopGameOver();
+	void LoopDeath();
 	void Update();
 	void CheckInputs();
 	void ChangeDirection(control_t newDirection);
