@@ -56,7 +56,7 @@ Lors de cette phase, nous avons ajouté OpenAL au projet, amélioré le système
 
 ## Retour aux sources
 
-Après avoir avancé sur le jeu de plate-formes, nous avons réalisé que le projet était trop ambitieux vu notre avancement et le temps qu'il nous restait. Nous avons donc décidé de s'arrêter et de plutôt améliorer le **Snake** en y incorporant des éléments créés lors de la phase précédente (contrôles, animations, son, ...).
+Après avoir avancé sur le jeu de plate-formes, nous avons réalisé que le projet était trop ambitieux vu notre avancement et le temps qu'il nous restait. Nous avons donc décidé de s'arrêter et de plutôt améliorer le **Snake** en utilisant les classes créés lors de la phase précédente (contrôles, animations, son, ...) pour notamment ajouter plus d'ambiance au jeu.
 
 # Description des sources
 Ne seront présentés ici que les sources que nous avons développés.  
@@ -71,7 +71,7 @@ Point d'entrée du logiciel, contenant la fonction `int main()`.
 
 ## GameConstants.h
 
-Définitions d'`enum` utilisés dans plusieurs classes, et de 
+Définitions d'`enum` utilisés dans plusieurs classes, et de constantes (`map`, `vector`, `string`) utilisés dans plusieurs classes, notamment pour les chemins de **répertoires de ressources**.
 
 ## Snake.[h,cpp]
 
