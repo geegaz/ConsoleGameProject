@@ -20,7 +20,7 @@ compilation du projet.
 
 Une fois le projet compilé sur Visual Studio, l'executable **`GameConsole.exe`** se trouve dans le répertoire `\x64\Release\` (mode Release) ou dans `\x64\Debug\` (mode Debug).
 
-Pour pouvoir executer le `.exe`, il faut copier-coller le répertoire `\resources\`, se trouvant dans `\ConsoleApplication1\`, dans le même répertoire que le fichier `.exe` (**exemple** : `\x64\Release\resources\` ).
+Pour pouvoir exécuter le `.exe`, il faut copier-coller le répertoire `\resources\`, se trouvant dans `\ConsoleApplication1\`, dans le même répertoire que le fichier `.exe` (**exemple** : `\x64\Release\resources\` ).
 
 Une fois le répertoire de ressources placé, double-cliquer sur **`GameConsole.exe`** pour lancer le jeu.
 
@@ -88,7 +88,7 @@ Gestionnaire d'**entrées** (Clavier ou Xinput) pures, permet de savoir quelle *
 
 ## ControlsManager.[h,cpp]
 
-Intermediaire entre les **entrées** joueur et les **actions** du jeu. Indique quelle **action** est effectuée par le joueur à partir des entrées enregistrées par l'**InputManager**.
+Intermédiaire entre les **entrées** joueur et les **actions** du jeu. Indique quelle **action** est effectuée par le joueur à partir des entrées enregistrées par l'**InputManager**.
 
 ## SoundManager.[h,cpp]
 
@@ -106,7 +106,7 @@ vecteur de **flottants** de 2 dimensions (x,y).
 
 ## Sprite.[h,cpp]
 
-Objet affichable consititué de plusieurs pixels.
+Objet affichable constitué de plusieurs pixels.
 
 L'image d'un sprite peut être une **image unique**, ou une **feuille de sprite**.
 
@@ -159,7 +159,7 @@ Format de `.txt` pour `frameAnimation_t` :
 
 ## SpriteRenderer.[h,cpp]
 
-Contenaire de Sprite avec une position. Le SpriteRenderer permet d'appliquer des animations (`positionAnimation` et des `frameAnimation`) et des transformations (symétrie axe x et y) sur le Sprite et de l'afficher.
+Conteneur de Sprite avec une position. Le SpriteRenderer permet d'appliquer des animations (`positionAnimation` et des `frameAnimation`) et des transformations (symétrie axe x et y) sur le Sprite et de l'afficher.
 
 ## NumberDisplay.[h,cpp]
 
@@ -190,7 +190,7 @@ Instancie et met à jour les **particules** affichées à l'écran.
 *(situé dans `resources\sprites\` )*  
 Script **python** permettant de convertir une image `.png` (avec canal alpha) en fichier `.txt` traitable par la classe `idSprite` de **Sprite.[h,cpp]**.
 
-*(A noter que pour les **feuilles de sprite**, il est necessaire de modifier le `.txt` résultant.)*
+*(A noter que pour les **feuilles de sprite**, il est nécessaire de modifier le `.txt` résultant.)*
 
 # Crédits visuels
 ## Sprites
@@ -218,7 +218,7 @@ Bibliothèque permettant le chargement et l'utilisation de **sons** dans le jeu.
 
 ### **SoundUtils (.h, .cpp)**
 
-Classe permettant de traiter des fichiers wav, développée par **VU Alex**.
+Classe utilisable avec **OpenAL** développée par **VU Alex** permettant de charger des fichiers `.wav`.
 
 ## Audio
 
