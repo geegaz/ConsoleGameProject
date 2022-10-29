@@ -33,8 +33,6 @@ class idAnimationRegister {
 private:
     static std::map<std::string, positionAnimation_t> POSITION_ANIMATIONS;
     static std::map<std::string, frameAnimation_t> FRAME_ANIMATIONS;
-    std::map<std::string, positionAnimation_t*> positionAnimations;
-    std::map<std::string, frameAnimation_t*> frameAnimations;
     static void LoadAllPositionAnimations(std::string filename);
     static void  LoadAllFrameAnimations(std::string filename);
     idAnimationRegister();
