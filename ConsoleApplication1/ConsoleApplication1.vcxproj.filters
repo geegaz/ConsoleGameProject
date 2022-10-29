@@ -118,31 +118,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="resources\sprites\AppleSprite.txt">
+    <None Include="ClassDiagram.cd">
       <Filter>Fichiers de ressources</Filter>
-    </Text>
-    <Text Include="resources\sprites\Numbers.txt">
+    </None>
+    <None Include="ClassDiagram_simplified.cd">
       <Filter>Fichiers de ressources</Filter>
-    </Text>
-    <Text Include="resources\sprites\SnakeBackground.txt">
-      <Filter>Fichiers de ressources</Filter>
-    </Text>
-    <Text Include="resources\sprites\SnakeSprite.txt">
-      <Filter>Fichiers de ressources</Filter>
-    </Text>
-    <Text Include="resources\sprites\Sprite.txt">
-      <Filter>Fichiers de ressources</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="resources\sounds\sfx8.wav">
-      <Filter>Fichiers de ressources</Filter>
-    </Media>
-    <Media Include="resources\sounds\sfx23.wav">
-      <Filter>Fichiers de ressources</Filter>
-    </Media>
-    <Media Include="resources\sounds\death.wav">
-      <Filter>Fichiers de ressources</Filter>
-    </Media>
+    </None>
   </ItemGroup>
 </Project>

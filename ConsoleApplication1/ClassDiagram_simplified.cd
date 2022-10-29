@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="idNumberDisplay" Collapsed="true">
+    <Position X="14.75" Y="6" Width="1.5" />
+    <AssociationLine Name="NUMBERS_SPRITE" Type="idSprite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.188" Y="6" />
+        <Point X="15.188" Y="5.625" />
+        <Point X="14" Y="5.625" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.177" Y="-0.24" Height="0.182" Width="1.469" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="renderer" Type="idStaticSpriteRenderer" FixedToPoint="true">
+      <Path>
+        <Point X="15.312" Y="6" />
+        <Point X="15.312" Y="4.562" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.037" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="position" Type="intVector2_t" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15" Y="6.562" />
+        <Point X="15" Y="6.938" />
+        <Point X="10.25" Y="6.938" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.14" Y="-0.19" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAACAAAAAAiAAAAAAIAAAAAABAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>NumberDisplay.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="NUMBERS_SPRITE" />
+      <Field Name="renderer" />
+      <Field Name="position" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="idStaticSpriteRenderer" Collapsed="true">
+    <Position X="13.5" Y="4" Width="2" />
+    <AssociationLine Name="sprite" Type="idSprite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.375" Y="4.562" />
+        <Point X="14.375" Y="5.313" />
+        <Point X="13.917" Y="5.313" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.05" Y="-0.22" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAgAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpriteRenderer.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="sprite" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="idParticle" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAUAAAAAAAAAAgAAAAAAMAAAAAEAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Particle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="idParticlesManager" Collapsed="true">
+    <Position X="5.75" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAEAQAAgAAAAAAwAABAAgA=</HashCode>
+      <FileName>ParticlesManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="idSnake" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="2.25" />
+    <AssociationLine Name="headPosition" Type="intVector2_t" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.188" Y="4.312" />
+        <Point X="8.188" Y="7" />
+        <Point X="9" Y="7" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.118" Y="-0.208" Height="0.182" Width="1.141" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="deadSprite" Type="idSprite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.938" Y="4.312" />
+        <Point X="8.938" Y="6.09" />
+        <Point X="13.062" Y="6.09" />
+        <Point X="13.062" Y="5.812" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.001" Y="0.003" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="snakeSprite" Type="idSprite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="4.046" />
+        <Point X="12.562" Y="4.046" />
+        <Point X="12.562" Y="5.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.01" Y="0.012" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="appleSprite" Type="idSprite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="4.312" />
+        <Point X="8.75" Y="6.237" />
+        <Point X="13.333" Y="6.237" />
+        <Point X="13.333" Y="5.812" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.009" Y="-0.01" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="gameBackground" Type="idSprite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.312" Y="4.312" />
+        <Point X="9.312" Y="5.812" />
+        <Point X="11" Y="5.812" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.082" Y="-0.024" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="titleScreen" Type="idSprite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.125" Y="4.312" />
+        <Point X="9.125" Y="5.993" />
+        <Point X="11.833" Y="5.993" />
+        <Point X="11.833" Y="5.812" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.015" Y="0.013" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="pressSpacePrompt" Type="idSprite" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.5" Y="4.312" />
+        <Point X="9.5" Y="5.625" />
+        <Point X="11" Y="5.625" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.005" Y="-0.013" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="gameOverBackground" Type="idSprite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.688" Y="4.312" />
+        <Point X="9.688" Y="5.438" />
+        <Point X="11" Y="5.438" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.016" Y="-0.019" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="gameOverText" Type="idSprite" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="3.938" />
+        <Point X="12.812" Y="3.938" />
+        <Point X="12.812" Y="5.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.942" Y="0.095" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="display" Type="idDisplay" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="9.5" Y="3.75" />
+        <Point X="9.5" Y="3.062" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.047" Y="-0.034" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="timer" Type="NYTimer" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.75" Y="3.812" />
+        <Point X="6.831" Y="3.812" />
+        <Point X="6.831" Y="3.354" />
+        <Point X="6.218" Y="3.354" />
+        <Point X="6.218" Y="3.062" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.661" Y="0.017" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="inputManager" Type="idInputManager" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="4.312" />
+        <Point X="8" Y="7" />
+        <Point X="6.5" Y="7" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="controlsManager" Type="idControlsManager" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.812" Y="4.312" />
+        <Point X="7.812" Y="5.375" />
+        <Point X="6.938" Y="5.375" />
+        <Point X="6.938" Y="5.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.024" Y="0.016" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="soundManager" Type="idSoundManager">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.042" Y="0.019" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="scoreDisplay" Type="idNumberDisplay" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.375" Y="4.312" />
+        <Point X="8.375" Y="6.562" />
+        <Point X="14.75" Y="6.562" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.011" Y="-0.186" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="gameOverScoreDisplay" Type="idNumberDisplay" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.562" Y="4.312" />
+        <Point X="8.562" Y="6.375" />
+        <Point X="14.75" Y="6.375" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.066" Y="0.008" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="particlesManager" Type="idParticlesManager" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.75" Y="4.188" />
+        <Point X="7.188" Y="4.188" />
+        <Point X="7.188" Y="4.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.181" Y="-0.037" Height="0.182" Width="1.462" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAUQFhCAACAAIVigEIGAAgoAAEMBiGAgQIAAIAABAIA=</HashCode>
+      <FileName>Snake.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="headPosition" />
+      <Field Name="deadSprite" />
+      <Field Name="snakeSprite" />
+      <Field Name="appleSprite" />
+      <Field Name="gameBackground" />
+      <Field Name="titleScreen" />
+      <Field Name="pressSpacePrompt" />
+      <Field Name="gameOverBackground" />
+      <Field Name="gameOverText" />
+      <Field Name="display" />
+      <Field Name="timer" />
+      <Field Name="inputManager" />
+      <Field Name="controlsManager" />
+      <Field Name="soundManager" />
+      <Field Name="scoreDisplay" />
+      <Field Name="gameOverScoreDisplay" />
+      <Field Name="particlesManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="idControlsManager" Collapsed="true">
+    <Position X="6" Y="5.75" Width="1.75" />
+    <AssociationLine Name="inputManager" Type="idInputManager" FixedFromPoint="true">
+      <Path>
+        <Point X="6.25" Y="6.312" />
+        <Point X="6.25" Y="6.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.119" Y="0.05" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAgAAAAAAAAAAAAIAAAAAAAkAAAAgEAAAAA=</HashCode>
+      <FileName>ControlsManager.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="inputManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="idDisplay" Collapsed="true">
+    <Position X="9" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAABAAQAAAAAAAAAAAAAQCAABAIFAAAAAAAA=</HashCode>
+      <FileName>Display.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="idInputManager" Collapsed="true">
+    <Position X="5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAQAAAAAAAIAQAAIAAAAEABAAAAAUBAAAAABAAAAQA=</HashCode>
+      <FileName>InputManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="idSoundManager" Collapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAGAAAEEEAABAABABQAAAAAAAAQAIAAAAAAEAA=</HashCode>
+      <FileName>SoundManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NYTimer" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAgAAAAEAAAAAAAAEgAIAAAAAAAAAA=</HashCode>
+      <FileName>NYTimer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="idEffectParticle" Collapsed="true">
+    <Position X="3.5" Y="3.5" Width="1.5" />
+    <InheritanceLine Type="idParticle">
+      <InheritanceModifierLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-3.386" Y="-1.546" Height="0.182" Width="0.5" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <AssociationLine Name="spriteRenderer" Type="idSpriteRenderer" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.938" Y="3.5" />
+        <Point X="3.938" Y="2.295" />
+        <Point X="10.812" Y="2.295" />
+        <Point X="10.812" Y="3.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.916" Y="0.053" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAhAAAAAAiAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>EffectParticle.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="spriteRenderer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="idSpriteRenderer" Collapsed="true">
+    <Position X="10.5" Y="3.25" Width="1.5" />
+    <AssociationLine Name="sprite" Type="idSprite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12" Y="3.688" />
+        <Point X="13.427" Y="3.688" />
+        <Point X="13.427" Y="4.787" />
+        <Point X="13.833" Y="4.787" />
+        <Point X="13.833" Y="5.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.416" Y="-0.007" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="animationState" Type="idAnimationState" FixedToPoint="true">
+      <Path>
+        <Point X="12" Y="3.562" />
+        <Point X="13.75" Y="3.562" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.071" Y="0.047" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="spriteOffset" Type="intVector2_t" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.875" Y="3.25" />
+        <Point X="11.875" Y="2.112" />
+        <Point X="16.42" Y="2.112" />
+        <Point X="16.42" Y="7.188" />
+        <Point X="10.25" Y="7.188" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.054" Y="-0.166" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="floatPosition" Type="floatVector2_t" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.625" Y="3.25" />
+        <Point X="10.625" Y="2.378" />
+        <Point X="4.979" Y="2.378" />
+        <Point X="4.979" Y="2.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAIBAABACAQAgCAAAgAAAAYABAAAAAAgAAAABBgAAA=</HashCode>
+      <FileName>SpriteRenderer.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="sprite" />
+      <Field Name="animationState" />
+      <Field Name="spriteOffset" />
+      <Field Name="floatPosition" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="idAnimationState" Collapsed="true">
+    <Position X="13.75" Y="3.25" Width="1.5" />
+    <AssociationLine Name="positionAnimation" Type="positionAnimation_t">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.192" Y="0.081" Height="0.182" Width="1.394" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="frameAnimation" Type="frameAnimation_t" FixedToPoint="true">
+      <Path>
+        <Point X="13.875" Y="3.25" />
+        <Point X="13.875" Y="2.812" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.033" Y="0.02" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAQAAAAACAAQAAIAgAEAAAAAAAAAQAoAAA=</HashCode>
+      <FileName>Animation.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="positionAnimation" />
+      <Field Name="frameAnimation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="idSprite" Collapsed="true">
+    <Position X="11" Y="5.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAgAAAIAAAAAAAAAAAAAAAAAQAQAAQAA=</HashCode>
+      <FileName>Sprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="idDeathParticle" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <InheritanceLine Type="idParticle" FixedFromPoint="true">
+      <Path>
+        <Point X="5.625" Y="4.062" />
+        <Point X="5.625" Y="4.346" />
+        <Point X="4.75" Y="4.346" />
+        <Point X="4.75" Y="4.5" />
+      </Path>
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="4.297" Y="-3.055" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <AssociationLine Name="SPRITE" Type="idSprite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.5" Y="4.938" />
+        <Point X="7.729" Y="4.937" Type="JumpStart" />
+        <Point X="7.896" Y="4.938" Type="JumpEnd" />
+        <Point X="7.917" Y="4.937" Type="JumpStart" />
+        <Point X="8.083" Y="4.938" Type="JumpEnd" />
+        <Point X="8.104" Y="4.937" Type="JumpStart" />
+        <Point X="8.271" Y="4.938" Type="JumpEnd" />
+        <Point X="8.292" Y="4.937" Type="JumpStart" />
+        <Point X="8.458" Y="4.938" Type="JumpEnd" />
+        <Point X="8.479" Y="4.937" Type="JumpStart" />
+        <Point X="8.646" Y="4.938" Type="JumpEnd" />
+        <Point X="8.667" Y="4.937" Type="JumpStart" />
+        <Point X="8.833" Y="4.938" Type="JumpEnd" />
+        <Point X="8.854" Y="4.937" Type="JumpStart" />
+        <Point X="9.021" Y="4.938" Type="JumpEnd" />
+        <Point X="9.042" Y="4.937" Type="JumpStart" />
+        <Point X="9.208" Y="4.938" Type="JumpEnd" />
+        <Point X="9.229" Y="4.937" Type="JumpStart" />
+        <Point X="9.396" Y="4.938" Type="JumpEnd" />
+        <Point X="9.417" Y="4.937" Type="JumpStart" />
+        <Point X="9.583" Y="4.938" Type="JumpEnd" />
+        <Point X="9.604" Y="4.937" Type="JumpStart" />
+        <Point X="9.771" Y="4.938" Type="JumpEnd" />
+        <Point X="11.562" Y="4.938" />
+        <Point X="11.562" Y="5.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.005" Y="-0" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAQAAAAQAEQAAAAA=</HashCode>
+      <FileName>DeathParticle.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="SPRITE" />
+    </ShowAsAssociation>
+  </Class>
+  <Struct Name="intVector2_t" Collapsed="true">
+    <Position X="9" Y="6.75" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAQAAAAAAAAAAAABgQAAAAAA=</HashCode>
+      <FileName>Vector2D.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="floatVector2_t" Collapsed="true">
+    <Position X="4.25" Y="2.75" Width="1.25" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAhgBAIAAAA=</HashCode>
+      <FileName>Vector2D.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="positionAnimation_t" Collapsed="true">
+    <Position X="14.25" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQACAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animation.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="frameAnimation_t" Collapsed="true">
+    <Position X="12.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAEAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Animation.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
