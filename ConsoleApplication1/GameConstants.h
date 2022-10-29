@@ -4,13 +4,6 @@
 #include <windows.h>
 #include <Xinput.h>
 #include <vector>
-#define PLAYER_MASK 1
-#define BLOCK_MASK 2
-#define WALL_MASK 4
-#define FIRE_MASK 8
-#define ENEMY_MASK 16
-#define POWERUP_MASK 32
-#define NONE_MASK 0
 
 const std::string RESOURCES_PATH = ".\\resources\\";
 enum class gameState_t { MENU, IN_GAME };
