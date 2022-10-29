@@ -1,15 +1,33 @@
 *Jeu développé par Tanguy DEPRAZ et Danny VU*
 
-# Instructions de compilation
+# Instructions
 
-Si vous souhaitez directement avoir une version executable du jeu, celle-ci peut être téléchargée via le tag [Console Application (v1.0) - Snake](https://github.com/geegaz/ConsoleGameProject/releases/tag/v1.0) (https://github.com/geegaz/ConsoleGameProject/releases/tag/v1.0).
+Si vous souhaitez directement avoir une version executable du jeu, celle-ci peut être téléchargée via le tag [Console Application (v1.0) - Snake](https://github.com/geegaz/ConsoleGameProject/releases/tag/v1.0) (https://github.com/geegaz/ConsoleGameProject/releases/tag/v1.0) du [repository **GitHub** du projet](https://github.com/geegaz/ConsoleGameProject/).
 
 ## Ouverture du projet
+
 Le projet peut être ouvert sur **Visual Studio**.  
 Il a été développé sur **Visual Studio 2019 (v142)**, avec la version **10.0** du **SDK Windows**.  
 La norme C++ utilisée est la norme **ISO C++14**.
-## Compilation/Execution
-La compilation du projet fonctionne en mode Release 
+
+## Compilation/Execution sur Visual Studio
+
+La compilation du projet doit se faire sur Visual Studio et fonctionne en mode Release et Debug (**x64**).  
+L'execution du projet se fait directement sur Visual Studio après 
+compilation du projet.
+
+## Execution hors de Visual Studio
+
+Une fois le projet compilé sur Visual Studio, l'executable **`GameConsole.exe`** se trouve dans le répertoire `\x64\Release\` (mode Release) ou dans `\x64\Debug\` (mode Debug).
+
+Pour pouvoir executer le `.exe`, il faut copier-coller le répertoire `\resources\`, se trouvant dans `\ConsoleApplication1\`, dans le même répertoire que le fichier `.exe` (**exemple** : `\x64\Release\resources\` ).
+
+Une fois le répertoire de ressources placé, double-cliquer sur **`GameConsole.exe`** pour lancer le jeu.
+
+## Diagrammes de classes
+
+L'ouverture des diagrammes de classes format `.cd` requiert l'installation du module **Concepteur de Classes** (**Class Designer**) de Visual Studio. Des versions `.png` des diagrammes sont également disponibles à la racine du projet.
+
 # Contrôles
 
 Le jeu peut être joué au **clavier** et à la **manette** (Xinput).
@@ -41,7 +59,8 @@ Lors de cette phase, nous avons ajouté OpenAL au projet, amélioré le système
 Après avoir avancé sur le jeu de plate-formes, nous avons réalisé que le projet était trop ambitieux vu notre avancement et le temps qu'il nous restait. Nous avons donc décidé de s'arrêter et de plutôt améliorer le **Snake** en y incorporant des éléments créés lors de la phase précédente (contrôles, animations, son, ...).
 
 # Description des sources
-Ne seront présentés ici que les sources que nous avons développés. Sauf si précisé, tous les fichiers marqués ".[h,cpp]" ne contiennent qu'une seule classe ou structure.
+Ne seront présentés ici que les sources que nous avons développés.  
+Sauf si précisé, tous les fichiers marqués ".[h,cpp]" ne contiennent qu'une seule classe ou structure.
 
 Nous avons essayé de respecter la [convention de nommage **idSoftware**](https://cours.guillaumelevieux.xyz/seances/cppprojet/IdCodeStyleConventions.pdf).   
 A noter que certains paramètres de constructeurs ont pour nom `_nomAttribut` quand `nomAttribut` est un attribut de la classe.
